@@ -1,0 +1,19 @@
+.new-patient-page {
+  height: 100%;
+  .container {
+    height: 100%;
+    // overflow-y: scroll;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-areas: "left left left left right right";
+    gap: var(--space-md);
+
+    .left {
+      grid-area: left;
+    }
+
+    .right {
+      grid-area: right;
+    }
+  }
+}

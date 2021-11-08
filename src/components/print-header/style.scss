@@ -1,0 +1,9 @@
+.circle {
+  border: 2px solid var(--color-black);
+  box-shadow: 0 -0.5rem 0 0 rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+
+  @media print {
+    width: 100vw !important;
+  }
+}

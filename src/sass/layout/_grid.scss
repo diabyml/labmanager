@@ -1,0 +1,27 @@
+.grid {
+  display: grid;
+  //   > div {
+  //     outline: 1px solid red;
+  //   }
+}
+
+.col-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.col-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.col-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+// GAP
+.gap-sm {
+  gap: var(--space-sm);
+}
+
+.gap-md {
+  gap: var(--space-md);
+}

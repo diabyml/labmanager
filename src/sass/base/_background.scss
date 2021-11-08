@@ -1,0 +1,32 @@
+[class*="bg-"] {
+  background-color: var(--bg, var(--color-primary));
+  color: var(--fg, var(--color-white));
+}
+
+.bg--primary-lighter {
+  --bg: var(--color-primary-lighter);
+}
+
+.bg--accent {
+  --bg: var(--color-accent);
+  --fg: var(--white);
+}
+
+.bg--gray {
+  --bg: var(--gray-2);
+}
+
+.bg--light {
+  --bg: var(--color-bg-darker);
+  --fg: var(--color-text);
+}
+
+.bg--white {
+  --bg: var(--color-white);
+  --fg: var(--color-text);
+}
+
+.bg--overlay {
+  --bg: rgba(0, 0, 0, 0.5);
+  --fg: var(--color-text);
+}

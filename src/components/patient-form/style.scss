@@ -1,0 +1,23 @@
+.patient-form {
+  display: grid;
+  grid-template-rows: min-content 1fr;
+  grid-gap: var(--space-md);
+
+  .form-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-md);
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-sm);
+  }
+
+  .test-exam-item {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+  }
+}

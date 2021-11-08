@@ -1,0 +1,21 @@
+.flow {
+  > * + * {
+    margin-top: var(--flow-spacer, var(--space-md));
+  }
+}
+
+.spacer-xs {
+  --flow-spacer: var(--space-xs);
+}
+
+.spacer-sm {
+  --flow-spacer: var(--space-sm);
+}
+
+.spacer-md {
+  --flow-spacer: var(--space-md);
+}
+
+.spacer-lg {
+  --flow-spacer: var(--space-lg);
+}

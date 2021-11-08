@@ -1,0 +1,11 @@
+export const categories = {
+  BIOCHIMIE: "Biochimie",
+  PARASITOLOGIE: "Parasitologie",
+  SEROLOGIE_IMMUNOLOGIE: "Sérologie - Immunologie",
+  HEMATOLOGIE: "HEMATOLOGIE",
+  HEMOSTASE: "HEMOSTASE",
+  HORMONES: "HORMONES",
+  IMMUNOPHENOTYPAGE: "IMMUNOPHENOTYPAGE",
+  IMMUNOHEMATOLOGIE: "Immuno-Hematologie",
+  ENZYMOLOGIE: "ENZYMOLOGIE",
+};

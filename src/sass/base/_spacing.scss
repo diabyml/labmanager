@@ -1,0 +1,444 @@
+:root {
+  --space-unit: 1em;
+  --space-xxs: calc(0.25 * var(--space-unit)); /*4px*/
+  --space-xs: calc(0.5 * var(--space-unit)); /*8px*/
+  --space-sm: calc(0.75 * var(--space-unit)); /*12px*/
+  --space-md: calc(1.25 * var(--space-unit)); /*20px*/
+  --space-lg: calc(2 * var(--space-unit)); /*32px*/
+  --space-xl: calc(3.25 * var(--space-unit)); /*52px*/
+  --space-xxl: calc(5.25 * var(--space-unit)); /*84px*/
+
+  /* fixed values - not affected by --space-unit or --text-base-size */
+  --space-unit-fixed: 1rem;
+  --space-xxs-fixed: calc(0.25 * var(--space-unit-fixed));
+  --space-xs-fixed: calc(0.5 * var(--space-unit-fixed));
+  --space-sm-fixed: calc(0.75 * var(--space-unit-fixed));
+  --space-md-fixed: calc(1.25 * var(--space-unit-fixed));
+  --space-lg-fixed: calc(2 * var(--space-unit-fixed));
+  --space-xl-fixed: calc(3.25 * var(--space-unit-fixed));
+  --space-xxl-fixed: calc(5.25 * var(--space-unit-fixed));
+
+  --component-padding: var(--space-md);
+}
+
+/* if you need a spacing value thats not */
+/* includeed in your system use calc function example:*/
+/* calc(var(--space-sm) * 1.4 ) */
+
+// and note that by increasing fontsize we increase spacing too
+
+.component {
+  padding: var(--component-padding);
+}
+
+/* margin utility classes */
+/* margin top */
+.mt-xxs {
+  margin-top: var(--space-xxs);
+}
+.mt-xs {
+  margin-top: var(--space-xs);
+}
+
+.mt-sm {
+  margin-top: var(--space-sm);
+}
+
+.mt,
+.mt-md {
+  margin-top: var(--space-md);
+}
+
+.mt-lg {
+  margin-top: var(--space-lg);
+}
+
+.mt-xl {
+  margin-top: var(--space-xl);
+}
+
+.mt-xxl {
+  margin-top: var(--space-xxl);
+}
+
+/* margin bottom */
+.mb-xxs {
+  margin-bottom: var(--space-xxs);
+}
+.mb-xs {
+  margin-bottom: var(--space-xs);
+}
+
+.mb-sm {
+  margin-bottom: var(--space-sm);
+}
+
+.mb,
+.mb-md {
+  margin-bottom: var(--space-md);
+}
+
+.mb-lg {
+  margin-bottom: var(--space-lg);
+}
+
+.mb-xl {
+  margin-bottom: var(--space-xl);
+}
+
+.mb-xxl {
+  margin-bottom: var(--space-xxl);
+}
+
+// margin left
+.ml-xxs {
+  margin-left: var(--space-xxs);
+}
+.ml-xs {
+  margin-left: var(--space-xs);
+}
+
+.ml-sm {
+  margin-left: var(--space-sm);
+}
+
+.ml,
+.ml-md {
+  margin-left: var(--space-md);
+}
+
+.ml-lg {
+  margin-left: var(--space-lg);
+}
+
+.ml-xl {
+  margin-left: var(--space-xl);
+}
+
+.ml-xxl {
+  margin-left: var(--space-xxl);
+}
+
+// margin right
+
+.mr-xxs {
+  margin-right: var(--space-xxs);
+}
+.mr-xs {
+  margin-right: var(--space-xs);
+}
+
+.mr-sm {
+  margin-right: var(--space-sm);
+}
+
+.mr,
+.mr-md {
+  margin-right: var(--space-md);
+}
+
+.mr-lg {
+  margin-right: var(--space-lg);
+}
+
+.mr-xl {
+  margin-right: var(--space-xl);
+}
+
+.mr-xxl {
+  margin-right: var(--space-xxl);
+}
+
+// margin left and right
+.mx-xxs {
+  margin-left: var(--space-xxs);
+  margin-right: var(--space-xxs);
+}
+.mx-xs {
+  margin-left: var(--space-xs);
+  margin-right: var(--space-xs);
+}
+
+.mx-sm {
+  margin-left: var(--space-sm);
+  margin-right: var(--space-sm);
+}
+
+.mx,
+.mx-md {
+  margin-left: var(--space-md);
+  margin-right: var(--space-md);
+}
+
+.mx-lg {
+  margin-left: var(--space-lg);
+  margin-right: var(--space-lg);
+}
+
+.mx-xl {
+  margin-left: var(--space-xl);
+  margin-right: var(--space-xl);
+}
+
+.mx-xxl {
+  margin-left: var(--space-xxl);
+  margin-right: var(--space-xxl);
+}
+
+// margin top and bottom
+.my-xxs {
+  margin-top: var(--space-xxs);
+  margin-bottom: var(--space-xxs);
+}
+.my-xs {
+  margin-top: var(--space-xs);
+  margin-bottom: var(--space-xs);
+}
+
+.my-sm {
+  margin-top: var(--space-sm);
+  margin-bottom: var(--space-sm);
+}
+
+.my,
+.my-md {
+  margin-top: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+
+.my-lg {
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-lg);
+}
+
+.my-xl {
+  margin-top: var(--space-xl);
+  margin-bottom: var(--space-xl);
+}
+
+.my-xxl {
+  margin-top: var(--space-xxl);
+  margin-bottom: var(--space-xxl);
+}
+
+// padding utilities
+// p pt pb py
+
+// p (padding for all sides )
+.p-xxs {
+  padding: var(--space-xxs);
+}
+.p-xs {
+  padding: var(--space-xs);
+}
+
+.p-sm {
+  padding: var(--space-sm);
+}
+
+.p,
+.p-md {
+  padding: var(--space-md);
+}
+
+.p-lg {
+  padding: var(--space-lg);
+}
+
+.p-xl {
+  padding: var(--space-xl);
+}
+
+.p-xxl {
+  padding: var(--space-xxl);
+}
+
+// pt (padding-top)
+
+.pt-xxs {
+  padding-top: var(--space-xxs);
+}
+.pt-xs {
+  padding-top: var(--space-xs);
+}
+
+.pt-sm {
+  padding-top: var(--space-sm);
+}
+
+.pt,
+.pt-md {
+  padding-top: var(--space-md);
+}
+
+.pt-lg {
+  padding-top: var(--space-lg);
+}
+
+.pt-xl {
+  padding-top: var(--space-xl);
+}
+
+.pt-xxl {
+  padding-top: var(--space-xxl);
+}
+
+// pb (padding bottom)
+.pb-xxs {
+  padding-bottom: var(--space-xxs);
+}
+.pb-xs {
+  padding-bottom: var(--space-xs);
+}
+
+.pb-sm {
+  padding-bottom: var(--space-sm);
+}
+
+.pb,
+.pb-md {
+  padding-bottom: var(--space-md);
+}
+
+.pb-lg {
+  padding-bottom: var(--space-lg);
+}
+
+.pb-xl {
+  padding-bottom: var(--space-xl);
+}
+
+.pb-xxl {
+  padding-bottom: var(--space-xxl);
+}
+
+// py (padding top and bottom)
+.py-xxs {
+  padding-top: var(--space-xxs);
+  padding-bottom: var(--space-xxs);
+}
+.py-xs {
+  padding-top: var(--space-xs);
+  padding-bottom: var(--space-xs);
+}
+
+.py-sm {
+  padding-top: var(--space-sm);
+  padding-bottom: var(--space-sm);
+}
+
+.py,
+.py-md {
+  padding-top: var(--space-md);
+  padding-bottom: var(--space-md);
+}
+
+.py-lg {
+  padding-top: var(--space-lg);
+  padding-bottom: var(--space-lg);
+}
+
+.py-xl {
+  padding-top: var(--space-xl);
+  padding-bottom: var(--space-xl);
+}
+
+.py-xxl {
+  padding-top: var(--space-xxl);
+  padding-bottom: var(--space-xxl);
+}
+
+// pl pr px
+// pl (padding left)
+.pl-xxs {
+  padding-left: var(--space-xxs);
+}
+.pl-xs {
+  padding-left: var(--space-xs);
+}
+
+.pl-sm {
+  padding-left: var(--space-sm);
+}
+
+.pl,
+.pl-md {
+  padding-left: var(--space-md);
+}
+
+.pl-lg {
+  padding-left: var(--space-lg);
+}
+
+.pl-xl {
+  padding-left: var(--space-xl);
+}
+
+.pl-xxl {
+  padding-left: var(--space-xxl);
+}
+
+// pr (padding right)
+.pr-xxs {
+  padding-right: var(--space-xxs);
+}
+.pr-xs {
+  padding-right: var(--space-xs);
+}
+
+.pr-sm {
+  padding-right: var(--space-sm);
+}
+
+.pr,
+.pr-md {
+  padding-right: var(--space-md);
+}
+
+.pr-lg {
+  padding-right: var(--space-lg);
+}
+
+.pr-xl {
+  padding-right: var(--space-xl);
+}
+
+.pr-xxl {
+  padding-right: var(--space-xxl);
+}
+
+// px (padding left and right)
+.px-xxs {
+  padding-left: var(--space-xxs);
+  padding-right: var(--space-xxs);
+}
+.px-xs {
+  padding-left: var(--space-xs);
+  padding-right: var(--space-xs);
+}
+
+.px-sm {
+  padding-left: var(--space-sm);
+  padding-right: var(--space-sm);
+}
+
+.px,
+.px-md {
+  padding-left: var(--space-md);
+  padding-right: var(--space-md);
+}
+
+.px-lg {
+  padding-left: var(--space-lg);
+  padding-right: var(--space-lg);
+}
+
+.px-xl {
+  padding-left: var(--space-xl);
+  padding-right: var(--space-xl);
+}
+
+.px-xxl {
+  padding-left: var(--space-xxl);
+  padding-right: var(--space-xxl);
+}

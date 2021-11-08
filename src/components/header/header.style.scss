@@ -1,0 +1,55 @@
+@import "../../sass/base/breakpoints";
+.header {
+  transition: all 0.2s var(--ease-in-out);
+  &__brand {
+    color: var(--color-white);
+    font-weight: bold;
+  }
+
+  &__menu {
+    width: 34px;
+    height: 34px;
+    fill: var(--color-white);
+
+    &:hover {
+      background-color: var(--color-primary-light);
+    }
+  }
+
+  &__icon {
+    height: 34px;
+    width: 34px;
+    fill: var(--color-white);
+  }
+
+  &__nav {
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        &:hover {
+          background-color: var(--color-primary-light);
+        }
+      }
+
+      .active-link {
+        background-color: var(--color-primary-light);
+      }
+
+      //apply button padding to li when link text is hidden
+      .apply-padding-y {
+        padding-top: var(--space-md);
+        padding-bottom: var(--space-md);
+      }
+    }
+  }
+
+  &__nav-link {
+    display: block;
+    width: 100%;
+    text-align: start;
+    color: var(--color-white);
+  }
+}
