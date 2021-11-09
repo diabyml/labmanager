@@ -11,5 +11,8 @@ FRONT END NEEDS TO KNOW WHICH PATIENT TO UPDATE:
         ----> if an input value changes update patient in redux-store
 
 # INPUT FRONT END:
+
     -selectedPatientId (state);
     -Input value changes update(selectedPatientId,{...oldPatient,newValue})
+
+# hematology finised
