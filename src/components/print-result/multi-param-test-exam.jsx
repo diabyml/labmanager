@@ -17,6 +17,14 @@ function MultiParamTestExam({ testExam }) {
       {testExam.result.map((result) => (
         <StandardTestExam key={result.id} testExam={formatTestExam(result)} />
       ))}
+      {testExam.description && (
+        <div className="font-bold text--xs pl-sm">
+          <p>Interpretation:</p>
+          {testExam.description.map((desc, index) => (
+            <p key={index}> {desc} </p>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

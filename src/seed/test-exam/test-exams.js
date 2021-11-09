@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import { paperTypes } from "../../constants/paperTypes";
+// import { paperTypes } from "../../constants/paperTypes";
 import { categories } from "../../constants/categories";
 import signs from "../../constants/signs";
 import units from "../../constants/units";
@@ -2073,7 +2073,7 @@ const DATA = [
 
   {
     id: uuidv4(),
-    paperType: paperTypes.MULTIPLE_REF_TEST,
+    type: TEST_EXAM_TYPES.STANDARD,
     refSign: {
       lower: signs.lessThan.name,
       higher: signs.greaterThan.name,
@@ -2100,7 +2100,7 @@ const DATA = [
 
   {
     id: uuidv4(),
-    paperType: paperTypes.MULTIPLE_REF_TEST,
+    type: TEST_EXAM_TYPES.STANDARD,
     refSign: {
       lower: signs.lessThan.name,
       higher: signs.greaterThan.name,
@@ -2127,13 +2127,13 @@ const DATA = [
 
   {
     id: uuidv4(),
-    paperType: paperTypes.SINGLE,
+    type: TEST_EXAM_TYPES.STANDARD,
     refSign: signs.none.name,
     category: categories.IMMUNOHEMATOLOGIE,
     name: "Test de Coombs indirect (RAI)",
     unit: units.NONE,
     ref: 0,
-    refString: `-`,
+    refString: [`-`],
     result: [
       {
         id: uuidv4(),
@@ -2148,7 +2148,7 @@ const DATA = [
 
   {
     id: uuidv4(),
-    paperType: paperTypes.MULTIPLE_REF_TEST,
+    type: TEST_EXAM_TYPES.STANDARD,
     refSign: {
       lower: signs.lessThanEqual.name,
       higher: signs.greaterThan.name,
@@ -2188,6 +2188,99 @@ const DATA = [
   },
 
   // ENZYMOLOGIE ENDS HERE ....
+
+  // HEMOSTAS START HERE
+
+  {
+    id: uuidv4(),
+    category: categories.HEMOSTASE,
+    type: TEST_EXAM_TYPES.MULTI_PARAM,
+    label: "TP",
+    name: "TP",
+    description: [
+      "Prévention –traitement des thromboses veineuses-des embolies pulmonaires et systémiques : 2< INR<3+",
+      "Prothèses valvulaires mécaniques-embolies systémiques récidivantes : 2< INR<4.5",
+      "Risque hémorragique excessif : INR>5",
+    ],
+    result: [
+      {
+        id: uuidv4(),
+        type: "Temps témoin",
+        value: "14.5 sec",
+        refString: ["(12 – 17) sec"],
+      },
+      {
+        id: uuidv4(),
+        type: "Temps malade",
+        value: "16.7 sec",
+        refString: [""],
+      },
+      {
+        id: uuidv4(),
+        type: "INR",
+        value: "",
+        refString: ["(0.9-1.6) sec"],
+      },
+      {
+        id: uuidv4(),
+        type: "Activité",
+        value: "",
+        refString: ["(70-100 %)"],
+      },
+    ],
+  },
+
+  {
+    id: uuidv4(),
+    category: categories.HEMOSTASE,
+    type: TEST_EXAM_TYPES.MULTI_PARAM,
+    label: "TCK",
+    name: "TCK",
+    result: [
+      {
+        id: uuidv4(),
+        type: "Temps témoin",
+        value: "34 sec",
+        refString: ["(25 - 43) sec"],
+      },
+      {
+        id: uuidv4(),
+        type: "Temps malade",
+        value: "",
+        refString: [""],
+      },
+      {
+        id: uuidv4(),
+        type: "Ratio",
+        value: "",
+        refString: ["(< 1.2)"],
+      },
+    ],
+  },
+
+  {
+    id: uuidv4(),
+    category: categories.HEMOSTASE,
+    type: TEST_EXAM_TYPES.MULTI_PARAM,
+    label: "VS",
+    name: "VS",
+    result: [
+      {
+        id: uuidv4(),
+        type: "Première heure",
+        value: "",
+        refString: ["2-20 mm/1 Heure"],
+      },
+      {
+        id: uuidv4(),
+        type: "Deuxième heure",
+        value: "",
+        refString: ["< 35 mm/ 2 Heure"],
+      },
+    ],
+  },
+
+  // HEMOSTASE ENDS HERE
 ];
 
 export default DATA;
