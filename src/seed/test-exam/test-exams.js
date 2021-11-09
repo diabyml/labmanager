@@ -1721,7 +1721,7 @@ const DATA = [
     id: uuidv4(),
     type: TEST_EXAM_TYPES.STANDARD,
     refSign: signs.range.name,
-    category: categories.BIOCHIMIE,
+    category: categories.HORMONES,
     name: "Testostérone",
     unit: units.NG_SLASH_ML,
     ref: {
@@ -1953,7 +1953,7 @@ const DATA = [
     name: "Folates",
     unit: units.NG_SLASH_ML,
     ref: { lower: 5.21, higher: 20 },
-    refString: `(5.21 ${signs.range.sign} 20) ${units.NG_SLASH_ML}`,
+    refString: [`(5.21 ${signs.range.sign} 20) ${units.NG_SLASH_ML}`],
     result: [
       {
         id: uuidv4(),

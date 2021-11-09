@@ -266,6 +266,7 @@ function PatientsPage({
                             <ButtonIcon
                               variant={"accent"}
                               Icon={MdClose}
+                              type="button"
                               onClick={() =>
                                 deletePatientTestExam(
                                   selectedPatient.id,
