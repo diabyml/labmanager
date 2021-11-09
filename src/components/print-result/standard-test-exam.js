@@ -3,6 +3,7 @@ import React from "react";
 import "./style.scss";
 
 function StandardTestExam({ testExam }) {
+  // console.log("Test exam", testExam);
   return (
     <div>
       {testExam.groupName && (

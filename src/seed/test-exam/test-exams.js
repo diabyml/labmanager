@@ -1158,14 +1158,6 @@ const DATA = [
     label: "Sérologie toxoplasmose",
     name: "Toxo IgG et IgM",
     refType: refTypes.MULTIPLE,
-    // refString: [
-    //   `Négatif : < 2 IU/ml`,
-    //   `Positif : ≥ 2 IU/ml`,
-
-    //   `Négatif : < 2 AU/ml`,
-    //   `Equivoque : 2-2.6 AU/ml`,
-    //   `Positif : > 2.6 AU/ml`,
-    // ],
     result: [
       {
         id: toxoIgGId,
@@ -1319,13 +1311,13 @@ const DATA = [
 
   {
     id: uuidv4(),
-    paperType: paperTypes.SINGLE,
+    type: TEST_EXAM_TYPES.STANDARD,
     refSign: signs.none.name,
     category: categories.HEMATOLOGIE,
     name: "Phénotypage Erythrocytaire ",
     unit: units.NONE,
     ref: 0,
-    refString: `-`,
+    refString: [`-`],
     result: [
       {
         id: uuidv4(),
@@ -1337,7 +1329,7 @@ const DATA = [
 
   {
     id: uuidv4(),
-    paperType: paperTypes.MULTIPLE_REF_TEST,
+    type: TEST_EXAM_TYPES.STANDARD,
     refSign: signs.range.name,
     category: categories.HEMATOLOGIE,
     name: "Taux de réticulocytes",
@@ -1359,13 +1351,13 @@ const DATA = [
   },
   {
     id: uuidv4(),
-    paperType: paperTypes.SINGLE,
+    type: TEST_EXAM_TYPES.STANDARD,
     refSign: signs.none.name,
     category: categories.HEMATOLOGIE,
     name: "Groupage/RH",
     unit: units.NONE,
     ref: "none",
-    refString: `-`,
+    refString: [`-`],
     result: [
       {
         id: uuidv4(),
@@ -1378,13 +1370,13 @@ const DATA = [
 
   {
     id: uuidv4(),
-    paperType: paperTypes.SINGLE,
+    type: TEST_EXAM_TYPES.STANDARD,
     refSign: signs.lessThan.name,
     category: categories.HORMONES,
     name: "AFP",
     unit: units.IU_SLASH_ML,
     ref: 10,
-    refString: `(${signs.lessThan.sign}10) ${units.IU_SLASH_ML}`,
+    refString: [`(${signs.lessThan.sign}10) ${units.IU_SLASH_ML}`],
     result: [
       {
         id: uuidv4(),
@@ -1395,7 +1387,7 @@ const DATA = [
   },
   {
     id: uuidv4(),
-    paperType: paperTypes.DOUBLE_REF_TEST,
+    type: TEST_EXAM_TYPES.STANDARD,
     refSign: signs.lessThan.name,
     category: categories.HORMONES,
     name: "PSA Total",
@@ -1405,10 +1397,10 @@ const DATA = [
       first: { name: "H", value: 4, unit: units.NG_SLASH_ML },
       second: { name: "F", value: 0.5, unit: units.NG_SLASH_ML },
     },
-    refString: {
-      first: `H: ${signs.lessThan.sign}4 ${units.NG_SLASH_ML}`,
-      second: `F: ${signs.lessThan.sign}0.5 ${units.NG_SLASH_ML}`,
-    },
+    refString: [
+      `H: ${signs.lessThan.sign}4 ${units.NG_SLASH_ML}`,
+      `F: ${signs.lessThan.sign}0.5 ${units.NG_SLASH_ML}`,
+    ],
     result: [
       {
         id: uuidv4(),
@@ -1420,7 +1412,7 @@ const DATA = [
 
   {
     id: uuidv4(),
-    paperType: paperTypes.DOUBLE_REF_TEST,
+    type: TEST_EXAM_TYPES.STANDARD,
     refSign: signs.range.name,
     category: categories.HORMONES,
     name: "Cortisolemie (8h)",
@@ -1437,10 +1429,10 @@ const DATA = [
         unit: units.NMOL_SLASH_L,
       },
     },
-    refString: {
-      first: `Matin: (140${signs.range.sign}700) ${units.NMOL_SLASH_L}`,
-      second: `Minuit: (80${signs.range.sign}350) ${units.NMOL_SLASH_L}`,
-    },
+    refString: [
+      `Matin: (140${signs.range.sign}700) ${units.NMOL_SLASH_L}`,
+      `Minuit: (80${signs.range.sign}350) ${units.NMOL_SLASH_L}`,
+    ],
     result: [
       {
         id: uuidv4(),
@@ -1452,9 +1444,9 @@ const DATA = [
 
   {
     id: uuidv4(),
-    paperType: paperTypes.DOUBLE_REF_TEST,
+    type: TEST_EXAM_TYPES.STANDARD,
     refSign: signs.lessThan.name,
-    category: categories.BIOCHIMIE,
+    category: categories.HORMONES,
     name: "F-PSA",
     fullName: "(free Prostatic Specific Antigene)",
     unit: units.NG_SLASH_ML,
@@ -1462,10 +1454,10 @@ const DATA = [
       first: { name: "H", value: 1.5, unit: units.NG_SLASH_ML },
       second: { name: "F", value: 0.1, unit: units.NG_SLASH_ML },
     },
-    refString: {
-      first: `H: ${signs.lessThan.sign}1.5 ${units.NG_SLASH_ML}`,
-      second: `F: ${signs.lessThan.sign}0.1 ${units.NG_SLASH_ML}`,
-    },
+    refString: [
+      `H: ${signs.lessThan.sign}1.5 ${units.NG_SLASH_ML}`,
+      `F: ${signs.lessThan.sign}0.1 ${units.NG_SLASH_ML}`,
+    ],
     result: [
       {
         id: uuidv4(),
@@ -1477,13 +1469,13 @@ const DATA = [
 
   {
     id: uuidv4(),
-    paperType: paperTypes.SINGLE,
+    type: TEST_EXAM_TYPES.STANDARD,
     refSign: signs.range.name,
     category: categories.HORMONES,
     name: "Troponine",
     unit: units.NG_SLASH_ML,
     ref: { lower: 0, higher: 0.5 },
-    refString: `(0 ${signs.range.sign} 0.5)${units.NG_SLASH_ML}`,
+    refString: [`(0 ${signs.range.sign} 0.5)${units.NG_SLASH_ML}`],
     result: [
       {
         id: uuidv4(),
@@ -1495,13 +1487,13 @@ const DATA = [
 
   {
     id: uuidv4(),
-    paperType: paperTypes.SINGLE,
+    type: TEST_EXAM_TYPES.STANDARD,
     refSign: signs.range.name,
     category: categories.HORMONES,
     name: "IgE",
     unit: units.IU_SLASH_ML,
     ref: { lower: 1, higher: 190 },
-    refString: `(1 ${signs.range.sign} 190)${units.IU_SLASH_ML}`,
+    refString: [`(1 ${signs.range.sign} 190)${units.IU_SLASH_ML}`],
     result: [
       {
         id: uuidv4(),
@@ -1513,13 +1505,13 @@ const DATA = [
 
   {
     id: uuidv4(),
-    paperType: paperTypes.SINGLE,
+    type: TEST_EXAM_TYPES.STANDARD,
     refSign: signs.lessThan.name,
     category: categories.HORMONES,
     name: "CK MB",
     unit: units.NG_SLASH_ML,
     ref: 5,
-    refString: `${signs.lessThan.sign}5 ${units.NG_SLASH_ML}`,
+    refString: [`${signs.lessThan.sign}5 ${units.NG_SLASH_ML}`],
     result: [
       {
         id: uuidv4(),
@@ -1531,14 +1523,14 @@ const DATA = [
 
   {
     id: uuidv4(),
-    paperType: paperTypes.SINGLE,
+    type: TEST_EXAM_TYPES.STANDARD,
     refSign: signs.range.name,
     category: categories.HORMONES,
     name: "FT3",
     fullName: "F3 libre",
     unit: units.PG_SLASH_ML,
     ref: { lower: 2.0, higher: 4.2 },
-    refString: `(2.0 ${signs.range.sign} 4.2) ${units.PG_SLASH_ML}`,
+    refString: [`(2.0 ${signs.range.sign} 4.2) ${units.PG_SLASH_ML}`],
     result: [
       {
         id: uuidv4(),
@@ -1550,14 +1542,14 @@ const DATA = [
 
   {
     id: uuidv4(),
-    paperType: paperTypes.SINGLE,
+    type: TEST_EXAM_TYPES.STANDARD,
     refSign: signs.range.name,
     category: categories.HORMONES,
     name: "T3",
     fullName: "(Total triiodothyroxine)",
     unit: units.NG_SLASH_ML,
     ref: { lower: 1.0, higher: 2.8 },
-    refString: `(1.0 ${signs.range.sign} 2.8) ${units.NMOL_SLASH_L}`,
+    refString: [`(1.0 ${signs.range.sign} 2.8) ${units.NMOL_SLASH_L}`],
     result: [
       {
         id: uuidv4(),
@@ -1569,14 +1561,14 @@ const DATA = [
 
   {
     id: uuidv4(),
-    paperType: paperTypes.SINGLE,
+    type: TEST_EXAM_TYPES.STANDARD,
     refSign: signs.range.name,
     category: categories.HORMONES,
     name: "FT4",
     fullName: "T4 libre",
     unit: units.PG_SLASH_ML,
     ref: { lower: 8.9, higher: 17.2 },
-    refString: `(8.9 ${signs.range.sign} 17.2) ${units.PG_SLASH_ML}`,
+    refString: [`(8.9 ${signs.range.sign} 17.2) ${units.PG_SLASH_ML}`],
     result: [
       {
         id: uuidv4(),
@@ -1588,14 +1580,14 @@ const DATA = [
 
   {
     id: uuidv4(),
-    paperType: paperTypes.SINGLE,
+    type: TEST_EXAM_TYPES.STANDARD,
     refSign: signs.range.name,
     category: categories.HORMONES,
     name: "T4 (Maglumi 600)",
     fullName: "T4 Total",
     unit: units.NG_SLASH_ML,
     ref: { lower: 58, higher: 140 },
-    refString: `(58 ${signs.range.sign} 140) ${units.NMOL_SLASH_L}`,
+    refString: [`(58 ${signs.range.sign} 140) ${units.NMOL_SLASH_L}`],
     result: [
       {
         id: uuidv4(),
@@ -1607,14 +1599,14 @@ const DATA = [
 
   {
     id: uuidv4(),
-    paperType: paperTypes.SINGLE,
+    type: TEST_EXAM_TYPES.STANDARD,
     refSign: signs.range.name,
     category: categories.HORMONES,
     name: "TSH-us (Maglumi 600)",
     fullName: "(Thyroid Stimulating Hormone Ultra-Sensible)",
     unit: units.UUI_SLASH_ML,
     ref: { lower: 0.5, higher: 5 },
-    refString: `(0.5 ${signs.range.sign} 5) ${units.UUI_SLASH_ML}`,
+    refString: [`(0.5 ${signs.range.sign} 5) ${units.UUI_SLASH_ML}`],
     result: [
       {
         id: uuidv4(),
@@ -1626,7 +1618,7 @@ const DATA = [
 
   {
     id: uuidv4(),
-    paperType: paperTypes.DOUBLE_REF_TEST,
+    type: TEST_EXAM_TYPES.STANDARD,
     refSign: signs.range.name,
     category: categories.HORMONES,
     name: "PRL",
@@ -1644,10 +1636,10 @@ const DATA = [
         unit: units.UUI_SLASH_ML,
       },
     },
-    refString: {
-      first: `H: (86.30 ${signs.range.sign} 425.72) ${units.UUI_SLASH_ML}`,
-      second: `F: (72.55 ${signs.range.sign} 600.40) ${units.UUI_SLASH_ML}`,
-    },
+    refString: [
+      `H: (86.30 ${signs.range.sign} 425.72) ${units.UUI_SLASH_ML}`,
+      `F: (72.55 ${signs.range.sign} 600.40) ${units.UUI_SLASH_ML}`,
+    ],
     result: [
       {
         id: uuidv4(),
@@ -1659,7 +1651,7 @@ const DATA = [
 
   {
     id: uuidv4(),
-    paperType: paperTypes.MULTIPLE_REF_TEST,
+    type: TEST_EXAM_TYPES.STANDARD,
     refSign: {
       lower: signs.range.name,
       higher: signs.range.name,
@@ -1700,7 +1692,7 @@ const DATA = [
   {
     id: uuidv4(),
     category: categories.HORMONES,
-    paperType: paperTypes.MULTIPLE_REF_TEST,
+    type: TEST_EXAM_TYPES.STANDARD,
     name: "Beta œstradiol",
     unit: units.PG_SLASH_ML,
     ref: [
@@ -1727,7 +1719,7 @@ const DATA = [
   },
   {
     id: uuidv4(),
-    paperType: paperTypes.DOUBLE_REF_TEST,
+    type: TEST_EXAM_TYPES.STANDARD,
     refSign: signs.range.name,
     category: categories.BIOCHIMIE,
     name: "Testostérone",
@@ -1744,10 +1736,10 @@ const DATA = [
         unit: units.NG_SLASH_ML,
       },
     },
-    refString: {
-      first: `H:(2.64${signs.range.sign}10.45)  ${units.NG_SLASH_ML}`,
-      second: `F: (0.27${signs.range.sign}0.95)  ${units.NG_SLASH_ML}`,
-    },
+    refString: [
+      `H:(2.64${signs.range.sign}10.45)  ${units.NG_SLASH_ML}`,
+      `F: (0.27${signs.range.sign}0.95)  ${units.NG_SLASH_ML}`,
+    ],
     result: [
       {
         id: uuidv4(),
@@ -1759,7 +1751,7 @@ const DATA = [
   {
     id: uuidv4(),
     category: categories.HORMONES,
-    paperType: paperTypes.MULTIPLE_REF_TEST,
+    type: TEST_EXAM_TYPES.STANDARD,
     name: "FSH",
     unit: units.MIU_SLASH_ML,
     ref: [
@@ -1794,7 +1786,7 @@ const DATA = [
   {
     id: uuidv4(),
     category: categories.HORMONES,
-    paperType: paperTypes.MULTIPLE_REF_TEST,
+    type: TEST_EXAM_TYPES.STANDARD,
     name: "LH",
     unit: units.MIU_SLASH_ML,
     ref: [
@@ -1829,13 +1821,13 @@ const DATA = [
 
   {
     id: uuidv4(),
-    paperType: paperTypes.SINGLE,
+    type: TEST_EXAM_TYPES.STANDARD,
     refSign: signs.none.name,
     category: categories.HORMONES,
     name: "IFI",
     unit: units.NONE,
     ref: 1 / 100,
-    refString: `1/100`,
+    refString: [`1/100`],
     result: [
       {
         id: uuidv4(),
@@ -1847,13 +1839,13 @@ const DATA = [
 
   {
     id: uuidv4(),
-    paperType: paperTypes.SINGLE,
+    type: TEST_EXAM_TYPES.STANDARD,
     refSign: signs.lessThan.name,
     category: categories.HORMONES,
     name: "CA15-3",
     unit: units.U_SLASH_ML,
     ref: 25,
-    refString: `${signs.lessThan.sign}25${units.U_SLASH_ML}`,
+    refString: [`${signs.lessThan.sign}25${units.U_SLASH_ML}`],
     result: [
       {
         id: uuidv4(),
@@ -1865,13 +1857,13 @@ const DATA = [
 
   {
     id: uuidv4(),
-    paperType: paperTypes.SINGLE,
+    type: TEST_EXAM_TYPES.STANDARD,
     refSign: signs.lessThan.name,
     category: categories.HORMONES,
     name: "CA19-9",
     unit: units.U_SLASH_ML,
     ref: 37,
-    refString: `${signs.lessThan.sign}37${units.U_SLASH_ML}`,
+    refString: [`${signs.lessThan.sign}37${units.U_SLASH_ML}`],
     result: [
       {
         id: uuidv4(),
@@ -1883,13 +1875,13 @@ const DATA = [
 
   {
     id: uuidv4(),
-    paperType: paperTypes.SINGLE,
+    type: TEST_EXAM_TYPES.STANDARD,
     refSign: signs.lessThan.name,
     category: categories.HORMONES,
     name: "ACE",
     unit: units.NG_SLASH_ML,
     ref: 5.0,
-    refString: `${signs.lessThan.sign}5.00${units.NG_SLASH_ML}`,
+    refString: [`${signs.lessThan.sign}5.00${units.NG_SLASH_ML}`],
     result: [
       {
         id: uuidv4(),
@@ -1901,13 +1893,13 @@ const DATA = [
 
   {
     id: uuidv4(),
-    paperType: paperTypes.SINGLE,
+    type: TEST_EXAM_TYPES.STANDARD,
     refSign: signs.lessThan.name,
     category: categories.HORMONES,
     name: "Facteur Rhumatoïde",
     unit: units.UUI_SLASH_ML,
     ref: 14,
-    refString: `${signs.lessThan.sign}14${units.UUI_SLASH_ML}`,
+    refString: [`${signs.lessThan.sign}14${units.UUI_SLASH_ML}`],
     result: [
       {
         id: uuidv4(),
@@ -1919,13 +1911,13 @@ const DATA = [
 
   {
     id: uuidv4(),
-    paperType: paperTypes.SINGLE,
+    type: TEST_EXAM_TYPES.STANDARD,
     refSign: signs.lessThan.name,
     category: categories.HORMONES,
     name: "CA 12-5",
     unit: units.U_SLASH_ML,
     ref: 35.0,
-    refString: `${signs.lessThan.sign}35.00${units.U_SLASH_ML}`,
+    refString: [`${signs.lessThan.sign}35.00${units.U_SLASH_ML}`],
     result: [
       {
         id: uuidv4(),
@@ -1937,13 +1929,13 @@ const DATA = [
 
   {
     id: uuidv4(),
-    paperType: paperTypes.SINGLE,
+    type: TEST_EXAM_TYPES.STANDARD,
     refSign: signs.lessThan.name,
     category: categories.HORMONES,
     name: "D – Dimère",
     unit: units.UGFEU_SLASH_ML,
     ref: 0.5,
-    refString: `${signs.lessThan.sign}0.5${units.UGFEU_SLASH_ML}`,
+    refString: [`${signs.lessThan.sign}0.5${units.UGFEU_SLASH_ML}`],
     result: [
       {
         id: uuidv4(),
@@ -1955,7 +1947,7 @@ const DATA = [
 
   {
     id: uuidv4(),
-    paperType: paperTypes.SINGLE,
+    type: TEST_EXAM_TYPES.STANDARD,
     refSign: signs.range.name,
     category: categories.HORMONES,
     name: "Folates",
@@ -1973,13 +1965,13 @@ const DATA = [
 
   {
     id: uuidv4(),
-    paperType: paperTypes.SINGLE,
+    type: TEST_EXAM_TYPES.STANDARD,
     refSign: signs.range.name,
     category: categories.HORMONES,
     name: "Vitamine B12",
     unit: units.PG_SLASH_ML,
     ref: { lower: 200, higher: 1100 },
-    refString: `(200 ${signs.range.sign} 1100) ${units.PG_SLASH_ML}`,
+    refString: [`(200 ${signs.range.sign} 1100) ${units.PG_SLASH_ML}`],
     result: [
       {
         id: uuidv4(),
@@ -1991,13 +1983,13 @@ const DATA = [
 
   {
     id: uuidv4(),
-    paperType: paperTypes.SINGLE,
+    type: TEST_EXAM_TYPES.STANDARD,
     refSign: signs.range.name,
     category: categories.HORMONES,
     name: "Parathormone",
     unit: units.PG_SLASH_ML,
     ref: { lower: 15.0, higher: 75.0 },
-    refString: `(15.00 ${signs.range.sign} 75.00) ${units.PG_SLASH_ML}`,
+    refString: [`(15.00 ${signs.range.sign} 75.00) ${units.PG_SLASH_ML}`],
     result: [
       {
         id: uuidv4(),
@@ -2009,13 +2001,13 @@ const DATA = [
 
   {
     id: uuidv4(),
-    paperType: paperTypes.SINGLE,
+    type: TEST_EXAM_TYPES.STANDARD,
     refSign: signs.range.name,
     category: categories.HORMONES,
     name: "Vitamine D Total (25-OH-VIT D)  ",
     unit: units.NG_SLASH_ML,
     ref: { lower: 30, higher: 100 },
-    refString: `(30 ${signs.range.sign} 100) ${units.NG_SLASH_ML}`,
+    refString: [`(30 ${signs.range.sign} 100) ${units.NG_SLASH_ML}`],
     result: [
       {
         id: uuidv4(),
@@ -2027,7 +2019,7 @@ const DATA = [
 
   {
     id: uuidv4(),
-    paperType: paperTypes.DOUBLE_REF_TEST,
+    type: TEST_EXAM_TYPES.STANDARD,
     refSign: {
       lower: signs.lessThan.name,
       higher: signs.greaterThan.name,
@@ -2036,10 +2028,10 @@ const DATA = [
     name: "Procalcitonine",
     unit: units.NG_SLASH_ML,
     ref: { lower: 0.5, higher: 2 },
-    refString: {
-      first: `${signs.lessThan.sign} 0.5 Faible risqué de sepsis`,
-      second: `${signs.greaterThan.sign} 2 Risque élevé de sepsis où Choc septique`,
-    },
+    refString: [
+      `${signs.lessThan.sign} 0.5 Faible risqué de sepsis`,
+      `${signs.greaterThan.sign} 2 Risque élevé de sepsis où Choc septique`,
+    ],
     result: [
       {
         id: uuidv4(),
@@ -2052,7 +2044,7 @@ const DATA = [
   {
     id: uuidv4(),
     category: categories.HORMONES,
-    paperType: paperTypes.MULTIPLE_REF_TEST,
+    type: TEST_EXAM_TYPES.STANDARD,
     name: "BHCG",
     unit: units.MIU_SLASH_ML,
     ref: 0,

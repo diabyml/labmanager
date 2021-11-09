@@ -1,13 +1,13 @@
 import React from "react";
 import StandardTestExam from "./standard-test-exam";
+import { v4 as uuidv4 } from "uuid";
 
 function MultiParamTestExam({ testExam }) {
   const formatTestExam = (result) => {
-    // name result refString
-    console.log(result.value);
     return {
+      id: result.id,
       name: result.type,
-      result: [result.value],
+      result: [{ id: uuidv4(), value: result.value, type: undefined }],
       refString: result.refString,
     };
   };
@@ -15,7 +15,7 @@ function MultiParamTestExam({ testExam }) {
     <div className="flow spacer-sm">
       <p className="text--md mb-sm font-bold">{testExam.label + ":"}</p>
       {testExam.result.map((result) => (
-        <StandardTestExam key={result.type} testExam={formatTestExam(result)} />
+        <StandardTestExam key={result.id} testExam={formatTestExam(result)} />
       ))}
     </div>
   );

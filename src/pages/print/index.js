@@ -19,7 +19,7 @@ function PrintPage({ selectedPatient }) {
     pavillon,
     provenance,
   } = selectedPatient.doctor;
-  console.log(selectedPatient);
+  // console.log(selectedPatient);
 
   // categorize patient tests exams for printing
   const categorizedData = categorize(selectedPatient.testExams);
@@ -38,7 +38,7 @@ function PrintPage({ selectedPatient }) {
 
       {/* PRINTING TESTS BY CATEGORIES  */}
       {Object.keys(categorizedData).map((key) => (
-        <div>
+        <div key={key}>
           <div className="mt-md">
             <div className="mb-sm">
               <PrintCategoryHeader key={key} name={key} showNorm={true} />
