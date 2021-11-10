@@ -13,7 +13,9 @@ function MultiParamTestExam({ testExam }) {
   };
   return (
     <div className="flow spacer-sm">
-      <p className="text--md mb-sm font-bold">{testExam.label + ":"}</p>
+      <p className="text--md mb-sm font-bold">
+        {testExam.label && testExam.label + ":"}
+      </p>
       {testExam.result.map((result) => (
         <StandardTestExam key={result.id} testExam={formatTestExam(result)} />
       ))}

@@ -1822,6 +1822,22 @@ const DATA = [
   {
     id: uuidv4(),
     type: TEST_EXAM_TYPES.STANDARD,
+    category: categories.HORMONES,
+    name: "Sérologie Amibienne IgM",
+    unit: units.NONE,
+    refString: [``],
+    result: [
+      {
+        id: uuidv4(),
+        type: undefined,
+        value: "",
+      },
+    ],
+  },
+
+  {
+    id: uuidv4(),
+    type: TEST_EXAM_TYPES.STANDARD,
     refSign: signs.none.name,
     category: categories.HORMONES,
     name: "IFI",
@@ -2281,6 +2297,28 @@ const DATA = [
   },
 
   // HEMOSTASE ENDS HERE
+
+  // IMMUNOPHENOTYPAGE
+  {
+    id: uuidv4(),
+    type: TEST_EXAM_TYPES.MULTI_PARAM,
+    category: categories.IMMUNOPHENOTYPAGE,
+    name: "CD4",
+    result: [
+      {
+        id: uuidv4(),
+        type: "Cellules",
+        value: "Cellules/ul",
+        refString: ["( 440-1602)"],
+      },
+      {
+        id: uuidv4(),
+        type: "Pourcentage",
+        value: "%",
+        refString: ["( 32-54 ) %"],
+      },
+    ],
+  },
 ];
 
 export default DATA;

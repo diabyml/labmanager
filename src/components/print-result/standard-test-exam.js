@@ -20,7 +20,7 @@ function StandardTestExam({ testExam }) {
                 <p className="font-bold text--xs"> {testExam.fullName} </p>
               )}
             </div>
-            <div className="flex justify-center">
+            <div className="flex pl-md">
               <p>{testExam.result[0].value}</p>
             </div>
           </div>
@@ -31,16 +31,16 @@ function StandardTestExam({ testExam }) {
                   <div>
                     <p>{res.type !== "g/l" && res.type}</p>
                   </div>
-                  <div className="flex justify-center">
+                  <div className="flex pl-md">
                     <p>{res.value}</p>
                   </div>
                 </div>
               ) : null
             )}
         </div>
-        <div className="flex flex-column items-end flow spacer-sm">
+        <div className="flex flex-column  flow spacer-sm">
           {testExam.refString.map((refStr, index) => (
-            <p key={index}> {refStr} </p>
+            <p key={index}>{refStr}</p>
           ))}
         </div>
       </div>
