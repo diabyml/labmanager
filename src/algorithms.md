@@ -16,3 +16,5 @@ FRONT END NEEDS TO KNOW WHICH PATIENT TO UPDATE:
     -Input value changes update(selectedPatientId,{...oldPatient,newValue})
 
 # hematology finised
+
+# divide testExams algorigth
