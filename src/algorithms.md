@@ -17,4 +17,4 @@ FRONT END NEEDS TO KNOW WHICH PATIENT TO UPDATE:
 
 # hematology finised
 
-# divide testExams algorigth
+# divide testExams algorigthm
