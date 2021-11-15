@@ -31,7 +31,7 @@ function TestExamList({ testExams, handleAddTestExam }) {
             >
               <div>
                 <strong>
-                  <p>{testExam.name}</p>
+                  <p className="text--lg">{testExam.name}</p>
                 </strong>
               </div>
             </li>

@@ -1,14 +1,23 @@
 .print-page {
-  width: 210mm;
-  min-height: 297mm;
-  margin: 0 auto;
-  border: 1px solid var(--gray-2);
+  position: relative;
+  &__paper {
+    width: 210mm;
+    // min-height: 297mm;
+    height: 297mm;
+    margin: 0 auto;
+    border: 1px solid var(--gray-2);
+  }
+
+  &__settings {
+    position: absolute;
+  }
 }
 
 // PRINT PAPER
 @media print {
   // HIDE UNWANTED ELEMENT
-  .header {
+  .header,
+  .print-page__settings {
     display: none;
   }
 
@@ -16,7 +25,7 @@
   .app,
   main,
   section,
-  .print-page {
+  .print-page__paper {
     width: 100% !important;
     border: none !important;
     padding: 0 !important;
