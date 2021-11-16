@@ -1,12 +1,24 @@
 .print-page {
   position: relative;
   &__paper {
+    font-size: 16px;
+    position: relative;
     width: 210mm;
     // min-height: 297mm;
     height: 297mm;
+    // height: 1122px;
+    overflow: visible;
     // margin: 0 auto;
     margin-left: auto;
     border: 1px solid var(--gray-2);
+  }
+
+  &__paper-footer {
+    position: absolute;
+    // background-color: var(--gray-4);
+    left: 0;
+    right: 0;
+    bottom: 100px;
   }
 
   &__settings {
@@ -27,6 +39,9 @@
   }
 
   //   LAYOUT RESET
+  .print-page {
+    padding: 0 !important;
+  }
   .app,
   main,
   section,
@@ -34,8 +49,8 @@
     width: 100% !important;
     border: none !important;
     padding: 0 !important;
-    margin: 0;
-    color: var(--color-black);
+    margin: 0 !important;
+    color: var(--color-black) !important;
   }
 
   // GLOBAL TYPOGRAPHY RESET

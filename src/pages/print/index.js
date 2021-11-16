@@ -53,7 +53,7 @@ function PrintPage({ selectedPatient }) {
   };
 
   return (
-    <div className="print-page">
+    <div className="print-page p-md">
       <div className="print-page__settings mt-md ml-md shadow-md p-md">
         <h2 className="text--md font-bold">Options</h2>
         <div className="flex items-center justify-between py-sm">
@@ -94,7 +94,6 @@ function PrintPage({ selectedPatient }) {
             />
           )}
         </div>
-
         {/* PRINTING TESTS BY CATEGORIES  */}
         {categorizedData.map(
           (category) =>
@@ -119,6 +118,15 @@ function PrintPage({ selectedPatient }) {
               </div>
             )
         )}
+        {/* PRINT PAPER FOOTER */}
+        <div className="print-page__paper-footer flex justify-between">
+          <div>
+            <p>16/11/2021</p>
+          </div>
+          <div>
+            <p>Le Biologiste</p>
+          </div>
+        </div>
       </div>
     </div>
   );

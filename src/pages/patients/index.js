@@ -124,6 +124,7 @@ function PatientsPage({
                         selectedPatient?.id === patient.id &&
                         handleDropDownMenuStateChange()
                       }
+                      style={{ width: "20px", height: "20px" }}
                     />
                     {isDropDownMenuShown && selectedPatient.id === patient.id && (
                       <div className="dropdown-menu">
