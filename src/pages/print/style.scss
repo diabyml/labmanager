@@ -4,7 +4,8 @@
     width: 210mm;
     // min-height: 297mm;
     height: 297mm;
-    margin: 0 auto;
+    // margin: 0 auto;
+    margin-left: auto;
     border: 1px solid var(--gray-2);
   }
 
@@ -15,6 +16,10 @@
 
 // PRINT PAPER
 @media print {
+  // set html size back
+  html {
+    font-size: 100% !important;
+  }
   // HIDE UNWANTED ELEMENT
   .header,
   .print-page__settings {
