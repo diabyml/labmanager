@@ -18,13 +18,13 @@ function PrintCategoryHeader({ name, showNorm }) {
       <div className="border px-md py-xs radius-lg">
         <div className="grid col-3">
           <div>
-            <p className="font-bold">ANALYSES</p>
+            <p className="fw-semi-bold">ANALYSES</p>
           </div>
           <div className="flex pl-md">
-            <p className="font-bold">RESULTATS</p>
+            <p className="fw-semi-bold">RESULTATS</p>
           </div>
           <div className="flex">
-            {showNorm && <p className="font-bold"> NORMES </p>}
+            {showNorm && <p className="fw-semi-bold"> NORMES </p>}
           </div>
         </div>
       </div>

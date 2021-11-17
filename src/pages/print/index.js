@@ -14,6 +14,7 @@ import PrintResult from "../../components/print-result/index";
 
 function PrintPage({ selectedPatient }) {
   const [showEntete, setShowEntete] = useState(true);
+  const [isUsingCurrentDate, setIsUsingCurrentDate] = useState(false);
   const { firstName, lastName, age, sampleNumber } = selectedPatient;
   const {
     lastName: doctorLatName,
@@ -52,16 +53,34 @@ function PrintPage({ selectedPatient }) {
     // console.log(category);
   };
 
+  const getFormatedDate = () => {
+    const date = isUsingCurrentDate ? new Date() : selectedPatient.date;
+    const month = date.getMonth() + 1;
+    const day = date.getDate().toString().padStart(2, "0");
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+  };
+
   return (
     <div className="print-page p-md">
       <div className="print-page__settings mt-md ml-md shadow-md p-md">
         <h2 className="text--md font-bold">Options</h2>
         <div className="flex items-center justify-between py-sm">
           <p className="mr-lg"> Entête </p>
+          <div>
+            <input
+              type="checkbox"
+              checked={showEntete}
+              onChange={() => setShowEntete((prev) => !prev)}
+            />
+          </div>
+        </div>
+        <div className="flex items-center justify-between py-sm">
+          <div className="mr-lg">Changer Date</div>
           <input
             type="checkbox"
-            checked={showEntete}
-            onChange={() => setShowEntete((prev) => !prev)}
+            checked={isUsingCurrentDate}
+            onChange={() => setIsUsingCurrentDate((prev) => !prev)}
           />
         </div>
         {categorizedData.map((category) => (
@@ -119,12 +138,19 @@ function PrintPage({ selectedPatient }) {
             )
         )}
         {/* PRINT PAPER FOOTER */}
-        <div className="print-page__paper-footer flex justify-between">
-          <div>
-            <p>16/11/2021</p>
+        <div className="print-page__paper-footer">
+          <div className="mb-md">
+            {selectedPatient.doctor.nb && (
+              <p className="fw-medium">{`NB: ${selectedPatient.doctor.nb}`} </p>
+            )}
           </div>
-          <div>
-            <p>Le Biologiste</p>
+          <div className="w-full flex justify-between">
+            <div>
+              <p> {getFormatedDate()} </p>
+            </div>
+            <div>
+              <p>Le Biologiste</p>
+            </div>
           </div>
         </div>
       </div>

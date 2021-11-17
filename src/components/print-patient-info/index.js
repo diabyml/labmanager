@@ -2,7 +2,7 @@ import React from "react";
 
 import "./style.scss";
 
-const Label = ({ children }) => <p className="font-bold"> {children} </p>;
+const Label = ({ children }) => <p className="fw-medium"> {children} </p>;
 
 function PrintPatientInfo({ patient, doctor }) {
   return (

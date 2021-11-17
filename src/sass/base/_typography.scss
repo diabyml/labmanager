@@ -4,6 +4,11 @@
   --font-primary: "Montserrat", sans-serif;
   --font-secondary: serif;
 
+  --fw-400: 400;
+  --fw-500: 500;
+  --fw-600: 600;
+  --fw-700: 700;
+
   /* line-height */
   --heading-line-height: 1.2;
   --body-line-height: 1.5;
@@ -163,6 +168,22 @@ strong {
 
 .text-center {
   text-align: center;
+}
+
+.fw-regular {
+  font-weight: var(--fw-400);
+}
+
+.fw-medium {
+  font-weight: var(--fw-500);
+}
+
+.fw-semi-bold {
+  font-weight: var(--fw-600);
+}
+
+.fw-bold {
+  font-weight: var(--fw-700);
 }
 
 /*

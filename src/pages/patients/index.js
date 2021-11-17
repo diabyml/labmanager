@@ -252,6 +252,22 @@ function PatientsPage({
                         name="pavillon"
                         handler={handlePatientDoctorInfoChange}
                       />
+                      {/* <Input
+                        label="NB"
+                        labelFor="nb"
+                        placeholder="NB"
+                        name="nb"
+                        value={selectedPatient.doctor.nb}
+                        handler={handlePatientDoctorInfoChange}
+                      /> */}
+                      <Select
+                        id="nb"
+                        label="NB"
+                        value={selectedPatient.doctor.nb}
+                        name="nb"
+                        handler={handlePatientDoctorInfoChange}
+                        options={NBS_DATA}
+                      />
                     </div>
                   </div>
                 </header>
@@ -338,5 +354,34 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(deletePatientTestExam(patientId, testExamId)),
   setSelectedPatientId: (id) => dispatch(setSelectedPatientId(id)),
 });
+
+const NBS_DATA = [
+  { id: uuidv4(), value: undefined, text: "Non défini" },
+  {
+    id: uuidv4(),
+    text: "Gly",
+    value: "Glycémie post-prandiale : VN : (7.1 – 11.1) mmol/l   ",
+  },
+  {
+    id: uuidv4(),
+    text: "VHB et PROTIDES",
+    value: "Charge virale du VHB et Electrophorèse des protides en cours…",
+  },
+  {
+    id: uuidv4(),
+    text: "VHB",
+    value: "Charge virale du VHB en cours…",
+  },
+  {
+    id: uuidv4(),
+    text: "PROTIDES",
+    value: "Electrophorèse des protides en cours…",
+  },
+  {
+    id: uuidv4(),
+    text: "ECBU",
+    value: "ECBU+ATB en cours…",
+  },
+];
 
 export default connect(mapStateToProps, mapDispatchToProps)(PatientsPage);

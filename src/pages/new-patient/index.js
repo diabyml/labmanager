@@ -21,6 +21,7 @@ function NewPatientPage({ doctors }) {
     age: "",
     sampleNumber: "",
     genre: "",
+    date: new Date(),
   });
 
   const [doctor, setDoctor] = useState({
@@ -29,6 +30,7 @@ function NewPatientPage({ doctors }) {
     lastName: "",
     provenance: "",
     pavillon: "",
+    nb: undefined,
   });
 
   const [testExams, setTestExams] = useState([]);
@@ -82,6 +84,10 @@ function NewPatientPage({ doctors }) {
   const handlePatientChange = (event) => {
     const { name, value } = event.target;
     setPatient((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handlePatientDateChange = (date) => {
+    setPatient((prev) => ({ ...prev, date: date }));
   };
 
   const handleDoctorChange = (event) => {
@@ -170,6 +176,7 @@ function NewPatientPage({ doctors }) {
             selectedDoctor={selectedDoctor}
             handleSelectedDoctorChange={handleSelectedDoctorChange}
             handleResultValueChange={handleResultValueChange}
+            handlePatientDateChange={handlePatientDateChange}
             resetInfo={resetInfo}
           />
         </div>

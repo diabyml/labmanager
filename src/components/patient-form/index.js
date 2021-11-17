@@ -9,11 +9,13 @@ import { MdClose } from "react-icons/md";
 
 import { v4 as uuidv4 } from "uuid";
 
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 // REDUX
 import { connect } from "react-redux";
 import { addPatient } from "../../redux/patient/patient.actions";
 import ButtonIcon from "../button-icon";
-
 function PatientForm(props) {
   const {
     patient,
@@ -26,6 +28,7 @@ function PatientForm(props) {
     handlePatientChange,
     handleDoctorChange,
     handleResultValueChange,
+    handlePatientDateChange,
     resetInfo,
     addPatient,
   } = props;
@@ -104,14 +107,24 @@ function PatientForm(props) {
                 />
               </div>
               <div>
-                <Input
+                {/* <Input
                   label="Identifiant"
                   labelFor="patientIdentifier"
                   placeholder="Identifiant"
                   value={patient.id}
                   name="id"
                   handler={handlePatientChange}
-                />
+                /> */}
+                <div className="flex flex-column">
+                  <label htmlFor={"date"} className="form-label mb-sm">
+                    Date
+                  </label>
+                  <DatePicker
+                    className="form-control w-full"
+                    selected={patient.date}
+                    onChange={(date) => handlePatientDateChange(date)}
+                  />
+                </div>
               </div>
             </div>
           </form>

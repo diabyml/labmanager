@@ -17,7 +17,7 @@ function StandardTestExam({ testExam }) {
             <div>
               <p> {testExam.name} </p>
               {testExam.fullName && (
-                <p className="font-bold text--xs"> {testExam.fullName} </p>
+                <p className="fw-semi-bold text--xs"> {testExam.fullName} </p>
               )}
             </div>
             <div className="flex pl-md">
