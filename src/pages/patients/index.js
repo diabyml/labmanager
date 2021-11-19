@@ -194,8 +194,8 @@ function PatientsPage({
                         handler={handlePatientInfoChange}
                         options={[
                           { id: uuidv4(), value: "none", text: "Non défini" },
-                          { id: uuidv4(), value: "Homme", text: "Homme" },
-                          { id: uuidv4(), value: "Femme", text: "Femme" },
+                          { id: uuidv4(), value: "homme", text: "Homme" },
+                          { id: uuidv4(), value: "femme", text: "Femme" },
                         ]}
                       />
                       <div className="flex items-end">

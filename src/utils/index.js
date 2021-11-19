@@ -1,4 +1,5 @@
 //This method is used to chnage the value of a result in an array of tests
+import signs from "../constants/signs";
 //and resturn a new array of tests
 //which can be used to update an arrayof tests in a state
 export const changeResultValue = (source, testId, resId, newValue) => {
@@ -52,8 +53,73 @@ export const categorize = (testExams) => {
 //it gets a test and a single result
 //its checks if that result is in the normal range
 //if in normal range return true else return false
-export const validateResult = (test, result) => {
-  //get the sign
-  //make comparison based on the sign
-  //return comparison result
+
+const validateValue = (refSign, refValue, value) => {
+  switch (refSign) {
+    case signs.lessThan.name:
+      console.log(`${value} < ${refValue}`);
+      return value < refValue;
+    case signs.lessThanEqual.name:
+      return value <= refValue;
+    default:
+      return true;
+  }
+};
+
+const isInRange = (lowerBound, upperBound, value) => {
+  return value > lowerBound && value < upperBound;
+};
+
+export const validateResult = (result, genre) => {
+  const { refSign, ref, value, isGenreDependent } = result;
+  let isValid = false;
+  // get the actual value out of value, which contains unit too
+  const parsedValue = parseInt(value);
+
+  // validate result if genre is concerned
+  if (isGenreDependent) {
+    // if ref is range
+    if (refSign === signs.range.name) {
+      // genre is homme --> get homme ref with ref[0]
+      if (genre === "homme") {
+        const refBounds = ref[0];
+        isValid = isInRange(
+          refBounds.lowerBound,
+          refBounds.upperBound,
+          parsedValue
+        );
+      } else if (genre === "femme") {
+        // genre is femme --> get femme ref with ref[1]
+        const refBounds = ref[1];
+        isValid = isInRange(
+          refBounds.lowerBound,
+          refBounds.upperBound,
+          parsedValue
+        );
+      }
+    } else {
+      // not range but still depend on genre
+      // genre is hemme --> get femme ref with ref[0]
+      if (genre === "homme") {
+        // console.log("ref: ", ref[0]);
+        // console.log("refSign", refSign);
+        // console.log("parsedValue", parsedValue);
+        isValid = validateValue(refSign, ref[0], parsedValue);
+      } else if (genre === "femme") {
+        // genre is femme --> get femme ref with ref[1]
+        isValid = validateValue(refSign, ref[1], parsedValue);
+      }
+    }
+  } else {
+    // calculation where genre does not matter
+    if (refSign === signs.range.name) {
+      // ref is in range
+      isValid = isInRange(ref[0], ref[1], parsedValue);
+    } else {
+      // not ranege ref, ref here are ever: <,<= etc....
+      isValid = validateValue(refSign, ref, parsedValue);
+    }
+  }
+
+  return isValid;
 };

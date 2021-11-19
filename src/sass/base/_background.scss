@@ -30,3 +30,8 @@
   --bg: rgba(0, 0, 0, 0.5);
   --fg: var(--color-text);
 }
+
+.bg--invalid {
+  --bg: var(--color-bg-darker);
+  --fg: var(--color-text);
+}

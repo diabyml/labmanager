@@ -36,7 +36,8 @@ function PatientForm(props) {
   let disabled =
     patient.firstName === "" ||
     patient.lastName === "" ||
-    patient.sampleNumber === "";
+    patient.sampleNumber === "" ||
+    patient.genre === "";
 
   // ADD PATIENT
   const handleAddPatient = () => {
@@ -101,8 +102,8 @@ function PatientForm(props) {
                   handler={handlePatientChange}
                   options={[
                     { id: uuidv4(), value: "none", text: "Non défini" },
-                    { id: uuidv4(), value: "Homme", text: "Homme" },
-                    { id: uuidv4(), value: "Femme", text: "Femme" },
+                    { id: uuidv4(), value: "homme", text: "Homme" },
+                    { id: uuidv4(), value: "femme", text: "Femme" },
                   ]}
                 />
               </div>

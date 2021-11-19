@@ -25,52 +25,78 @@ const DATA = [
   {
     id: uuidv4(),
     type: TEST_EXAM_TYPES.STANDARD,
-    refSign: signs.lessThanEqual.name,
     category: categories.BIOCHIMIE,
     name: "ALT/GPT",
     unit: units.U_SLASH_L,
-    ref: 31,
     refString: [`(${signs.lessThanEqual.sign}31${units.U_SLASH_L})`],
-    result: [{ id: uuidv4(), type: undefined, value: units.U_SLASH_L }], // no value asssigned yet
+    result: [
+      {
+        id: uuidv4(),
+        type: undefined,
+        value: units.U_SLASH_L,
+        refSign: signs.lessThanEqual.name,
+        ref: 31,
+        isGenreDependent: false,
+      },
+    ], // no value asssigned yet
   },
   {
     id: uuidv4(),
     type: TEST_EXAM_TYPES.STANDARD,
-    refSign: signs.lessThanEqual.name,
     category: categories.BIOCHIMIE,
     name: "AST/GOT",
     unit: units.U_SLASH_L,
-    ref: 37,
     refString: [`(${signs.lessThanEqual.sign}37${units.U_SLASH_L})`],
-    result: [{ id: uuidv4(), type: undefined, value: units.U_SLASH_L }], // no value asssigned yet
+    result: [
+      {
+        id: uuidv4(),
+        type: undefined,
+        value: units.U_SLASH_L,
+        refSign: signs.lessThanEqual.name,
+        ref: 37,
+        isGenreDependent: false,
+      },
+    ], // no value asssigned yet
   },
   {
     id: uuidv4(),
     type: TEST_EXAM_TYPES.STANDARD,
-    refSign: signs.lessThan.name,
     category: categories.BIOCHIMIE,
     name: "Gamma GT",
     unit: units.U_SLASH_L,
-    ref: {
-      first: { name: "H", value: 32, unit: units.U_SLASH_L },
-      second: { name: "F", value: 49, unit: units.U_SLASH_L },
-    },
     refString: [
-      `F: ${signs.lessThan.sign}32 ${units.U_SLASH_L}`,
       `H: ${signs.lessThan.sign}49 ${units.U_SLASH_L}`,
+      `F: ${signs.lessThan.sign}32 ${units.U_SLASH_L}`,
     ],
-    result: [{ id: uuidv4(), type: undefined, value: units.U_SLASH_L }], // no value asssigned yet
+    result: [
+      {
+        id: uuidv4(),
+        type: undefined,
+        value: units.U_SLASH_L,
+        refSign: signs.lessThan.name,
+        isGenreDependent: true,
+        ref: [49, 32],
+        // ref first value is for homme, and the second value is for femme
+      },
+    ], // no value asssigned yet
   },
   {
     id: uuidv4(),
     type: TEST_EXAM_TYPES.STANDARD,
-    refSign: signs.lessThan.name,
     category: categories.BIOCHIMIE,
     name: "LDH",
     unit: units.U_SLASH_L,
-    ref: 480,
-    refString: [`(${signs.lessThanEqual.sign}480${units.U_SLASH_L})`],
-    result: [{ id: uuidv4(), type: undefined, value: units.U_SLASH_L }],
+    refString: [`(${signs.lessThan.sign}480${units.U_SLASH_L})`],
+    result: [
+      {
+        id: uuidv4(),
+        type: undefined,
+        value: units.U_SLASH_L,
+        refSign: signs.lessThan.name,
+        ref: 480,
+        isGenreDependent: false,
+      },
+    ],
   },
   {
     id: uuidv4(),
@@ -83,50 +109,51 @@ const DATA = [
     refString: [`(${signs.lessThanEqual.sign}100${units.U_SLASH_L})`],
     result: [{ id: uuidv4(), type: undefined, value: units.U_SLASH_L }],
   },
+
   {
     id: uuidv4(),
     type: TEST_EXAM_TYPES.STANDARD,
-    refSign: signs.range.name,
     category: categories.BIOCHIMIE,
     name: "Ferritinemie",
     unit: units.NG_SLASH_ML,
-    ref: {
-      first: {
-        name: "H",
-        value: {
-          lower: 16,
-          higher: 220,
-        },
-        unit: units.NG_SLASH_ML,
-      },
-      second: {
-        name: "F",
-        value: {
-          lower: 10,
-          higher: 125,
-        },
-        unit: units.NG_SLASH_ML,
-      },
-    },
     refString: [
       `H: (16 ${signs.range.sign} 220) ${units.NG_SLASH_ML}`,
       `F: (10 ${signs.range.sign} 125) ${units.NG_SLASH_ML}`,
     ],
-    result: [{ id: uuidv4(), type: undefined, value: units.NG_SLASH_ML }],
+    result: [
+      {
+        id: uuidv4(),
+        type: undefined,
+        value: units.NG_SLASH_ML,
+        isGenreDependent: true,
+        refSign: signs.range.name,
+        ref: [
+          { lowerBound: 16, upperBound: 220 },
+          { lowerBound: 10, upperBound: 125 },
+        ],
+      },
+    ],
   },
+
   {
     id: uuidv4(),
     type: TEST_EXAM_TYPES.STANDARD,
-    refSign: signs.range.name,
     category: categories.BIOCHIMIE,
     name: `Coefficient de saturation`,
     unit: units.PERCENTAGE,
-    ref: {
-      lower: 25,
-      higher: 50,
-    },
     refString: [`(25 ${signs.range.sign} 50)${units.PERCENTAGE}`],
-    result: [{ id: uuidv4(), type: undefined, value: units.PERCENTAGE }],
+    result: [
+      {
+        id: uuidv4(),
+        type: undefined,
+        value: units.PERCENTAGE,
+        refSign: signs.range.name,
+        isGenreDependent: false,
+        ref: [25, 50],
+        // ref[0] -- is lowerBound
+        // ref[1] -- is upperBound
+      },
+    ],
   },
 
   {

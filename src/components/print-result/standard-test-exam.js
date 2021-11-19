@@ -1,9 +1,16 @@
 import React from "react";
+import { validateResult } from "../../utils";
 
 import "./style.scss";
 
-function StandardTestExam({ testExam }) {
+// redux
+import { connect } from "react-redux";
+import { selectSelectedPatient } from "../../redux/patient/patient.selectors";
+import { createStructuredSelector } from "reselect";
+
+function StandardTestExam({ testExam, patient }) {
   // console.log("Test exam", testExam);
+
   return (
     <div>
       {testExam.groupName && (
@@ -21,7 +28,14 @@ function StandardTestExam({ testExam }) {
               )}
             </div>
             <div className="flex pl-md">
-              <p>{testExam.result[0].value}</p>
+              <p
+                className={`${
+                  !validateResult(testExam.result[0], patient.genre) &&
+                  "bg--invalid px-xs"
+                }`}
+              >
+                {testExam.result[0].value}
+              </p>
             </div>
           </div>
           {testExam.result.length > 1 &&
@@ -32,7 +46,14 @@ function StandardTestExam({ testExam }) {
                     <p>{res.type !== "g/l" && res.type}</p>
                   </div>
                   <div className="flex pl-md">
-                    <p>{res.value}</p>
+                    <p
+                      className={`${
+                        !validateResult(res, patient.genre) &&
+                        "bg--invalid px-xs"
+                      }`}
+                    >
+                      {res.value}
+                    </p>
                   </div>
                 </div>
               ) : null
@@ -48,4 +69,8 @@ function StandardTestExam({ testExam }) {
   );
 }
 
-export default StandardTestExam;
+const mapStateToProps = createStructuredSelector({
+  patient: selectSelectedPatient,
+});
+
+export default connect(mapStateToProps)(StandardTestExam);

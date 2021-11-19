@@ -10,13 +10,20 @@ const DATA = [
   {
     id: uuidv4(),
     paperType: paperTypes.SINGLE,
-    refSign: signs.lessThanEqual.name,
     category: categories.BIOCHIMIE,
     name: "ALT/GPT",
     unit: units.U_SLASH_L,
-    ref: 31,
     refString: `(${signs.lessThanEqual.sign}31${units.U_SLASH_L})`,
-    result: [{ id: uuidv4(), type: undefined, value: units.U_SLASH_L }], // no value asssigned yet
+    result: [
+      {
+        id: uuidv4(),
+        type: undefined,
+        value: units.U_SLASH_L,
+        refSign: signs.lessThanEqual.name,
+        ref: 31,
+        isGenrDependent: false,
+      },
+    ], // no value asssigned yet
   },
   {
     id: uuidv4(),
