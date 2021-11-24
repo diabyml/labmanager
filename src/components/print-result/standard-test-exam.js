@@ -29,7 +29,7 @@ function StandardTestExam({ testExam, patient }) {
             </div>
             <div className="flex pl-md">
               <p
-                className={`${
+                className={`align-self-start ${
                   !validateResult(testExam.result[0], patient.genre) &&
                   "bg--invalid px-xs"
                 }`}
@@ -47,7 +47,7 @@ function StandardTestExam({ testExam, patient }) {
                   </div>
                   <div className="flex pl-md">
                     <p
-                      className={`${
+                      className={`align-self-start ${
                         !validateResult(res, patient.genre) &&
                         "bg--invalid px-xs"
                       }`}

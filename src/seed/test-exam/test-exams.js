@@ -106,8 +106,17 @@ const DATA = [
     name: "Amylasémie",
     unit: units.U_SLASH_L,
     ref: 100,
-    refString: [`(${signs.lessThanEqual.sign}100${units.U_SLASH_L})`],
-    result: [{ id: uuidv4(), type: undefined, value: units.U_SLASH_L }],
+    refString: [`(${signs.lessThan.sign}100${units.U_SLASH_L})`],
+    result: [
+      {
+        id: uuidv4(),
+        type: undefined,
+        value: units.U_SLASH_L,
+        refSign: signs.lessThan.name,
+        ref: 100,
+        isGenreDependent: false,
+      },
+    ],
   },
 
   {
@@ -165,7 +174,16 @@ const DATA = [
     unit: units.UG_SLASH_DL,
     ref: { lower: 33, higher: 193 },
     refString: [`(33 - 193) ${units.UG_SLASH_DL}`],
-    result: [{ id: uuidv4(), type: undefined, value: units.UG_SLASH_DL }],
+    result: [
+      {
+        id: uuidv4(),
+        type: undefined,
+        value: units.UG_SLASH_DL,
+        refSign: signs.range.name,
+        isGenreDependent: false,
+        ref: [33, 193],
+      },
+    ],
   },
 
   {
@@ -177,7 +195,16 @@ const DATA = [
     unit: units.U_SLASH_L,
     ref: { lower: 7, higher: 58 },
     refString: [`(7 ${signs.range.sign} 58)${units.U_SLASH_L}`],
-    result: [{ id: uuidv4(), type: undefined, value: units.U_SLASH_L }],
+    result: [
+      {
+        id: uuidv4(),
+        type: undefined,
+        value: units.U_SLASH_L,
+        refSign: signs.range.name,
+        isGenreDependent: false,
+        ref: [7, 58],
+      },
+    ],
   },
 
   {
@@ -189,7 +216,16 @@ const DATA = [
     unit: units.U_SLASH_L,
     ref: { lower: 35, higher: 104 },
     refString: [`(35 ${signs.range.sign} 104) ${units.U_SLASH_L}`],
-    result: [{ id: uuidv4(), type: undefined, value: units.U_SLASH_L }],
+    result: [
+      {
+        id: uuidv4(),
+        type: undefined,
+        value: units.U_SLASH_L,
+        refSign: signs.range.name,
+        isGenreDependent: false,
+        ref: [35, 104],
+      },
+    ],
   },
 
   {
@@ -199,25 +235,27 @@ const DATA = [
     category: categories.BIOCHIMIE,
     name: "Glycémie",
     unit: units.MMOL_SLASH_L,
-    ref: {
-      first: {
-        name: units.MMOL_SLASH_L,
-        value: { lower: 4.1, higher: 6.1 },
-        unit: units.MMOL_SLASH_L,
-      },
-      second: {
-        name: units.G_SLASH_L,
-        value: { lower: 0.7, higher: 1.1 },
-        unit: units.G_SLASH_L,
-      },
-    },
     refString: [
       `(4.1 - 6.1) ${units.MMOL_SLASH_L}`,
       `(0.7 - 1.1) ${units.G_SLASH_L}`,
     ],
     result: [
-      { id: uuidv4(), type: units.MMOL_SLASH_L, value: units.MMOL_SLASH_L },
-      { id: uuidv4(), type: units.G_SLASH_L, value: units.G_SLASH_L },
+      {
+        id: uuidv4(),
+        type: units.MMOL_SLASH_L,
+        value: units.MMOL_SLASH_L,
+        refSign: signs.range.name,
+        isGenreDependent: false,
+        ref: [4.1, 6.1],
+      },
+      {
+        id: uuidv4(),
+        type: units.G_SLASH_L,
+        value: units.G_SLASH_L,
+        refSign: signs.range.name,
+        isGenreDependent: false,
+        ref: [0.7, 1.1],
+      },
     ],
   },
 
@@ -228,16 +266,15 @@ const DATA = [
     category: categories.BIOCHIMIE,
     name: "Créatinine",
     unit: units.UMOL_SLASH_L,
-    ref: {
-      lower: 53,
-      higher: 120,
-    },
     refString: [`(53 ${signs.range.sign} 120 ) ${units.UMOL_SLASH_L}`],
     result: [
       {
         id: uuidv4(),
         type: undefined,
         value: units.UMOL_SLASH_L,
+        refSign: signs.range.name,
+        isGenreDependent: false,
+        ref: [53, 120],
       },
     ],
   },
@@ -249,16 +286,15 @@ const DATA = [
     category: categories.BIOCHIMIE,
     name: "Urée",
     unit: units.MMOL_SLASH_L,
-    ref: {
-      lower: 2.5,
-      higher: 7.5,
-    },
     refString: [`(2.5 ${signs.range.sign} 7.5) ${units.MMOL_SLASH_L}`],
     result: [
       {
         id: uuidv4(),
         type: undefined,
         value: units.MMOL_SLASH_L,
+        refSign: signs.range.name,
+        isGenreDependent: false,
+        ref: [2.5, 7.5],
       },
     ],
   },
@@ -270,16 +306,15 @@ const DATA = [
     category: categories.BIOCHIMIE,
     name: "Uricémie",
     unit: units.UMOL_SLASH_L,
-    ref: {
-      lower: 180,
-      higher: 420,
-    },
     refString: [`(180${signs.range.sign}420) ${units.UMOL_SLASH_L}`],
     result: [
       {
         id: uuidv4(),
         type: undefined,
         value: units.UMOL_SLASH_L,
+        refSign: signs.range.name,
+        isGenreDependent: false,
+        ref: [180, 420],
       },
     ],
   },
@@ -291,13 +326,15 @@ const DATA = [
     category: categories.BIOCHIMIE,
     name: "Bilirubine Totale",
     unit: units.UMOL_SLASH_L,
-    ref: 17,
     refString: [`(${signs.lessThan.sign}17) ${units.UMOL_SLASH_L}`],
     result: [
       {
         id: uuidv4(),
         type: undefined,
         value: units.UMOL_SLASH_L,
+        refSign: signs.lessThan.name,
+        ref: 17,
+        isGenreDependent: false,
       },
     ],
   },
@@ -311,13 +348,15 @@ const DATA = [
     category: categories.BIOCHIMIE,
     name: "Bilirubine Directe",
     unit: units.UMOL_SLASH_L,
-    ref: 4.2,
     refString: [`(${signs.lessThan.sign} 4.2) ${units.UMOL_SLASH_L}`],
     result: [
       {
         id: uuidv4(),
         type: undefined,
         value: units.UMOL_SLASH_L,
+        refSign: signs.lessThan.name,
+        ref: 4.2,
+        isGenreDependent: false,
       },
     ],
   },
@@ -329,13 +368,15 @@ const DATA = [
     category: categories.BIOCHIMIE,
     name: "Bilirubine indirecte",
     unit: units.UMOL_SLASH_L,
-    ref: 12,
     refString: [`(${signs.lessThan.sign}12) ${units.UMOL_SLASH_L}`],
     result: [
       {
         id: uuidv4(),
         type: undefined,
         value: units.UMOL_SLASH_L,
+        refSign: signs.lessThan.name,
+        ref: 12,
+        isGenreDependent: false,
       },
     ],
   },
@@ -347,13 +388,15 @@ const DATA = [
     category: categories.BIOCHIMIE,
     name: "Triglycérides",
     unit: units.MMOL_SLASH_L,
-    ref: { lower: 0.6, higher: 1.8 },
     refString: [`(0.6 ${signs.range.sign} 1.8) ${units.MMOL_SLASH_L}`],
     result: [
       {
         id: uuidv4(),
         type: undefined,
         value: units.MMOL_SLASH_L,
+        refSign: signs.range.name,
+        isGenreDependent: false,
+        ref: [0.6, 1.8],
       },
     ],
   },
@@ -365,13 +408,15 @@ const DATA = [
     category: categories.BIOCHIMIE,
     name: "Fibrinogène",
     unit: units.G_SLASH_L,
-    ref: { lower: 2, higher: 5 },
     refString: [`(2 ${signs.range.sign} 5) ${units.G_SLASH_L}`],
     result: [
       {
         id: uuidv4(),
         type: undefined,
         value: units.G_SLASH_L,
+        refSign: signs.range.name,
+        isGenreDependent: false,
+        ref: [2, 5],
       },
     ],
   },
@@ -383,13 +428,15 @@ const DATA = [
     category: categories.BIOCHIMIE,
     name: "Calcémie",
     unit: units.MMOL_SLASH_L,
-    ref: { lower: 2.2, higher: 2.6 },
     refString: [`(2.2 ${signs.range.sign} 2.6) ${units.MMOL_SLASH_L}`],
     result: [
       {
         id: uuidv4(),
         type: undefined,
         value: units.MMOL_SLASH_L,
+        refSign: signs.range.name,
+        isGenreDependent: false,
+        ref: [2.2, 2.6],
       },
     ],
   },
@@ -401,13 +448,15 @@ const DATA = [
     category: categories.BIOCHIMIE,
     name: "Hémoglobine glyquée",
     unit: units.PERCENTAGE,
-    ref: { lower: 4, higher: 7 },
     refString: [`(4 ${signs.range.sign} 7) ${units.PERCENTAGE}`],
     result: [
       {
         id: uuidv4(),
         type: undefined,
         value: units.PERCENTAGE,
+        refSign: signs.range.name,
+        isGenreDependent: false,
+        ref: [4, 7],
       },
     ],
   },
@@ -419,13 +468,15 @@ const DATA = [
     category: categories.BIOCHIMIE,
     name: "CPK",
     unit: units.UI_SLASH_L,
-    ref: { lower: 24, higher: 195 },
     refString: [`(24 ${signs.range.sign} 195) ${units.UI_SLASH_L}`],
     result: [
       {
         id: uuidv4(),
         type: undefined,
         value: units.UI_SLASH_L,
+        refSign: signs.range.name,
+        isGenreDependent: false,
+        ref: [24, 195],
       },
     ],
   },
@@ -437,13 +488,15 @@ const DATA = [
     category: categories.BIOCHIMIE,
     name: "Cholesterol Total",
     unit: units.MMOL_SLASH_L,
-    ref: 5.2,
     refString: [`(${signs.lessThan.sign}5.2) ${units.MMOL_SLASH_L}`],
     result: [
       {
         id: uuidv4(),
         type: undefined,
         value: units.MMOL_SLASH_L,
+        refSign: signs.lessThan.name, // change depending on testExam result
+        ref: 5.2,
+        isGenreDependent: false,
       },
     ],
   },
@@ -455,13 +508,17 @@ const DATA = [
     category: categories.BIOCHIMIE,
     name: "HDL Cholesterol",
     unit: units.MMOL_SLASH_L,
-    ref: { lower: 0.77, higher: 1.83 },
     refString: [`(0.77${signs.range.sign}1.83)${units.MMOL_SLASH_L}`],
     result: [
       {
         id: uuidv4(),
         type: undefined,
         value: units.MMOL_SLASH_L,
+        refSign: signs.range.name,
+        isGenreDependent: false,
+        ref: [0.77, 1.83],
+        // ref[0] -- is lowerBound
+        // ref[1] -- is upperBound
       },
     ],
   },
@@ -473,13 +530,15 @@ const DATA = [
     category: categories.BIOCHIMIE,
     name: "LDL Cholesterol",
     unit: units.MMOL_SLASH_L,
-    ref: 3.36,
     refString: [`(${signs.lessThan.sign}3.6)${units.MMOL_SLASH_L}`],
     result: [
       {
         id: uuidv4(),
         type: undefined,
         value: units.MMOL_SLASH_L,
+        refSign: signs.lessThan.name, // change depending on testExam result
+        ref: 3.6,
+        isGenreDependent: false,
       },
     ],
   },
@@ -491,13 +550,17 @@ const DATA = [
     category: categories.BIOCHIMIE,
     name: "Albuminémie",
     unit: units.G_SLASH_L,
-    ref: { lower: 38, higher: 54 },
     refString: [`(38${signs.range.sign}54)${units.G_SLASH_L}`],
     result: [
       {
         id: uuidv4(),
         type: undefined,
         value: units.G_SLASH_L,
+        refSign: signs.range.name,
+        isGenreDependent: false,
+        ref: [38, 54],
+        // ref[0] -- is lowerBound
+        // ref[1] -- is upperBound
       },
     ],
   },
@@ -509,13 +572,15 @@ const DATA = [
     category: categories.BIOCHIMIE,
     name: "CRP",
     unit: units.MG_SLASH_L,
-    ref: 6,
     refString: [`(${signs.lessThan.sign}6${units.MG_SLASH_L})`],
     result: [
       {
         id: uuidv4(),
         type: undefined,
         value: units.MG_SLASH_L,
+        refSign: signs.lessThan.name, // change depending on testExam result
+        ref: 6,
+        isGenreDependent: false,
       },
     ],
   },
@@ -529,13 +594,17 @@ const DATA = [
     fullName:
       "(Méthode enzymatique sur cobas c311)\nSeuil de sensibilité 2 mmol/l",
     unit: units.MMOL_SLASH_L,
-    ref: { lower: 22, higher: 29 },
     refString: [`(22${signs.range.sign}29)${units.MMOL_SLASH_L}`],
     result: [
       {
         id: uuidv4(),
         type: undefined,
         value: units.MMOL_SLASH_L,
+        refSign: signs.range.name,
+        isGenreDependent: false,
+        ref: [22, 29],
+        // ref[0] -- is lowerBound
+        // ref[1] -- is upperBound
       },
     ],
   },
@@ -546,13 +615,17 @@ const DATA = [
     category: categories.BIOCHIMIE,
     name: "Na+",
     unit: units.MEQ_SLASH_L,
-    ref: { lower: 135, higher: 155 },
     refString: [`(135${signs.range.sign}155)${units.MEQ_SLASH_L}`],
     result: [
       {
         id: uuidv4(),
         type: undefined,
         value: units.MEQ_SLASH_L,
+        refSign: signs.range.name,
+        isGenreDependent: false,
+        ref: [135, 155],
+        // ref[0] -- is lowerBound
+        // ref[1] -- is upperBound
       },
     ],
     refType: refTypes.SINGLE,
@@ -566,13 +639,17 @@ const DATA = [
     category: categories.BIOCHIMIE,
     name: "K+",
     unit: units.MEQ_SLASH_L,
-    ref: { lower: 3.5, higher: 5.5 },
     refString: [`(3.5 ${signs.range.sign}5.5)${units.MEQ_SLASH_L}`],
     result: [
       {
         id: uuidv4(),
         type: undefined,
         value: units.MEQ_SLASH_L,
+        refSign: signs.range.name,
+        isGenreDependent: false,
+        ref: [3.5, 5.5],
+        // ref[0] -- is lowerBound
+        // ref[1] -- is upperBound
       },
     ],
     refType: refTypes.SINGLE,
@@ -586,13 +663,17 @@ const DATA = [
     category: categories.BIOCHIMIE,
     name: "Cl-",
     unit: units.MEQ_SLASH_L,
-    ref: { lower: 97, higher: 115 },
     refString: [`(97${signs.range.sign}115)${units.MEQ_SLASH_L}`],
     result: [
       {
         id: uuidv4(),
         type: undefined,
         value: units.MEQ_SLASH_L,
+        refSign: signs.range.name,
+        isGenreDependent: false,
+        ref: [97, 115],
+        // ref[0] -- is lowerBound
+        // ref[1] -- is upperBound
       },
     ],
     refType: refTypes.SINGLE,
@@ -606,13 +687,17 @@ const DATA = [
     category: categories.BIOCHIMIE,
     name: "Magnésium",
     unit: units.MMOL_SLASH_L,
-    ref: { lower: 0.6, higher: 1.05 },
     refString: [`(0.6${signs.range.sign}1.05)${units.MMOL_SLASH_L}`],
     result: [
       {
         id: uuidv4(),
         type: undefined,
         value: units.MMOL_SLASH_L,
+        refSign: signs.range.name,
+        isGenreDependent: false,
+        ref: [0.6, 1.05],
+        // ref[0] -- is lowerBound
+        // ref[1] -- is upperBound
       },
     ],
     refType: refTypes.SINGLE,
@@ -626,13 +711,17 @@ const DATA = [
     category: categories.BIOCHIMIE,
     name: "Phosphore",
     unit: units.MMOL_SLASH_L,
-    ref: { lower: 0.8, higher: 1.6 },
     refString: [`(0.8${signs.range.sign}1.6)${units.MMOL_SLASH_L}`],
     result: [
       {
         id: uuidv4(),
         type: undefined,
         value: units.MMOL_SLASH_L,
+        refSign: signs.range.name,
+        isGenreDependent: false,
+        ref: [0.8, 1.6],
+        // ref[0] -- is lowerBound
+        // ref[1] -- is upperBound
       },
     ],
     refType: refTypes.SINGLE,
@@ -646,13 +735,17 @@ const DATA = [
     category: categories.BIOCHIMIE,
     name: "Calcémie",
     unit: units.MMOL_SLASH_L,
-    ref: { lower: 2.2, higher: 2.6 },
     refString: [`(2.2${signs.range.sign}2.6)${units.MMOL_SLASH_L}`],
     result: [
       {
         id: uuidv4(),
         type: undefined,
         value: units.MMOL_SLASH_L,
+        refSign: signs.range.name,
+        isGenreDependent: false,
+        ref: [2.2, 2.6],
+        // ref[0] -- is lowerBound
+        // ref[1] -- is upperBound
       },
     ],
     refType: refTypes.SINGLE,
@@ -666,13 +759,17 @@ const DATA = [
     category: categories.BIOCHIMIE,
     name: "Protéine Totale",
     unit: units.G_SLASH_L,
-    ref: { lower: 62, higher: 80 },
     refString: [`(62${signs.range.sign}80)${units.G_SLASH_L}`],
     result: [
       {
         id: uuidv4(),
         type: undefined,
         value: units.G_SLASH_L,
+        refSign: signs.range.name,
+        isGenreDependent: false,
+        ref: [62, 80],
+        // ref[0] -- is lowerBound
+        // ref[1] -- is upperBound
       },
     ],
     refType: refTypes.SINGLE,
@@ -687,13 +784,13 @@ const DATA = [
     category: categories.PARASITOLOGIE,
     name: "GE",
     unit: units.TF_SLASH_MM3,
-    refString: ["-"],
-    ref: 0,
+    refString: [""],
     result: [
       {
         id: uuidv4(),
         type: undefined,
         value: units.TF_SLASH_MM3,
+        refSign: signs.none.name,
       },
     ], // no value asssigned yet
   },
@@ -707,55 +804,13 @@ const DATA = [
     category: categories.SEROLOGIE_IMMUNOLOGIE,
     name: "Recherche d’Helicobacter pylori",
     unit: units.NONE,
-    ref: 0,
-    refString: [`-`],
+    refString: [``],
     result: [
       {
         id: uuidv4(),
         type: undefined,
         value: "",
-      },
-    ],
-  },
-
-  {
-    id: uuidv4(),
-    type: TEST_EXAM_TYPES.STANDARD,
-    refSign: signs.none.name,
-    category: categories.SEROLOGIE_IMMUNOLOGIE,
-    name: "BW (TPHA)",
-    unit: units.NONE,
-    ref: 0,
-    refString: [`-`],
-    result: [
-      {
-        id: uuidv4(),
-        type: undefined,
-        value: "",
-      },
-    ],
-  },
-
-  {
-    id: uuidv4(),
-    type: TEST_EXAM_TYPES.STANDARD,
-    refSign: {
-      lower: signs.lessThan.name,
-      higher: signs.greaterThanEqual.name,
-    },
-    category: categories.SEROLOGIE_IMMUNOLOGIE,
-    name: "BW",
-    unit: units.MIU_SLASH_ML,
-    ref: { lower: 1, higher: 1 },
-    refString: [
-      `Négatif: ${signs.lessThan.sign} 1 ${units.MIU_SLASH_ML} `,
-      `Positif: ${signs.greaterThanEqual.sign} 1 ${units.MIU_SLASH_ML}`,
-    ],
-    result: [
-      {
-        id: uuidv4(),
-        type: undefined,
-        value: units.MIU_SLASH_ML,
+        refSign: signs.none.name,
       },
     ],
   },
@@ -767,13 +822,13 @@ const DATA = [
     category: categories.SEROLOGIE_IMMUNOLOGIE,
     name: "TPHA",
     unit: units.NONE,
-    ref: 0,
-    refString: [`-`],
+    refString: [``],
     result: [
       {
         id: uuidv4(),
         type: undefined,
         value: "",
+        refSign: signs.none.name,
       },
     ],
   },
@@ -785,13 +840,53 @@ const DATA = [
     category: categories.SEROLOGIE_IMMUNOLOGIE,
     name: "VDRL",
     unit: units.NONE,
-    ref: 0,
-    refString: [`-`],
+    refString: [``],
     result: [
       {
         id: uuidv4(),
         type: undefined,
         value: "",
+        refSign: signs.none.name,
+      },
+    ],
+  },
+
+  {
+    id: uuidv4(),
+    type: TEST_EXAM_TYPES.STANDARD,
+    category: categories.SEROLOGIE_IMMUNOLOGIE,
+    name: "BW",
+    unit: units.MIU_SLASH_ML,
+    refString: [
+      `Négatif: ${signs.lessThan.sign} 1 ${units.MIU_SLASH_ML} `,
+      `Positif: ${signs.greaterThanEqual.sign} 1 ${units.MIU_SLASH_ML}`,
+    ],
+    result: [
+      {
+        id: uuidv4(),
+        type: undefined,
+        value: units.MIU_SLASH_ML,
+        refSign: signs.lessThan.name, // change depending on testExam result
+        ref: 1,
+        isGenreDependent: false,
+      },
+    ],
+  },
+
+  {
+    id: uuidv4(),
+    type: TEST_EXAM_TYPES.STANDARD,
+    refSign: signs.none.name,
+    category: categories.SEROLOGIE_IMMUNOLOGIE,
+    name: "TE",
+    unit: units.NONE,
+    refString: [``],
+    result: [
+      {
+        id: uuidv4(),
+        type: undefined,
+        value: "",
+        refSign: signs.none.name,
       },
     ],
   },

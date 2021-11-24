@@ -67,14 +67,36 @@ const validateValue = (refSign, refValue, value) => {
 };
 
 const isInRange = (lowerBound, upperBound, value) => {
-  return value > lowerBound && value < upperBound;
+  return value >= lowerBound && value <= upperBound;
+};
+
+const isNone = (value) => {
+  const formatedValue = value.toLowerCase();
+  console.log(formatedValue);
+  switch (formatedValue) {
+    case "négatif":
+    case "negatif":
+    case "néant":
+    case "neant":
+      return true;
+    case "positif":
+      return false;
+    default:
+      return false;
+  }
 };
 
 export const validateResult = (result, genre) => {
   const { refSign, ref, value, isGenreDependent } = result;
-  let isValid = false;
+  // let isValid = false;
+
+  // if the result should be none meaning negative or neant
+  if (refSign === signs.none.name) {
+    return isNone(value);
+  }
+
   // get the actual value out of value, which contains unit too
-  const parsedValue = parseInt(value);
+  const parsedValue = parseFloat(value);
 
   // validate result if genre is concerned
   if (isGenreDependent) {
@@ -83,7 +105,7 @@ export const validateResult = (result, genre) => {
       // genre is homme --> get homme ref with ref[0]
       if (genre === "homme") {
         const refBounds = ref[0];
-        isValid = isInRange(
+        return isInRange(
           refBounds.lowerBound,
           refBounds.upperBound,
           parsedValue
@@ -91,35 +113,35 @@ export const validateResult = (result, genre) => {
       } else if (genre === "femme") {
         // genre is femme --> get femme ref with ref[1]
         const refBounds = ref[1];
-        isValid = isInRange(
+        return isInRange(
           refBounds.lowerBound,
           refBounds.upperBound,
           parsedValue
         );
       }
     } else {
-      // not range but still depend on genre
-      // genre is hemme --> get femme ref with ref[0]
+      // ref is not range but still depend on genre
+      // genre is homme --> get homme ref with ref[0]
       if (genre === "homme") {
         // console.log("ref: ", ref[0]);
         // console.log("refSign", refSign);
         // console.log("parsedValue", parsedValue);
-        isValid = validateValue(refSign, ref[0], parsedValue);
+        return validateValue(refSign, ref[0], parsedValue);
       } else if (genre === "femme") {
         // genre is femme --> get femme ref with ref[1]
-        isValid = validateValue(refSign, ref[1], parsedValue);
+        return validateValue(refSign, ref[1], parsedValue);
       }
     }
   } else {
     // calculation where genre does not matter
     if (refSign === signs.range.name) {
       // ref is in range
-      isValid = isInRange(ref[0], ref[1], parsedValue);
+      return isInRange(ref[0], ref[1], parsedValue);
     } else {
-      // not ranege ref, ref here are ever: <,<= etc....
-      isValid = validateValue(refSign, ref, parsedValue);
+      // not ranege ref, ref here are ever: <,<=,
+      return validateValue(refSign, ref, parsedValue);
     }
   }
 
-  return isValid;
+  // return isValid;
 };

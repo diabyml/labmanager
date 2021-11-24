@@ -59,14 +59,18 @@ validattion data: result properties for validation
 
 # not genre dependant and not range ref
 
---- refSign: signs.lessThanEqual.name, // change depending on testExam result
---- ref: 31,
---- isGenreDependent: false,
+refSign: signs., // change depending on testExam result
+ref: 31,
+isGenreDependent: false,
 
 # not genre dependant and range ref
 
--- refSign: signs.range.name,
--- isGenreDependent: false,
--- ref: [25,50],
+refSign: signs.range.name,
+isGenreDependent: false,
+ref: [25,50],
 // ref[0] -- is lowerBound
 // ref[1] -- is upperBound
+
+## The result of test shoulb be null meaning: Negatif or Neant
+
+refSign: signs.none.name,

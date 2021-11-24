@@ -32,6 +32,7 @@
 }
 
 .bg--invalid {
-  --bg: var(--color-bg-darker);
+  --bg: var(--gray-3);
   --fg: var(--color-text);
+  font-weight: 700;
 }
