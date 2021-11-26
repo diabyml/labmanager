@@ -30,8 +30,11 @@ function StandardTestExam({ testExam, patient }) {
             <div className="flex pl-md">
               <p
                 className={`align-self-start ${
-                  !validateResult(testExam.result[0], patient.genre) &&
-                  "bg--invalid px-xs"
+                  !validateResult(
+                    testExam.result[0],
+                    patient.genre,
+                    patient.age
+                  ) && "bg--invalid px-xs"
                 }`}
               >
                 {testExam.result[0].value}
@@ -48,7 +51,7 @@ function StandardTestExam({ testExam, patient }) {
                   <div className="flex pl-md">
                     <p
                       className={`align-self-start ${
-                        !validateResult(res, patient.genre) &&
+                        !validateResult(res, patient.genre, patient.age) &&
                         "bg--invalid px-xs"
                       }`}
                     >

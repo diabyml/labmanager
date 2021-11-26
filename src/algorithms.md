@@ -74,3 +74,8 @@ ref: [25,50],
 ## The result of test shoulb be null meaning: Negatif or Neant
 
 refSign: signs.none.name,
+
+## validation depent on patient age
+
+refSign: signs.rangeWithAge,
+testExam: "exam name", //based on test make the appropriate validation

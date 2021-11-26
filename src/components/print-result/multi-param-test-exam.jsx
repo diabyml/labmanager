@@ -3,11 +3,21 @@ import StandardTestExam from "./standard-test-exam";
 import { v4 as uuidv4 } from "uuid";
 
 function MultiParamTestExam({ testExam }) {
-  const formatTestExam = (result) => {
+  const formatTestExam = (result, age) => {
     return {
       id: result.id,
       name: result.type,
-      result: [{ id: uuidv4(), value: result.value, type: undefined }],
+      result: [
+        {
+          id: uuidv4(),
+          value: result.value,
+          type: undefined,
+          refSign: result.refSign,
+          isGenreDependent: result.isGenreDependent,
+          ref: result.ref,
+          age,
+        },
+      ],
       refString: result.refString,
     };
   };
@@ -17,7 +27,10 @@ function MultiParamTestExam({ testExam }) {
         {testExam.label && testExam.label + ":"}
       </p>
       {testExam.result.map((result) => (
-        <StandardTestExam key={result.id} testExam={formatTestExam(result)} />
+        <StandardTestExam
+          key={result.id}
+          testExam={formatTestExam(result, testExam.age)}
+        />
       ))}
       {testExam.description && (
         <div className="font-bold text--xs pl-sm">

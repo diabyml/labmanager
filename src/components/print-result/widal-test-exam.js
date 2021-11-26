@@ -1,5 +1,7 @@
 import React from "react";
 
+import { validateResult } from "../../utils";
+
 function WidalTestExam({ testExam }) {
   return (
     <div>
@@ -7,7 +9,14 @@ function WidalTestExam({ testExam }) {
       <ul className="grid col-4 gap-sm">
         {testExam.result.map((res) => (
           <li key={res.id}>
-            <div> {`${res.type}(${res.value})`} </div>
+            <div
+              className={`${
+                !validateResult({ refSign: res.refSign, value: res.value }) &&
+                "bg--invalid px-xs"
+              }`}
+            >
+              {`${res.type}(${res.value})`}
+            </div>
           </li>
         ))}
       </ul>

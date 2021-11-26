@@ -898,13 +898,13 @@ const DATA = [
     category: categories.SEROLOGIE_IMMUNOLOGIE,
     name: "Albumine (urine)",
     unit: units.NONE,
-    ref: 0,
-    refString: [`-`],
+    refString: [``],
     result: [
       {
         id: uuidv4(),
         type: undefined,
         value: "",
+        refSign: signs.none.name,
       },
     ],
   },
@@ -916,13 +916,13 @@ const DATA = [
     category: categories.SEROLOGIE_IMMUNOLOGIE,
     name: "Sucre (urine)",
     unit: units.NONE,
-    ref: 0,
-    refString: [`-`],
+    refString: [``],
     result: [
       {
         id: uuidv4(),
         type: undefined,
         value: "",
+        refSign: signs.none.name,
       },
     ],
   },
@@ -934,51 +934,55 @@ const DATA = [
     category: categories.SEROLOGIE_IMMUNOLOGIE,
     name: "Widal",
     unit: units.NONE,
-    ref: {
-      o: { to: 0, ao: 0, bo: 0, co: 0 },
-      h: { th: 0, ah: 0, bh: 0, ch: 0 },
-    },
-    refString: ["-"],
+    refString: [""],
     result: [
       {
         id: uuidv4(),
         type: "TO",
         value: "",
+        refSign: signs.none.name,
       },
       {
         id: uuidv4(),
         type: "AO",
         value: "",
+        refSign: signs.none.name,
       },
       {
         id: uuidv4(),
         type: "BO",
         value: "",
+        refSign: signs.none.name,
       },
       {
         id: uuidv4(),
         type: "CO",
         value: "",
+        refSign: signs.none.name,
       },
       {
         id: uuidv4(),
         type: "TH",
         value: "",
+        refSign: signs.none.name,
       },
       {
         id: uuidv4(),
         type: "AH",
         value: "",
+        refSign: signs.none.name,
       },
       {
         id: uuidv4(),
         type: "BH",
         value: "",
+        refSign: signs.none.name,
       },
       {
         id: uuidv4(),
         type: "CH",
         value: "",
+        refSign: signs.none.name,
       },
     ],
     groupName: groupNames.WIDAL,
@@ -993,13 +997,15 @@ const DATA = [
     category: categories.SEROLOGIE_IMMUNOLOGIE,
     name: "ASLO",
     unit: units.IU_SLASH_ML,
-    ref: 200,
     refString: [`${signs.lessThan.sign} 200 ${units.IU_SLASH_ML}`],
     result: [
       {
         id: uuidv4(),
         type: undefined,
         value: units.IU_SLASH_ML,
+        refSign: signs.lessThan.name, // change depending on testExam result
+        ref: 200,
+        isGenreDependent: false,
       },
     ],
   },
@@ -1007,11 +1013,9 @@ const DATA = [
   {
     id: uuidv4(),
     type: TEST_EXAM_TYPES.STANDARD,
-    refSign: { lower: signs.lessThan.name, higher: signs.greaterThanEqual },
     category: categories.SEROLOGIE_IMMUNOLOGIE,
     name: "AgHBS",
     unit: units.INDEX_SLASH_ML,
-    ref: { lower: 1, higher: 1 },
     refString: [
       `Négatif: ${signs.lessThan.sign} 1 ${units.INDEX_SLASH_ML} `,
       `Positif: ${signs.greaterThanEqual.sign} 1 ${units.INDEX_SLASH_ML}`,
@@ -1021,6 +1025,9 @@ const DATA = [
         id: uuidv4(),
         type: undefined,
         value: units.INDEX_SLASH_ML,
+        refSign: signs.lessThan.name, // change depending on testExam result
+        ref: 1,
+        isGenreDependent: false,
       },
     ],
   },
@@ -1032,10 +1039,6 @@ const DATA = [
     category: categories.SEROLOGIE_IMMUNOLOGIE,
     name: "Ac anti HCV",
     unit: units.AU_SLASH_ML,
-    ref: {
-      lower: 20,
-      higher: 20,
-    },
     refString: [
       `Négatif: ${signs.lessThan.sign} 20 ${units.AU_SLASH_ML}`,
       `Positif: ${signs.greaterThanEqual.sign} 20 ${units.AU_SLASH_ML}`,
@@ -1045,6 +1048,9 @@ const DATA = [
         id: uuidv4(),
         type: undefined,
         value: units.AU_SLASH_ML,
+        refSign: signs.lessThan.name, // change depending on testExam result
+        ref: 20,
+        isGenreDependent: false,
       },
     ],
   },
@@ -1052,14 +1058,9 @@ const DATA = [
   {
     id: uuidv4(),
     type: TEST_EXAM_TYPES.STANDARD,
-    refSign: { lower: signs.lessThan, higher: signs.greaterThanEqual },
     category: categories.SEROLOGIE_IMMUNOLOGIE,
     name: "AgHBe",
     unit: units.INDEX_SLASH_ML,
-    ref: {
-      lower: 15,
-      higher: 15,
-    },
     refString: [
       `Négatif: ${signs.lessThan.sign} 15 ${units.INDEX_SLASH_ML}`,
       `Positif: ${signs.greaterThanEqual.sign} 15 ${units.INDEX_SLASH_ML}`,
@@ -1069,6 +1070,9 @@ const DATA = [
         id: uuidv4(),
         type: undefined,
         value: units.INDEX_SLASH_ML,
+        refSign: signs.lessThan.name, // change depending on testExam result
+        ref: 15,
+        isGenreDependent: false,
       },
     ],
   },
@@ -1076,14 +1080,9 @@ const DATA = [
   {
     id: uuidv4(),
     type: TEST_EXAM_TYPES.STANDARD,
-    refSign: { lower: signs.lessThan, higher: signs.greaterThanEqual },
     category: categories.SEROLOGIE_IMMUNOLOGIE,
     name: "Ac anti HBe",
     unit: units.INDEX_SLASH_ML,
-    ref: {
-      lower: 100,
-      higher: 100,
-    },
     refString: [
       `Négatif: ${signs.lessThan.sign} 100 ${units.INDEX_SLASH_ML}`,
       `Positif: ${signs.greaterThanEqual.sign} 100 ${units.INDEX_SLASH_ML}`,
@@ -1093,6 +1092,9 @@ const DATA = [
         id: uuidv4(),
         type: undefined,
         value: units.INDEX_SLASH_ML,
+        refSign: signs.lessThan.name, // change depending on testExam result
+        ref: 100,
+        isGenreDependent: false,
       },
     ],
   },
@@ -1117,35 +1119,38 @@ const DATA = [
         id: uuidv4(),
         type: undefined,
         value: units.MIU_SLASH_ML,
+        refSign: signs.lessThan.name, // change depending on testExam result
+        ref: 10,
+        isGenreDependent: false,
       },
     ],
   },
 
-  {
-    id: uuidv4(),
-    type: TEST_EXAM_TYPES.STANDARD,
-    refSign: {
-      lower: signs.lessThan.name,
-      higher: signs.greaterThanEqual.name,
-    },
-    category: categories.SEROLOGIE_IMMUNOLOGIE,
-    name: "Ac anti DNA NATIF",
-    unit: units.NONE,
-    ref: { lower: 3, higher: 300 },
-    refString: [
-      `Négatif: ${signs.lessThan.sign}3`,
-      `Douteux : 30 ${signs.range.sign} 50`,
-      `Probable : 50 ${signs.range.sign} 300`,
-      `Positif : ${signs.greaterThan.sign} 300`,
-    ],
-    result: [
-      {
-        id: uuidv4(),
-        type: undefined,
-        value: "",
-      },
-    ],
-  },
+  // {
+  //   id: uuidv4(),
+  //   type: TEST_EXAM_TYPES.STANDARD,
+  //   refSign: {
+  //     lower: signs.lessThan.name,
+  //     higher: signs.greaterThanEqual.name,
+  //   },
+  //   category: categories.SEROLOGIE_IMMUNOLOGIE,
+  //   name: "Ac anti DNA NATIF",
+  //   unit: units.NONE,
+  //   ref: { lower: 3, higher: 300 },
+  //   refString: [
+  //     `Négatif: ${signs.lessThan.sign}3`,
+  //     `Douteux : 30 ${signs.range.sign} 50`,
+  //     `Probable : 50 ${signs.range.sign} 300`,
+  //     `Positif : ${signs.greaterThan.sign} 300`,
+  //   ],
+  //   result: [
+  //     {
+  //       id: uuidv4(),
+  //       type: undefined,
+  //       value: "",
+  //     },
+  //   ],
+  // },
 
   {
     id: uuidv4(),
@@ -1154,10 +1159,6 @@ const DATA = [
     category: categories.SEROLOGIE_IMMUNOLOGIE,
     name: "C3 du complément",
     unit: units.G_SLASH_L,
-    ref: {
-      oneToFourteenRange: { lower: 0.8, higher: 1.73 },
-      greaterThanFourteenRange: { lower: 0.82, higher: 1.93 },
-    },
     refString: [
       `1 ${signs.range.sign} 14 ans: (0.80 ${signs.range.sign} 1.73)`,
       `${signs.greaterThan.sign} 14 ans: (0.82 ${signs.range.sign} 1.93)`,
@@ -1167,6 +1168,8 @@ const DATA = [
         id: uuidv4(),
         type: undefined,
         value: units.G_SLASH_L,
+        refSign: signs.rangeWithAge.name,
+        testExamName: "c3ducomplement",
       },
     ],
   },
@@ -1178,16 +1181,17 @@ const DATA = [
     category: categories.SEROLOGIE_IMMUNOLOGIE,
     name: "C4 du complément",
     unit: units.G_SLASH_L,
-    ref: {
-      lower: 0.1,
-      higher: 0.4,
-    },
     refString: [`(0.10 ${signs.range.sign} 0.40) ${units.G_SLASH_L}`],
     result: [
       {
         id: uuidv4(),
         type: undefined,
         value: units.G_SLASH_L,
+        refSign: signs.range.name,
+        isGenreDependent: false,
+        ref: [0.1, 0.4],
+        // ref[0] -- is lowerBound
+        // ref[1] -- is upperBound
       },
     ],
   },
@@ -1199,16 +1203,17 @@ const DATA = [
     category: categories.SEROLOGIE_IMMUNOLOGIE,
     name: "Haptoglobine",
     unit: units.G_SLASH_L,
-    ref: {
-      lower: 0.14,
-      higher: 2.58,
-    },
     refString: [`(0.14 ${signs.range.sign} 2.58) ${units.G_SLASH_L}`],
     result: [
       {
         id: uuidv4(),
         type: undefined,
         value: units.G_SLASH_L,
+        refSign: signs.range.name,
+        isGenreDependent: false,
+        ref: [0.14, 2.58],
+        // ref[0] -- is lowerBound
+        // ref[1] -- is upperBound
       },
     ],
   },
@@ -1220,13 +1225,13 @@ const DATA = [
     category: categories.SEROLOGIE_IMMUNOLOGIE,
     name: "Test de Combs direct",
     unit: units.NONE,
-    ref: 0,
-    refString: [`-`],
+    refString: [``],
     result: [
       {
         id: uuidv4(),
         type: undefined,
         value: "",
+        refSign: signs.none.name,
       },
     ],
     refType: refTypes.SINGLE,
@@ -1239,13 +1244,13 @@ const DATA = [
     category: categories.SEROLOGIE_IMMUNOLOGIE,
     name: "Test de Combs indirect",
     unit: units.NONE,
-    ref: 0,
-    refString: [`-`],
+    refString: [``],
     result: [
       {
         id: uuidv4(),
         type: undefined,
         value: "",
+        refSign: signs.none.name,
       },
     ],
     refType: refTypes.SINGLE,
@@ -1258,13 +1263,13 @@ const DATA = [
     category: categories.SEROLOGIE_IMMUNOLOGIE,
     name: "Recherche de Schizocytes",
     unit: units.NONE,
-    ref: 0,
-    refString: [`-`],
+    refString: [``],
     result: [
       {
         id: uuidv4(),
         type: undefined,
         value: "",
+        refSign: signs.none.name,
       },
     ],
     refType: refTypes.SINGLE,
@@ -1286,6 +1291,9 @@ const DATA = [
         type: "IgG",
         value: units.IU_SLASH_ML,
         refString: [`Négatif : < 2 IU/ml`, `Positif : ≥ 2 IU/ml`],
+        refSign: signs.lessThan.name, // change depending on testExam result
+        ref: 2,
+        isGenreDependent: false,
       },
       {
         id: toxoIgMId,
@@ -1296,6 +1304,11 @@ const DATA = [
           `Equivoque : 2-2.6 AU/ml`,
           `Positif : > 2.6 AU/ml`,
         ],
+        refSign: signs.range.name,
+        isGenreDependent: false,
+        ref: [2, 2.6],
+        // ref[0] -- is lowerBound
+        // ref[1] -- is upperBound
       },
     ],
   },
@@ -1313,6 +1326,9 @@ const DATA = [
         type: "IgG",
         value: units.IU_SLASH_ML,
         refString: [`Négatif : < 2 IU/ml`, `Positif : ≥ 2 IU/ml`],
+        refSign: signs.lessThan.name, // change depending on testExam result
+        ref: 2,
+        isGenreDependent: false,
       },
     ],
   },
@@ -1330,7 +1346,10 @@ const DATA = [
         id: rubeoleIgGId,
         type: "IgG",
         value: units.IU_SLASH_ML,
-        refString: [`Négatif : < 2 IU/ml`, `Positif : > ou égal à 2 IU/ml`],
+        refString: [`Négatif : < 2 IU/ml`, `Positif : ≥ 2 IU/ml`],
+        refSign: signs.lessThan.name, // change depending on testExam result
+        ref: 2,
+        isGenreDependent: false,
       },
       {
         id: rubeoleIgMId,
@@ -1341,6 +1360,9 @@ const DATA = [
           `Equivoque : 2-2.99 AU/ml`,
           `Positif : ≥ 3 AU/ml`,
         ],
+        refSign: signs.lessThan.name, // change depending on testExam result
+        ref: 3,
+        isGenreDependent: false,
       },
     ],
   },
@@ -1376,12 +1398,16 @@ const DATA = [
         type: "IgG",
         value: units.INDEX_SLASH_ML,
         refString: [`Négatif : <100 index/ml`, `Positif : ≥ 100 index/ml`],
+        refSign: signs.lessThan.name, // change depending on testExam result
+        ref: 100,
+        isGenreDependent: false,
       },
       {
         id: hbcIgMId,
         type: "IgM",
         value: "",
         refString: [""],
+        refSign: signs.none.name,
       },
     ],
   },
@@ -1399,6 +1425,9 @@ const DATA = [
         type: "IgG",
         value: units.INDEX_SLASH_ML,
         refString: [`Négatif : <100 index/ml`, `Positif : ≥ 100 index/ml`],
+        refSign: signs.lessThan.name, // change depending on testExam result
+        ref: 100,
+        isGenreDependent: false,
       },
     ],
   },
@@ -1417,12 +1446,14 @@ const DATA = [
         type: "VIH1",
         value: "",
         refString: [""],
+        refSign: signs.none.name,
       },
       {
         id: hiv2Id,
         type: "HIV2",
         value: "",
         refString: [""],
+        refSign: signs.none.name,
       },
     ],
   },
@@ -2221,17 +2252,20 @@ const DATA = [
     name: "AC ANTI-DNA NATIF",
     fullName: "ELISA SUR CHORUS",
     unit: units.IU_SLASH_ML,
-    ref: { lower: 30, higher: 300 },
     refString: [
       `Négatif : ${signs.lessThan.sign} 30 `,
       `Douteux : 30${signs.range.sign}50 `,
-      `Positif : ${signs.greaterThan.sign} 50 - ${signs.lessThanEqual.sign}300`,
+      `Positif : ${signs.greaterThan.sign} 50 - 300`,
+      `Positif :>300`,
     ],
     result: [
       {
         id: uuidv4(),
         type: undefined,
         value: units.IU_SLASH_ML,
+        refSign: signs.lessThan.name, // change depending on testExam result
+        ref: 301,
+        isGenreDependent: false,
       },
     ],
   },
@@ -2345,25 +2379,40 @@ const DATA = [
         id: uuidv4(),
         type: "Temps témoin",
         value: "14.5 sec",
-        refString: ["(12 – 17) sec"],
+        refString: ["(11 – 16) sec"],
       },
       {
         id: uuidv4(),
         type: "Temps malade",
-        value: "16.7 sec",
+        value: "sec",
         refString: [""],
+        refSign: signs.range.name,
+        isGenreDependent: false,
+        ref: [11, 16],
+        // ref[0] -- is lowerBound
+        // ref[1] -- is upperBound
       },
       {
         id: uuidv4(),
         type: "INR",
-        value: "",
+        value: "sec",
         refString: ["(0.9-1.6) sec"],
+        refSign: signs.range.name,
+        isGenreDependent: false,
+        ref: [0.9, 1.6],
+        // ref[0] -- is lowerBound
+        // ref[1] -- is upperBound
       },
       {
         id: uuidv4(),
         type: "Activité",
-        value: "",
+        value: "%",
         refString: ["(70-100 %)"],
+        refSign: signs.range.name,
+        isGenreDependent: false,
+        ref: [70, 100],
+        // ref[0] -- is lowerBound
+        // ref[1] -- is upperBound
       },
     ],
   },
@@ -2384,14 +2433,22 @@ const DATA = [
       {
         id: uuidv4(),
         type: "Temps malade",
-        value: "",
+        value: "sec",
         refString: [""],
+        refSign: signs.range.name,
+        isGenreDependent: false,
+        ref: [25, 43],
+        // ref[0] -- is lowerBound
+        // ref[1] -- is upperBound
       },
       {
         id: uuidv4(),
         type: "Ratio",
         value: "",
-        refString: ["(< 1.2)"],
+        refString: ["(< 1.3)"],
+        refSign: signs.lessThan.name, // change depending on testExam result
+        ref: 1.3,
+        isGenreDependent: false,
       },
     ],
   },
@@ -2406,14 +2463,22 @@ const DATA = [
       {
         id: uuidv4(),
         type: "Première heure",
-        value: "",
+        value: "mm",
         refString: ["2-20 mm/1 Heure"],
+        refSign: signs.range.name,
+        isGenreDependent: false,
+        ref: [2, 20],
+        // ref[0] -- is lowerBound
+        // ref[1] -- is upperBound
       },
       {
         id: uuidv4(),
         type: "Deuxième heure",
-        value: "",
+        value: "mm",
         refString: ["< 35 mm/ 2 Heure"],
+        refSign: signs.lessThan.name, // change depending on testExam result
+        ref: 35,
+        isGenreDependent: false,
       },
     ],
   },

@@ -23,6 +23,11 @@ const signs = {
     sign: "-",
   },
 
+  rangeWithAge: {
+    name: "rangeWithAge",
+    sign: "-",
+  },
+
   none: {
     name: "none",
     sign: "",

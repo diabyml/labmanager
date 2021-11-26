@@ -86,13 +86,28 @@ const isNone = (value) => {
   }
 };
 
-export const validateResult = (result, genre) => {
+const validateAgeRangeValue = (testExamName, value, age) => {
+  if (testExamName === "c3ducomplement") {
+    if (age >= 1 && age <= 14) {
+      return value >= 0.8 && value <= 1.73;
+    } else if (age > 14) {
+      return value >= 0.82 && value <= 1.93;
+    }
+  }
+};
+
+export const validateResult = (result, genre, age = undefined) => {
   const { refSign, ref, value, isGenreDependent } = result;
   // let isValid = false;
 
   // if the result should be none meaning negative or neant
   if (refSign === signs.none.name) {
+    if (parseInt(value) === 0) return true;
     return isNone(value);
+  }
+
+  if (refSign === signs.rangeWithAge.name) {
+    return validateAgeRangeValue(result.testExamName, parseFloat(value), age);
   }
 
   // get the actual value out of value, which contains unit too
