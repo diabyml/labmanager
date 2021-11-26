@@ -75,6 +75,8 @@ const isNone = (value) => {
   console.log(formatedValue);
   switch (formatedValue) {
     case "négatif":
+    case "négative":
+    case "negative":
     case "negatif":
     case "néant":
     case "neant":
