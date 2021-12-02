@@ -1,0 +1,28 @@
+.doctors-page {
+  .container {
+    display: flex;
+
+    .left {
+      flex: 0.3;
+      background-color: #f4f7fe;
+    }
+
+    .right {
+      flex: 0.7;
+    }
+  }
+
+  .doctors-list li {
+    cursor: pointer;
+    &:hover {
+      background-color: var(--gray-2);
+    }
+  }
+
+  .avatar {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background-color: var(--gray-4);
+  }
+}

@@ -25,3 +25,9 @@
 .gap-md {
   gap: var(--space-md);
 }
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-sm);
+}

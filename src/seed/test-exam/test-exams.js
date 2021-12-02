@@ -827,7 +827,7 @@ const DATA = [
       {
         id: uuidv4(),
         type: undefined,
-        value: "",
+        value: "Négatif",
         refSign: signs.none.name,
       },
     ],
@@ -845,7 +845,7 @@ const DATA = [
       {
         id: uuidv4(),
         type: undefined,
-        value: "",
+        value: "Négatif",
         refSign: signs.none.name,
       },
     ],
@@ -1126,31 +1126,30 @@ const DATA = [
     ],
   },
 
-  // {
-  //   id: uuidv4(),
-  //   type: TEST_EXAM_TYPES.STANDARD,
-  //   refSign: {
-  //     lower: signs.lessThan.name,
-  //     higher: signs.greaterThanEqual.name,
-  //   },
-  //   category: categories.SEROLOGIE_IMMUNOLOGIE,
-  //   name: "Ac anti DNA NATIF",
-  //   unit: units.NONE,
-  //   ref: { lower: 3, higher: 300 },
-  //   refString: [
-  //     `Négatif: ${signs.lessThan.sign}3`,
-  //     `Douteux : 30 ${signs.range.sign} 50`,
-  //     `Probable : 50 ${signs.range.sign} 300`,
-  //     `Positif : ${signs.greaterThan.sign} 300`,
-  //   ],
-  //   result: [
-  //     {
-  //       id: uuidv4(),
-  //       type: undefined,
-  //       value: "",
-  //     },
-  //   ],
-  // },
+  {
+    id: uuidv4(),
+    type: TEST_EXAM_TYPES.STANDARD,
+    refSign: {
+      lower: signs.lessThan.name,
+      higher: signs.greaterThanEqual.name,
+    },
+    category: categories.SEROLOGIE_IMMUNOLOGIE,
+    name: "Ac anti DNA NATIF",
+    unit: units.NONE,
+    refString: [
+      `Négatif: ${signs.lessThan.sign}3`,
+      `Douteux : 30 ${signs.range.sign} 50`,
+      `Probable : 50 ${signs.range.sign} 300`,
+      `Positif : ${signs.greaterThan.sign} 300`,
+    ],
+    result: [
+      {
+        id: uuidv4(),
+        type: undefined,
+        value: "",
+      },
+    ],
+  },
 
   {
     id: uuidv4(),
@@ -1528,13 +1527,15 @@ const DATA = [
     category: categories.HORMONES,
     name: "AFP",
     unit: units.IU_SLASH_ML,
-    ref: 10,
     refString: [`(${signs.lessThan.sign}10) ${units.IU_SLASH_ML}`],
     result: [
       {
         id: uuidv4(),
         type: undefined,
         value: units.IU_SLASH_ML,
+        refSign: signs.lessThan.name, // change depending on testExam result
+        ref: 10,
+        isGenreDependent: false,
       },
     ],
   },
@@ -1546,10 +1547,6 @@ const DATA = [
     name: "PSA Total",
     fullName: "(Prostatic Specific Antigene)",
     unit: units.NG_SLASH_ML,
-    ref: {
-      first: { name: "H", value: 4, unit: units.NG_SLASH_ML },
-      second: { name: "F", value: 0.5, unit: units.NG_SLASH_ML },
-    },
     refString: [
       `H: ${signs.lessThan.sign}4 ${units.NG_SLASH_ML}`,
       `F: ${signs.lessThan.sign}0.5 ${units.NG_SLASH_ML}`,
@@ -1559,6 +1556,9 @@ const DATA = [
         id: uuidv4(),
         type: undefined,
         value: units.NG_SLASH_ML,
+        refSign: signs.lessThan.name,
+        isGenreDependent: true,
+        ref: [4, 0.5], // for homme,femme
       },
     ], // no value asssigned yet
   },
@@ -1603,10 +1603,6 @@ const DATA = [
     name: "F-PSA",
     fullName: "(free Prostatic Specific Antigene)",
     unit: units.NG_SLASH_ML,
-    ref: {
-      first: { name: "H", value: 1.5, unit: units.NG_SLASH_ML },
-      second: { name: "F", value: 0.1, unit: units.NG_SLASH_ML },
-    },
     refString: [
       `H: ${signs.lessThan.sign}1.5 ${units.NG_SLASH_ML}`,
       `F: ${signs.lessThan.sign}0.1 ${units.NG_SLASH_ML}`,
@@ -1616,6 +1612,9 @@ const DATA = [
         id: uuidv4(),
         type: undefined,
         value: units.NG_SLASH_ML,
+        refSign: signs.lessThan.name,
+        isGenreDependent: true,
+        ref: [1.5, 0.1], // for homme,femme
       },
     ], // no value asssigned yet
   },
@@ -1627,13 +1626,17 @@ const DATA = [
     category: categories.HORMONES,
     name: "Troponine",
     unit: units.NG_SLASH_ML,
-    ref: { lower: 0, higher: 0.5 },
     refString: [`(0 ${signs.range.sign} 0.5)${units.NG_SLASH_ML}`],
     result: [
       {
         id: uuidv4(),
         type: undefined,
         value: units.NG_SLASH_ML,
+        refSign: signs.range.name,
+        isGenreDependent: false,
+        ref: [0, 0.5],
+        // ref[0] -- is lowerBound
+        // ref[1] -- is upperBound
       },
     ],
   },
@@ -1645,13 +1648,17 @@ const DATA = [
     category: categories.HORMONES,
     name: "IgE",
     unit: units.IU_SLASH_ML,
-    ref: { lower: 1, higher: 190 },
     refString: [`(1 ${signs.range.sign} 190)${units.IU_SLASH_ML}`],
     result: [
       {
         id: uuidv4(),
         type: undefined,
         value: units.IU_SLASH_ML,
+        refSign: signs.range.name,
+        isGenreDependent: false,
+        ref: [1, 190],
+        // ref[0] -- is lowerBound
+        // ref[1] -- is upperBound
       },
     ],
   },
@@ -1663,13 +1670,15 @@ const DATA = [
     category: categories.HORMONES,
     name: "CK MB",
     unit: units.NG_SLASH_ML,
-    ref: 5,
     refString: [`${signs.lessThan.sign}5 ${units.NG_SLASH_ML}`],
     result: [
       {
         id: uuidv4(),
         type: undefined,
         value: units.NG_SLASH_ML,
+        refSign: signs.lessThan.name, // change depending on testExam result
+        ref: 5,
+        isGenreDependent: false,
       },
     ],
   },
@@ -1682,13 +1691,17 @@ const DATA = [
     name: "FT3",
     fullName: "F3 libre",
     unit: units.PG_SLASH_ML,
-    ref: { lower: 2.0, higher: 4.2 },
     refString: [`(2.0 ${signs.range.sign} 4.2) ${units.PG_SLASH_ML}`],
     result: [
       {
         id: uuidv4(),
         type: undefined,
         value: units.PG_SLASH_ML,
+        refSign: signs.range.name,
+        isGenreDependent: false,
+        ref: [2.0, 4.2],
+        // ref[0] -- is lowerBound
+        // ref[1] -- is upperBound
       },
     ],
   },
@@ -1701,13 +1714,17 @@ const DATA = [
     name: "T3",
     fullName: "(Total triiodothyroxine)",
     unit: units.NG_SLASH_ML,
-    ref: { lower: 1.0, higher: 2.8 },
     refString: [`(1.0 ${signs.range.sign} 2.8) ${units.NMOL_SLASH_L}`],
     result: [
       {
         id: uuidv4(),
         type: undefined,
         value: units.NMOL_SLASH_L,
+        refSign: signs.range.name,
+        isGenreDependent: false,
+        ref: [1.0, 2.8],
+        // ref[0] -- is lowerBound
+        // ref[1] -- is upperBound
       },
     ],
   },
@@ -1720,13 +1737,17 @@ const DATA = [
     name: "FT4",
     fullName: "T4 libre",
     unit: units.PG_SLASH_ML,
-    ref: { lower: 8.9, higher: 17.2 },
     refString: [`(8.9 ${signs.range.sign} 17.2) ${units.PG_SLASH_ML}`],
     result: [
       {
         id: uuidv4(),
         type: undefined,
         value: units.PG_SLASH_ML,
+        refSign: signs.range.name,
+        isGenreDependent: false,
+        ref: [8.9, 17.2],
+        // ref[0] -- is lowerBound
+        // ref[1] -- is upperBound
       },
     ],
   },
@@ -1739,13 +1760,17 @@ const DATA = [
     name: "T4 (Maglumi 600)",
     fullName: "T4 Total",
     unit: units.NG_SLASH_ML,
-    ref: { lower: 58, higher: 140 },
     refString: [`(58 ${signs.range.sign} 140) ${units.NMOL_SLASH_L}`],
     result: [
       {
         id: uuidv4(),
         type: undefined,
         value: units.NMOL_SLASH_L,
+        refSign: signs.range.name,
+        isGenreDependent: false,
+        ref: [58, 140],
+        // ref[0] -- is lowerBound
+        // ref[1] -- is upperBound
       },
     ],
   },
@@ -1758,13 +1783,17 @@ const DATA = [
     name: "TSH-us (Maglumi 600)",
     fullName: "(Thyroid Stimulating Hormone Ultra-Sensible)",
     unit: units.UUI_SLASH_ML,
-    ref: { lower: 0.5, higher: 5 },
     refString: [`(0.5 ${signs.range.sign} 5) ${units.UUI_SLASH_ML}`],
     result: [
       {
         id: uuidv4(),
         type: undefined,
         value: units.UUI_SLASH_ML,
+        refSign: signs.range.name,
+        isGenreDependent: false,
+        ref: [0.5, 5],
+        // ref[0] -- is lowerBound
+        // ref[1] -- is upperBound
       },
     ],
   },
@@ -1777,18 +1806,6 @@ const DATA = [
     name: "PRL",
     fullName: "(Prolactinémie)",
     unit: units.UUI_SLASH_ML,
-    ref: {
-      first: {
-        name: "H",
-        value: { lower: 86.3, higher: 425.72 },
-        unit: units.UUI_SLASH_ML,
-      },
-      second: {
-        name: "F",
-        value: { lower: 72.55, higher: 600.4 },
-        unit: units.UUI_SLASH_ML,
-      },
-    },
     refString: [
       `H: (86.30 ${signs.range.sign} 425.72) ${units.UUI_SLASH_ML}`,
       `F: (72.55 ${signs.range.sign} 600.40) ${units.UUI_SLASH_ML}`,
@@ -1798,6 +1815,12 @@ const DATA = [
         id: uuidv4(),
         type: undefined,
         value: units.UUI_SLASH_ML,
+        isGenreDependent: true,
+        refSign: signs.range.name,
+        ref: [
+          { lowerBound: 86.3, upperBound: 425.72 }, // for homme
+          { lowerBound: 72.55, upperBound: 600.4 }, // for femme
+        ],
       },
     ],
   },
@@ -1877,18 +1900,6 @@ const DATA = [
     category: categories.HORMONES,
     name: "Testostérone",
     unit: units.NG_SLASH_ML,
-    ref: {
-      first: {
-        name: "H",
-        value: { lower: 2.6, higher: 10.45 },
-        unit: units.NG_SLASH_ML,
-      },
-      second: {
-        name: "F",
-        value: { lower: 0.27, higher: 0.95 },
-        unit: units.NG_SLASH_ML,
-      },
-    },
     refString: [
       `H:(2.64${signs.range.sign}10.45)  ${units.NG_SLASH_ML}`,
       `F: (0.27${signs.range.sign}0.95)  ${units.NG_SLASH_ML}`,
@@ -1898,6 +1909,12 @@ const DATA = [
         id: uuidv4(),
         type: undefined,
         value: units.NG_SLASH_ML,
+        isGenreDependent: true,
+        refSign: signs.range.name,
+        ref: [
+          { lowerBound: 2.6, upperBound: 10.45 }, // for homme
+          { lowerBound: 0.27, upperBound: 0.95 }, // for femme
+        ],
       },
     ], // no value asssigned yet
   },
@@ -1984,6 +2001,7 @@ const DATA = [
         id: uuidv4(),
         type: undefined,
         value: "",
+        refSign: signs.none.name,
       },
     ],
   },
@@ -1995,7 +2013,6 @@ const DATA = [
     category: categories.HORMONES,
     name: "IFI",
     unit: units.NONE,
-    ref: 1 / 100,
     refString: [`1/100`],
     result: [
       {
@@ -2013,13 +2030,15 @@ const DATA = [
     category: categories.HORMONES,
     name: "CA15-3",
     unit: units.U_SLASH_ML,
-    ref: 25,
     refString: [`${signs.lessThan.sign}25${units.U_SLASH_ML}`],
     result: [
       {
         id: uuidv4(),
         type: undefined,
         value: units.U_SLASH_ML,
+        refSign: signs.lessThan.name, // change depending on testExam result
+        ref: 25,
+        isGenreDependent: false,
       },
     ],
   },
@@ -2031,13 +2050,15 @@ const DATA = [
     category: categories.HORMONES,
     name: "CA19-9",
     unit: units.U_SLASH_ML,
-    ref: 37,
     refString: [`${signs.lessThan.sign}37${units.U_SLASH_ML}`],
     result: [
       {
         id: uuidv4(),
         type: undefined,
         value: units.U_SLASH_ML,
+        refSign: signs.lessThan.name, // change depending on testExam result
+        ref: 37,
+        isGenreDependent: false,
       },
     ],
   },
@@ -2049,13 +2070,15 @@ const DATA = [
     category: categories.HORMONES,
     name: "ACE",
     unit: units.NG_SLASH_ML,
-    ref: 5.0,
-    refString: [`${signs.lessThan.sign}5.00${units.NG_SLASH_ML}`],
+    refString: [`${signs.lessThan.sign}5${units.NG_SLASH_ML}`],
     result: [
       {
         id: uuidv4(),
         type: undefined,
         value: units.NG_SLASH_ML,
+        refSign: signs.lessThan.name, // change depending on testExam result
+        ref: 5,
+        isGenreDependent: false,
       },
     ],
   },
@@ -2067,13 +2090,15 @@ const DATA = [
     category: categories.HORMONES,
     name: "Facteur Rhumatoïde",
     unit: units.UUI_SLASH_ML,
-    ref: 14,
     refString: [`${signs.lessThan.sign}14${units.UUI_SLASH_ML}`],
     result: [
       {
         id: uuidv4(),
         type: undefined,
         value: units.UUI_SLASH_ML,
+        refSign: signs.lessThan.name, // change depending on testExam result
+        ref: 14,
+        isGenreDependent: false,
       },
     ],
   },
@@ -2085,13 +2110,15 @@ const DATA = [
     category: categories.HORMONES,
     name: "CA 12-5",
     unit: units.U_SLASH_ML,
-    ref: 35.0,
-    refString: [`${signs.lessThan.sign}35.00${units.U_SLASH_ML}`],
+    refString: [`${signs.lessThan.sign}35${units.U_SLASH_ML}`],
     result: [
       {
         id: uuidv4(),
         type: undefined,
         value: units.U_SLASH_ML,
+        refSign: signs.lessThan.name, // change depending on testExam result
+        ref: 35,
+        isGenreDependent: false,
       },
     ],
   },
@@ -2103,13 +2130,35 @@ const DATA = [
     category: categories.HORMONES,
     name: "D – Dimère",
     unit: units.UGFEU_SLASH_ML,
-    ref: 0.5,
     refString: [`${signs.lessThan.sign}0.5${units.UGFEU_SLASH_ML}`],
     result: [
       {
         id: uuidv4(),
         type: undefined,
         value: units.UGFEU_SLASH_ML,
+        refSign: signs.lessThan.name, // change depending on testExam result
+        ref: 0.5,
+        isGenreDependent: false,
+      },
+    ],
+  },
+
+  {
+    id: uuidv4(),
+    type: TEST_EXAM_TYPES.STANDARD,
+    refSign: signs.lessThan.name,
+    category: categories.HORMONES,
+    name: "ProBNP",
+    unit: units.PG_SLASH_ML,
+    refString: [`${signs.lessThan.sign}300${units.PG_SLASH_ML}`],
+    result: [
+      {
+        id: uuidv4(),
+        type: undefined,
+        value: units.UGFEU_SLASH_ML,
+        refSign: signs.lessThan.name, // change depending on testExam result
+        ref: 300,
+        isGenreDependent: false,
       },
     ],
   },
@@ -2121,13 +2170,17 @@ const DATA = [
     category: categories.HORMONES,
     name: "Folates",
     unit: units.NG_SLASH_ML,
-    ref: { lower: 5.21, higher: 20 },
     refString: [`(5.21 ${signs.range.sign} 20) ${units.NG_SLASH_ML}`],
     result: [
       {
         id: uuidv4(),
         type: undefined,
         value: units.NG_SLASH_ML,
+        refSign: signs.range.name,
+        isGenreDependent: false,
+        ref: [5.21, 20],
+        // ref[0] -- is lowerBound
+        // ref[1] -- is upperBound
       },
     ],
   },
@@ -2139,13 +2192,17 @@ const DATA = [
     category: categories.HORMONES,
     name: "Vitamine B12",
     unit: units.PG_SLASH_ML,
-    ref: { lower: 200, higher: 1100 },
     refString: [`(200 ${signs.range.sign} 1100) ${units.PG_SLASH_ML}`],
     result: [
       {
         id: uuidv4(),
         type: undefined,
         value: units.PG_SLASH_ML,
+        refSign: signs.range.name,
+        isGenreDependent: false,
+        ref: [200, 1100],
+        // ref[0] -- is lowerBound
+        // ref[1] -- is upperBound
       },
     ],
   },
@@ -2157,13 +2214,17 @@ const DATA = [
     category: categories.HORMONES,
     name: "Parathormone",
     unit: units.PG_SLASH_ML,
-    ref: { lower: 15.0, higher: 75.0 },
     refString: [`(15.00 ${signs.range.sign} 75.00) ${units.PG_SLASH_ML}`],
     result: [
       {
         id: uuidv4(),
         type: undefined,
         value: units.PG_SLASH_ML,
+        refSign: signs.range.name,
+        isGenreDependent: false,
+        ref: [15, 75],
+        // ref[0] -- is lowerBound
+        // ref[1] -- is upperBound
       },
     ],
   },
@@ -2175,13 +2236,17 @@ const DATA = [
     category: categories.HORMONES,
     name: "Vitamine D Total (25-OH-VIT D)  ",
     unit: units.NG_SLASH_ML,
-    ref: { lower: 30, higher: 100 },
     refString: [`(30 ${signs.range.sign} 100) ${units.NG_SLASH_ML}`],
     result: [
       {
         id: uuidv4(),
         type: undefined,
         value: units.NG_SLASH_ML,
+        refSign: signs.range.name,
+        isGenreDependent: false,
+        ref: [30, 100],
+        // ref[0] -- is lowerBound
+        // ref[1] -- is upperBound
       },
     ],
   },
@@ -2196,7 +2261,6 @@ const DATA = [
     category: categories.HORMONES,
     name: "Procalcitonine",
     unit: units.NG_SLASH_ML,
-    ref: { lower: 0.5, higher: 2 },
     refString: [
       `${signs.lessThan.sign} 0.5 Faible risqué de sepsis`,
       `${signs.greaterThan.sign} 2 Risque élevé de sepsis où Choc septique`,
@@ -2206,6 +2270,11 @@ const DATA = [
         id: uuidv4(),
         type: undefined,
         value: units.NG_SLASH_ML,
+        refSign: signs.range.name,
+        isGenreDependent: false,
+        ref: [25, 50],
+        // ref[0] -- is lowerBound
+        // ref[1] -- is upperBound
       },
     ],
   },
@@ -2497,12 +2566,22 @@ const DATA = [
         type: "Cellules",
         value: "Cellules/ul",
         refString: ["( 440-1602)"],
+        refSign: signs.range.name,
+        isGenreDependent: false,
+        ref: [440, 1602],
+        // ref[0] -- is lowerBound
+        // ref[1] -- is upperBound
       },
       {
         id: uuidv4(),
         type: "Pourcentage",
         value: "%",
         refString: ["( 32-54 ) %"],
+        refSign: signs.range.name,
+        isGenreDependent: false,
+        ref: [32, 54],
+        // ref[0] -- is lowerBound
+        // ref[1] -- is upperBound
       },
     ],
   },

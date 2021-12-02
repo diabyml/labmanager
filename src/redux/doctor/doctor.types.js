@@ -1,0 +1,7 @@
+const doctorActionTypes = {
+  SET_SELECTED_DOCTOR_ID: "SET_SELECTED_DOCTOR_ID",
+  ADD_NEW_DOCTOR: "ADD_NEW_DOCTOR",
+  DELETE_DOCTOR: "DELETE_DOCTOR",
+  UPDATE_DOCTOR: "UPDATE_DOCTOR",
+};
+export default doctorActionTypes;

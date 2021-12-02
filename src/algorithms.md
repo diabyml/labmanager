@@ -44,22 +44,22 @@ validattion data: result properties for validation
 
 # isGenreDependant and range value for homme and femme
 
---- isGenreDependent: true,
---- refSign: signs.range.name,
---- ref: [
-{ lowerBound: 16, upperBound: 220 }, --> for homme
-{ lowerBound: 10, upperBound: 125 }, --> for femme
+isGenreDependent: true,
+refSign: signs.range.name,
+ref: [
+{ lowerBound: 16, upperBound: 220 }, // for homme
+{ lowerBound: 10, upperBound: 125 }, // for femme
 ],
 
 # isGenreDependant and not range value
 
---- refSign: signs.lessThan.name,
---- isGenreDependent: true,
---- ref: [49, 32], --> for homme,femme
+refSign: signs.lessThan.name,
+isGenreDependent: true,
+ref: [49, 32], // for homme,femme
 
 # not genre dependant and not range ref
 
-refSign: signs., // change depending on testExam result
+refSign: signs.lessThan.name, // change depending on testExam result
 ref: 31,
 isGenreDependent: false,
 

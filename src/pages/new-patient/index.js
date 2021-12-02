@@ -162,7 +162,7 @@ function NewPatientPage({ doctors }) {
   };
 
   return (
-    <div className="new-patient-page component">
+    <div className="new-patient-page component height-full">
       <div className="container height-full">
         <div className="left height-full overflow-y-scroll pl-xs">
           <PatientForm
