@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/labmanager/static/css/main.bcd2e9bb.chunk.css",
-    "main.js": "/labmanager/static/js/main.4753f615.chunk.js",
-    "main.js.map": "/labmanager/static/js/main.4753f615.chunk.js.map",
-    "runtime-main.js": "/labmanager/static/js/runtime-main.bf521d6c.js",
-    "runtime-main.js.map": "/labmanager/static/js/runtime-main.bf521d6c.js.map",
+    "main.css": "/labmanager/static/css/main.54f7f77e.chunk.css",
+    "main.js": "/labmanager/static/js/main.53f7111e.chunk.js",
+    "main.js.map": "/labmanager/static/js/main.53f7111e.chunk.js.map",
+    "runtime-main.js": "/labmanager/static/js/runtime-main.cb56ad41.js",
+    "runtime-main.js.map": "/labmanager/static/js/runtime-main.cb56ad41.js.map",
     "static/css/2.ecdd39c8.chunk.css": "/labmanager/static/css/2.ecdd39c8.chunk.css",
-    "static/js/2.3153b4af.chunk.js": "/labmanager/static/js/2.3153b4af.chunk.js",
-    "static/js/2.3153b4af.chunk.js.map": "/labmanager/static/js/2.3153b4af.chunk.js.map",
-    "static/js/3.dd714617.chunk.js": "/labmanager/static/js/3.dd714617.chunk.js",
-    "static/js/3.dd714617.chunk.js.map": "/labmanager/static/js/3.dd714617.chunk.js.map",
+    "static/js/2.7d551ae1.chunk.js": "/labmanager/static/js/2.7d551ae1.chunk.js",
+    "static/js/2.7d551ae1.chunk.js.map": "/labmanager/static/js/2.7d551ae1.chunk.js.map",
+    "static/js/3.ba3f84ba.chunk.js": "/labmanager/static/js/3.ba3f84ba.chunk.js",
+    "static/js/3.ba3f84ba.chunk.js.map": "/labmanager/static/js/3.ba3f84ba.chunk.js.map",
     "index.html": "/labmanager/index.html",
     "static/css/2.ecdd39c8.chunk.css.map": "/labmanager/static/css/2.ecdd39c8.chunk.css.map",
-    "static/css/main.bcd2e9bb.chunk.css.map": "/labmanager/static/css/main.bcd2e9bb.chunk.css.map",
-    "static/js/2.3153b4af.chunk.js.LICENSE.txt": "/labmanager/static/js/2.3153b4af.chunk.js.LICENSE.txt"
+    "static/css/main.54f7f77e.chunk.css.map": "/labmanager/static/css/main.54f7f77e.chunk.css.map",
+    "static/js/2.7d551ae1.chunk.js.LICENSE.txt": "/labmanager/static/js/2.7d551ae1.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.bf521d6c.js",
+    "static/js/runtime-main.cb56ad41.js",
     "static/css/2.ecdd39c8.chunk.css",
-    "static/js/2.3153b4af.chunk.js",
-    "static/css/main.bcd2e9bb.chunk.css",
-    "static/js/main.4753f615.chunk.js"
+    "static/js/2.7d551ae1.chunk.js",
+    "static/css/main.54f7f77e.chunk.css",
+    "static/js/main.53f7111e.chunk.js"
   ]
 }
