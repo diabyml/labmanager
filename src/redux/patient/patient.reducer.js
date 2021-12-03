@@ -46,6 +46,47 @@ const patientReducer = (state = INITIAL_STATE, action) => {
             : patient
         ),
       };
+
+    case PATIENT_ACTION_TYPES.ADD_PATIENT_DOCTOR_NB:
+      return {
+        ...state,
+        currentPatients: state.currentPatients.map((patient) =>
+          patient.id === action.payload.patientId
+            ? { ...patient, nb: [...patient.nb, action.payload.newNb] }
+            : patient
+        ),
+      };
+
+    case PATIENT_ACTION_TYPES.UPDATE_PATIENT_DOCTOR_NB:
+      return {
+        ...state,
+        currentPatients: state.currentPatients.map((patient) =>
+          patient.id === action.payload.patientId
+            ? {
+                ...patient,
+                nb: patient.nb.map((currentNb) =>
+                  currentNb.id === action.payload.nbId
+                    ? { ...currentNb, content: action.payload.newValue }
+                    : currentNb
+                ),
+              }
+            : patient
+        ),
+      };
+
+    case PATIENT_ACTION_TYPES.DELETE_PATIENT_DOCTOR_NB:
+      return {
+        ...state,
+        currentPatients: state.currentPatients.map((patient) =>
+          patient.id === action.payload.patientId
+            ? {
+                ...patient,
+                nb: patient.nb.filter(({ id }) => id !== action.payload.nbId),
+              }
+            : patient.id
+        ),
+      };
+
     case PATIENT_ACTION_TYPES.UPDATE_PATIENT_DOCTOR_INFO:
       return {
         ...state,
@@ -61,6 +102,7 @@ const patientReducer = (state = INITIAL_STATE, action) => {
             : patient
         ),
       };
+
     case PATIENT_ACTION_TYPES.UPDATE_PATIENT_RESULT:
       return {
         ...state,

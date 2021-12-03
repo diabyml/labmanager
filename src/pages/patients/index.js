@@ -23,6 +23,9 @@ import {
   setSelectedPatientId,
   deletePatient,
   deletePatientTestExam,
+  addPatientDoctorNb,
+  updatePatientDoctorNb,
+  deletePatientDoctorNb,
 } from "../../redux/patient/patient.actions";
 import { createStructuredSelector } from "reselect";
 import Input from "../../components/input";
@@ -40,6 +43,9 @@ function PatientsPage({
   updatePatientResult,
   deletePatient,
   deletePatientTestExam,
+  addPatientDoctorNb,
+  updatePatientDoctorNb,
+  deletePatientDoctorNb,
 }) {
   const [isDropDownMenuShown, setIsDropDownMenuShown] = useState(false);
   const [isDialogShown, setIsDialogShown] = useState(false);
@@ -82,6 +88,26 @@ function PatientsPage({
     // update result value
     const { value: newValue } = e.target;
     updatePatientResult(selectedPatient.id, testId, resId, newValue);
+  };
+
+  // NB OPERATIONS
+  const selectNbHandler = (e) => {
+    const newNb = { id: uuidv4(), content: e.target.value };
+    addPatientDoctorNb(selectedPatient.id, newNb);
+  };
+
+  const addNewNb = () => {
+    const newNb = { id: uuidv4(), content: "" };
+    addPatientDoctorNb(selectedPatient.id, newNb);
+  };
+
+  const updatePatientDoctorNbHandler = (e, nbId) => {
+    // updatePatientDoctorNb(patientId, nbId, newValue);
+    updatePatientDoctorNb(selectedPatient.id, nbId, e.target.value);
+  };
+
+  const deletePatientDoctorNbHandler = (nbId) => {
+    deletePatientDoctorNb(selectedPatient.id, nbId);
   };
 
   return (
@@ -252,22 +278,6 @@ function PatientsPage({
                         name="pavillon"
                         handler={handlePatientDoctorInfoChange}
                       />
-                      {/* <Input
-                        label="NB"
-                        labelFor="nb"
-                        placeholder="NB"
-                        name="nb"
-                        value={selectedPatient.doctor.nb}
-                        handler={handlePatientDoctorInfoChange}
-                      /> */}
-                      <Select
-                        id="nb"
-                        label="NB"
-                        value={selectedPatient.doctor.nb}
-                        name="nb"
-                        handler={handlePatientDoctorInfoChange}
-                        options={NBS_DATA}
-                      />
                     </div>
                   </div>
                 </header>
@@ -322,6 +332,56 @@ function PatientsPage({
                     )
                   )}
                 </ul>
+                <div className="mt-lg">
+                  <div className="flex">
+                    <div className="flex items-end mr-md">
+                      <Button variant="primary" onClick={addNewNb}>
+                        Ajouter NB
+                      </Button>
+                    </div>
+                    <div className="mr-md">
+                      <Select
+                        id="nb"
+                        label="Selectionner"
+                        value={selectedPatient.doctor.nb}
+                        name="nb"
+                        handler={selectNbHandler}
+                        options={NBS_DATA}
+                      />
+                    </div>
+                  </div>
+                  <div className="mt-lg">
+                    {/* nb content */}
+                    {selectedPatient && selectedPatient.nb.length > 0 ? (
+                      <div className="w-50">
+                        {selectedPatient.nb.map((nb) => (
+                          <div className="mb-md flex items-center" key={nb.id}>
+                            <div className="mr-sm">
+                              <ButtonIcon
+                                variant={"accent"}
+                                Icon={MdClose}
+                                type="button"
+                                onClick={() =>
+                                  deletePatientDoctorNbHandler(nb.id)
+                                }
+                              />
+                            </div>
+                            <div className="flex-grow">
+                              <Input
+                                value={nb.content}
+                                onChange={(e) =>
+                                  updatePatientDoctorNbHandler(e, nb.id)
+                                }
+                              />
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <div className="">Pas de Nb</div>
+                    )}
+                  </div>
+                </div>
               </div>
             ) : (
               <div className="height-full flex flex-center">
@@ -353,10 +413,16 @@ const mapDispatchToProps = (dispatch) => ({
   deletePatientTestExam: (patientId, testExamId) =>
     dispatch(deletePatientTestExam(patientId, testExamId)),
   setSelectedPatientId: (id) => dispatch(setSelectedPatientId(id)),
+  addPatientDoctorNb: (patientId, newNb) =>
+    dispatch(addPatientDoctorNb(patientId, newNb)),
+  updatePatientDoctorNb: (patientId, nbId, newValue) =>
+    dispatch(updatePatientDoctorNb(patientId, nbId, newValue)),
+  deletePatientDoctorNb: (patientId, nbId) =>
+    dispatch(deletePatientDoctorNb(patientId, nbId)),
 });
 
 const NBS_DATA = [
-  { id: uuidv4(), value: undefined, text: "Non défini" },
+  { id: uuidv4(), value: undefined, text: "" },
   {
     id: uuidv4(),
     text: "Gly",

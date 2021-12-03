@@ -7,7 +7,7 @@ import { BiHealth } from "react-icons/bi";
 import { useHistory } from "react-router-dom";
 
 function Header() {
-  const [isNavOpen, setIsNavOpen] = useState(false);
+  const [isNavOpen, setIsNavOpen] = useState(true);
   const [activeLink, setActiveLink] = useState(PAGES[0].id);
   const history = useHistory();
 

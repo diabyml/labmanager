@@ -42,3 +42,18 @@ export const setSelectedPatientId = (id) => ({
   type: PATIENT_ACTION_TYPES.SET_SELECTED_PATIENT_ID,
   payload: id,
 });
+
+export const addPatientDoctorNb = (patientId, newNb) => ({
+  type: PATIENT_ACTION_TYPES.ADD_PATIENT_DOCTOR_NB,
+  payload: { patientId, newNb },
+});
+
+export const updatePatientDoctorNb = (patientId, nbId, newValue) => ({
+  type: PATIENT_ACTION_TYPES.UPDATE_PATIENT_DOCTOR_NB,
+  payload: { patientId, nbId, newValue },
+});
+
+export const deletePatientDoctorNb = (patientId, nbId) => ({
+  type: PATIENT_ACTION_TYPES.DELETE_PATIENT_DOCTOR_NB,
+  payload: { patientId, nbId },
+});

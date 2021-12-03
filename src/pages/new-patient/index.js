@@ -22,6 +22,7 @@ function NewPatientPage({ doctors }) {
     sampleNumber: "",
     genre: "",
     date: new Date(),
+    nb: [],
   });
 
   const [doctor, setDoctor] = useState({
@@ -30,7 +31,6 @@ function NewPatientPage({ doctors }) {
     lastName: "",
     provenance: "",
     pavillon: "",
-    nb: undefined,
   });
 
   const [testExams, setTestExams] = useState([]);
