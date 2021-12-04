@@ -38,11 +38,16 @@ function App() {
             <Route path={ROUTES.print}>
               <PrintPage />
             </Route>
+            <Route>
+              <PatientsPage />
+            </Route>
           </Switch>
         </main>
       </div>
     </Router>
   );
 }
+
+// const DefaultPage = () => <div> default page </div>;
 
 export default App;
