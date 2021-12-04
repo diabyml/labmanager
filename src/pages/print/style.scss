@@ -38,6 +38,11 @@
     display: none;
   }
 
+  .print-page__paper-footer {
+    background: transparent !important;
+    padding: 0 !important;
+  }
+
   //   LAYOUT RESET
   .print-page {
     padding: 0 !important;
@@ -56,10 +61,15 @@
   // GLOBAL TYPOGRAPHY RESET
   body {
     font-family: Georgia, "Times New Roman", Times, serif;
+    // font-family: "Times New Roman", Times, serif !important;
     font-size: 16pt;
     line-height: 24pt;
     background: none;
     color: var(--color-black);
+  }
+
+  .print-page__paper {
+    font-family: "Times New Roman", Times, serif !important;
   }
 
   //   SPECIFICS

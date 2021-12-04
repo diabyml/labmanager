@@ -1,5 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
 // 'Montserrat', sans-serif;
+@font-face {
+  font-family: "Calibri";
+  src: url("../../fonts/calibri.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Calonna";
+  src: url("../../fonts/ColonnaMT.ttf") format("truetype");
+}
+
 :root {
   --font-primary: "Montserrat", sans-serif;
   --font-secondary: serif;
@@ -184,6 +194,34 @@ strong {
 
 .fw-bold {
   font-weight: var(--fw-700);
+}
+
+.fw-300 {
+  font-weight: 300;
+}
+
+.fw-400 {
+  font-weight: 400;
+}
+
+.fw-500 {
+  font-weight: 500;
+}
+
+.fw-600 {
+  font-weight: 600;
+}
+
+.fw-700 {
+  font-weight: 700;
+}
+
+.ff-roman {
+  font-family: "Times New Roman", Times, serif;
+}
+
+.ff-colona {
+  // font-family:;
 }
 
 /*

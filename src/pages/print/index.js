@@ -19,6 +19,8 @@ function PrintPage({ selectedPatient }) {
   const [isUsingCurrentDate, setIsUsingCurrentDate] = useState(false);
   // footer is the date and biologiste signature area
   const [showFooter, setShowFooter] = useState(true);
+  // show nb or not
+  const [showNb, setShowNb] = useState(true);
   const { firstName, lastName, age, sampleNumber } = selectedPatient;
   const {
     lastName: doctorLatName,
@@ -107,11 +109,11 @@ function PrintPage({ selectedPatient }) {
         </div>
         <div className="p-md">
           <div className="flex items-center justify-between py-sm">
-            <div className="mr-lg">Date du Jour ?</div>
+            <div className="mr-lg">Afficher NB ?</div>
             <input
               type="checkbox"
-              checked={isUsingCurrentDate}
-              onChange={() => setIsUsingCurrentDate((prev) => !prev)}
+              checked={showNb}
+              onChange={() => setShowNb((prev) => !prev)}
             />
           </div>
           <div className="flex items-center justify-between py-sm">
@@ -120,6 +122,14 @@ function PrintPage({ selectedPatient }) {
               type="checkbox"
               checked={showFooter}
               onChange={() => setShowFooter((prev) => !prev)}
+            />
+          </div>
+          <div className="flex items-center justify-between py-sm">
+            <div className="mr-lg">Date du Jour ?</div>
+            <input
+              type="checkbox"
+              checked={isUsingCurrentDate}
+              onChange={() => setIsUsingCurrentDate((prev) => !prev)}
             />
           </div>
         </div>
@@ -158,6 +168,17 @@ function PrintPage({ selectedPatient }) {
               </div>
             )
         )}
+
+        {/* PRINT NB */}
+        <ul className="pt-lg">
+          {showNb &&
+            selectedPatient.nb.length > 0 &&
+            selectedPatient.nb.map((nb) => (
+              <div key={nb.id}>
+                <p className="fw-600"> {`NB: ${nb.content}`} </p>
+              </div>
+            ))}
+        </ul>
 
         {/* PRINT PAPER FOOTER */}
         <div className="print-page__paper-footer p-xs bg--accent">
