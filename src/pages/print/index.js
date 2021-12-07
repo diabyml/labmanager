@@ -13,8 +13,11 @@ import PrintCategoryHeader from "../../components/print-category-header";
 import PrintResult from "../../components/print-result/index";
 
 import moment from "moment";
+import Button from "../../components/button/index";
 
 function PrintPage({ selectedPatient }) {
+  const [isOptionsShown, setIsOptionsShown] = useState(false);
+  const [expandedCategory, setExpandedCategory] = useState(undefined);
   const [showEntete, setShowEntete] = useState(true);
   const [isUsingCurrentDate, setIsUsingCurrentDate] = useState(false);
   // footer is the date and biologiste signature area
@@ -36,7 +39,14 @@ function PrintPage({ selectedPatient }) {
     Object.keys(defaultCategories).forEach((key) => {
       formatedCategories = [
         ...formatedCategories,
-        { category: key, items: defaultCategories[key], print: true },
+        {
+          category: key,
+          items: defaultCategories[key].map((item) => ({
+            ...item,
+            print: true,
+          })),
+          print: true,
+        },
       ];
     });
     return formatedCategories;
@@ -45,7 +55,7 @@ function PrintPage({ selectedPatient }) {
   // console.log(getCategories());
 
   const [categorizedData, setCategorizedData] = useState(getCategories());
-  // console.log("categories", categorizedData);
+  console.log("categories", categorizedData);
 
   const handleOptionsChange = (e, category) => {
     const { checked } = e.target;
@@ -57,6 +67,24 @@ function PrintPage({ selectedPatient }) {
     );
     // console.log("checked", checked);
     // console.log(category);
+  };
+
+  const handleSingleTestExamOption = (e, category, testExamId) => {
+    const { checked } = e.target;
+    setCategorizedData((prev) =>
+      prev.map((currentCategory) => {
+        if (currentCategory === category) {
+          return {
+            ...currentCategory,
+            items: currentCategory.items.map((item) =>
+              item.id === testExamId ? { ...item, print: checked } : item
+            ),
+          };
+        }
+        return currentCategory;
+      })
+    );
+    console.log("expanded", expandedCategory);
   };
 
   const getFormatedDate = () => {
@@ -71,68 +99,109 @@ function PrintPage({ selectedPatient }) {
 
   return (
     <div className="print-page p-md">
-      <div className="print-page__settings mt-md ml-md shadow-md">
-        {/* HEADINGS */}
-        <div className="print-page__options-headings p-md border-bottom-sm">
-          <h2 className="text--md font-bold">Options</h2>
-          <div className="flex items-center justify-between py-sm">
-            <p className="mr-lg"> Entête </p>
-            <div>
-              <input
-                type="checkbox"
-                checked={showEntete}
-                onChange={() => setShowEntete((prev) => !prev)}
-              />
-            </div>
-          </div>
-        </div>
-        <div className="p-md border-bottom-sm">
-          {categorizedData.map((category) => (
-            <div
-              key={category.category}
-              className="flex items-center justify-between py-sm"
-            >
-              <div className="mr-lg">
-                {/* to show Category name, I need to get the first element and show its category */}
-                {/* cause I am sure all element in that category will have the same category */}
-                <p>{category.category.slice(0, 4)}</p>
+      <div className="print-page__settings shadow-md">
+        <Button
+          variant="primary"
+          onClick={() => setIsOptionsShown((prev) => !prev)}
+        >
+          Options
+        </Button>
+        {/* options dropdown menu */}
+        {isOptionsShown && (
+          <div className="options-menu">
+            {/* HEADINGS */}
+            <div className="print-page__options-headings p-md border-bottom-sm">
+              <h2 className="text--md font-bold">Options</h2>
+              <div className="flex items-center justify-between py-sm">
+                <p className="mr-lg"> Entête </p>
+                <div>
+                  <input
+                    type="checkbox"
+                    checked={showEntete}
+                    onChange={() => setShowEntete((prev) => !prev)}
+                  />
+                </div>
               </div>
-              <div>
+            </div>
+            <div className="p-md border-bottom-sm">
+              {categorizedData.map((category) => (
+                <div key={category.category}>
+                  {/* category */}
+                  <div className="flex items-center justify-between py-sm">
+                    <div className="mr-lg">
+                      {/* to show Category name, I need to get the first element and show its category */}
+                      {/* cause I am sure all element in that category will have the same category */}
+                      <p
+                        className="cursor-pointer"
+                        onClick={() =>
+                          setExpandedCategory((prev) =>
+                            prev === category.category
+                              ? undefined
+                              : category.category
+                          )
+                        }
+                      >
+                        {category.category.slice(0, 4)}
+                      </p>
+                    </div>
+                    <div>
+                      <input
+                        type="checkbox"
+                        checked={category.print}
+                        onChange={(e) =>
+                          handleOptionsChange(e, category.category)
+                        }
+                      />
+                    </div>
+                  </div>
+                  {expandedCategory === category.category && (
+                    <div className="pl-sm">
+                      {category.items.map((item) => (
+                        <div key={item.id} className="flex justify-between">
+                          <p className="mr-sm">{item.name}</p>
+                          <input
+                            type="checkbox"
+                            checked={item.print}
+                            onChange={(e) =>
+                              handleSingleTestExamOption(e, category, item.id)
+                            }
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+            <div className="p-md">
+              <div className="flex items-center justify-between py-sm">
+                <div className="mr-lg">Afficher NB ?</div>
                 <input
                   type="checkbox"
-                  checked={category.print}
-                  onChange={(e) => handleOptionsChange(e, category.category)}
+                  checked={showNb}
+                  onChange={() => setShowNb((prev) => !prev)}
+                />
+              </div>
+              <div className="flex items-center justify-between py-sm">
+                <div className="mr-lg">Afficher Pied de Page ?</div>
+                <input
+                  type="checkbox"
+                  checked={showFooter}
+                  onChange={() => setShowFooter((prev) => !prev)}
+                />
+              </div>
+              <div className="flex items-center justify-between py-sm">
+                <div className="mr-lg">Date du Jour ?</div>
+                <input
+                  type="checkbox"
+                  checked={isUsingCurrentDate}
+                  onChange={() => setIsUsingCurrentDate((prev) => !prev)}
                 />
               </div>
             </div>
-          ))}
-        </div>
-        <div className="p-md">
-          <div className="flex items-center justify-between py-sm">
-            <div className="mr-lg">Afficher NB ?</div>
-            <input
-              type="checkbox"
-              checked={showNb}
-              onChange={() => setShowNb((prev) => !prev)}
-            />
           </div>
-          <div className="flex items-center justify-between py-sm">
-            <div className="mr-lg">Afficher Pied de Page ?</div>
-            <input
-              type="checkbox"
-              checked={showFooter}
-              onChange={() => setShowFooter((prev) => !prev)}
-            />
-          </div>
-          <div className="flex items-center justify-between py-sm">
-            <div className="mr-lg">Date du Jour ?</div>
-            <input
-              type="checkbox"
-              checked={isUsingCurrentDate}
-              onChange={() => setIsUsingCurrentDate((prev) => !prev)}
-            />
-          </div>
-        </div>
+        )}
+        {/* settings container end */}
       </div>
       <div className="print-page__paper component">
         <PrintHeader />
@@ -158,11 +227,14 @@ function PrintPage({ selectedPatient }) {
                     />
                   </div>
                   <div className="flow spacer-sm">
-                    {category.items.map((testExam) => (
-                      <div key={testExam.id}>
-                        <PrintResult testExam={testExam} />
-                      </div>
-                    ))}
+                    {category.items.map(
+                      (testExam) =>
+                        testExam.print && (
+                          <div className="paper-content" key={testExam.id}>
+                            <PrintResult testExam={testExam} />
+                          </div>
+                        )
+                    )}
                   </div>
                 </div>
               </div>

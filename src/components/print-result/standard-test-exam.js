@@ -24,20 +24,27 @@ function StandardTestExam({ testExam, patient }) {
             <div>
               <p> {testExam.name} </p>
               {testExam.fullName && (
-                <p className="fw-semi-bold text--xs"> {testExam.fullName} </p>
+                <p className="test-exam-full-name fw-semi-bold text--xs">
+                  {testExam.fullName}
+                </p>
               )}
             </div>
             <div className="flex pl-md">
-              <p
-                className={`align-self-start ${
-                  !validateResult(
-                    testExam.result[0],
-                    patient.genre,
-                    patient.age
-                  ) && "bg--invalid px-xs"
-                }`}
-              >
-                {testExam.result[0].value}
+              <p className={` align-self-start `}>
+                <span
+                  className={`${
+                    !validateResult(
+                      testExam.result[0],
+                      patient.genre,
+                      patient.age
+                    ) && "bg--invalid px-xxs"
+                  }`}
+                >
+                  {testExam.result[0].value}
+                </span>
+                {testExam.result[0].unit !== "none" && (
+                  <span> {` ${testExam.result[0].unit}`} </span>
+                )}
               </p>
             </div>
           </div>
@@ -49,13 +56,16 @@ function StandardTestExam({ testExam, patient }) {
                     <p>{res.type !== "g/l" && res.type}</p>
                   </div>
                   <div className="flex pl-md">
-                    <p
-                      className={`align-self-start ${
-                        !validateResult(res, patient.genre, patient.age) &&
-                        "bg--invalid px-xs"
-                      }`}
-                    >
-                      {res.value}
+                    <p className={`align-self-start`}>
+                      <span
+                        className={`${
+                          !validateResult(res, patient.genre, patient.age) &&
+                          "bg--invalid px-xxs"
+                        }`}
+                      >
+                        {res.value}
+                      </span>
+                      {res.unit !== "none" && <span> {` ${res.unit}`} </span>}
                     </p>
                   </div>
                 </div>

@@ -11,6 +11,7 @@ function MultiParamTestExam({ testExam }) {
         {
           id: uuidv4(),
           value: result.value,
+          unit: result.unit,
           type: undefined,
           refSign: result.refSign,
           isGenreDependent: result.isGenreDependent,
@@ -36,7 +37,9 @@ function MultiParamTestExam({ testExam }) {
         <div className="font-bold text--xs pl-sm">
           <p>Interpretation:</p>
           {testExam.description.map((desc, index) => (
-            <p key={index}> {desc} </p>
+            <p className="test-exam-description" key={index}>
+              {desc}
+            </p>
           ))}
         </div>
       )}

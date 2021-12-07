@@ -9,13 +9,22 @@ function WidalTestExam({ testExam }) {
       <ul className="grid col-4 gap-sm">
         {testExam.result.map((res) => (
           <li key={res.id}>
-            <div
-              className={`${
-                !validateResult({ refSign: res.refSign, value: res.value }) &&
-                "bg--invalid px-xs"
-              }`}
-            >
-              {`${res.type}(${res.value})`}
+            <div>
+              <p>
+                <span>{res.type}</span>
+                <span> {"("} </span>
+                <span
+                  className={`${
+                    !validateResult({
+                      refSign: res.refSign,
+                      value: res.value,
+                    }) && "bg--invalid px-xxs"
+                  }`}
+                >
+                  {res.value}
+                </span>
+                <span> {")"} </span>
+              </p>
             </div>
           </li>
         ))}

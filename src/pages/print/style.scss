@@ -18,11 +18,23 @@
     // background-color: var(--gray-4);
     left: 0;
     right: 0;
-    bottom: 100px;
+    // bottom: 100px;
+    bottom: 200px;
   }
 
   &__settings {
     position: absolute;
+    z-index: var(--z-index-popover);
+    background-color: var(--gray-1);
+
+    .options-menu {
+      // position: absolute;
+      // z-index: var(--z-index-popover);
+      // left: 0;
+      // right: 0;
+      // bottom: 0;
+      position: var(--z-index-popover);
+    }
   }
 }
 
@@ -101,5 +113,26 @@
 
   p {
     color: var(--color-black) !important;
+  }
+
+  .paper-content {
+    p {
+      font-size: 16pt !important;
+      // outline: 1px solid red !important;
+    }
+
+    // span {
+    // }
+
+    .test-exam-full-name {
+      font-size: 10pt !important;
+      font-style: italic !important;
+    }
+
+    .test-exam-description {
+      // outline: 1px solid red !important;
+      font-size: 11pt !important;
+      font-family: Calibri;
+    }
   }
 }
