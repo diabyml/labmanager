@@ -242,7 +242,7 @@ function PrintPage({ selectedPatient }) {
         )}
 
         {/* PRINT NB */}
-        <ul className="pt-lg">
+        <ul className="print-page__paper-nb pt-lg">
           {showNb &&
             selectedPatient.nb.length > 0 &&
             selectedPatient.nb.map((nb) => (

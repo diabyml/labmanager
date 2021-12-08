@@ -20,10 +20,6 @@
     right: 0;
     // bottom: 100px;
     bottom: 150px;
-
-    p {
-      font-size: 16pt !important;
-    }
   }
 
   &__settings {
@@ -137,6 +133,13 @@
       // outline: 1px solid red !important;
       font-size: 11pt !important;
       font-family: Calibri;
+    }
+  }
+
+  .print-page__paper-footer,
+  .print-page__paper-nb {
+    p {
+      font-size: 16pt !important;
     }
   }
 }
