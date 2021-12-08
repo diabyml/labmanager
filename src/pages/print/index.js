@@ -256,11 +256,11 @@ function PrintPage({ selectedPatient }) {
         <div className="print-page__paper-footer p-xs bg--accent">
           {/* Pied de Page */}
           {showFooter && (
-            <div className="w-full flex justify-between">
+            <div className="w-full grid col-2">
               <div>
                 <p> {`Bamako ${getFormatedDate()}`} </p>
               </div>
-              <div>
+              <div className="pl-xl">
                 <p>Le Biologiste</p>
               </div>
             </div>
