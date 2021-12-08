@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { validateResult } from "../../utils";
 
 import "./style.scss";
@@ -8,8 +8,30 @@ import { connect } from "react-redux";
 import { selectSelectedPatient } from "../../redux/patient/patient.selectors";
 import { createStructuredSelector } from "reselect";
 
-function StandardTestExam({ testExam, patient }) {
-  // console.log("Test exam", testExam);
+function StandardTestExam({ testExam: exam, patient }) {
+  const addValidationLogic = () => {
+    return {
+      ...exam,
+      result: exam.result.map((res) => ({
+        ...res,
+        isValid: validateResult(res, patient.genre, patient.age),
+      })),
+    };
+  };
+
+  const [testExam, setTestExam] = useState(addValidationLogic);
+  // console.log("testExam", testExam);
+
+  const handleValidationLogicChange = (id) => {
+    setTestExam((prev) => {
+      return {
+        ...prev,
+        result: prev.result.map((res) =>
+          res.id === id ? { ...res, isValid: !res.isValid } : res
+        ),
+      };
+    });
+  };
 
   return (
     <div>
@@ -30,14 +52,15 @@ function StandardTestExam({ testExam, patient }) {
               )}
             </div>
             <div className="flex pl-md">
-              <p className={` align-self-start `}>
+              <p
+                className={` align-self-start cursor-pointer`}
+                onClick={() =>
+                  handleValidationLogicChange(testExam.result[0].id)
+                }
+              >
                 <span
                   className={`${
-                    !validateResult(
-                      testExam.result[0],
-                      patient.genre,
-                      patient.age
-                    ) && "bg--invalid px-xxs"
+                    !testExam.result[0].isValid && "bg--invalid px-xxs"
                   }`}
                 >
                   {testExam.result[0].value}
@@ -56,12 +79,12 @@ function StandardTestExam({ testExam, patient }) {
                     <p>{res.type !== "g/l" && res.type}</p>
                   </div>
                   <div className="flex pl-md">
-                    <p className={`align-self-start`}>
+                    <p
+                      className={`align-self-start cursor-pointer`}
+                      onClick={() => handleValidationLogicChange(res.id)}
+                    >
                       <span
-                        className={`${
-                          !validateResult(res, patient.genre, patient.age) &&
-                          "bg--invalid px-xxs"
-                        }`}
+                        className={`${!res.isValid && "bg--invalid px-xxs"}`}
                       >
                         {res.value}
                       </span>
@@ -81,6 +104,17 @@ function StandardTestExam({ testExam, patient }) {
     </div>
   );
 }
+
+// const Value = (res) => {
+//   return (
+//     <>
+//       <span className={`${!res.isValid && "bg--invalid px-xxs"}`}>
+//         {res.value}
+//       </span>
+//       {res.unit !== "none" && <span> {` ${res.unit}`} </span>}
+//     </>
+//   );
+// };
 
 const mapStateToProps = createStructuredSelector({
   patient: selectSelectedPatient,

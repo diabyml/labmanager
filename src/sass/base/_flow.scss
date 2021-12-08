@@ -4,6 +4,10 @@
   }
 }
 
+.spacer-xxs {
+  --flow-spacer: var(--space-xxs);
+}
+
 .spacer-xs {
   --flow-spacer: var(--space-xs);
 }

@@ -55,7 +55,7 @@ function PrintPage({ selectedPatient }) {
   // console.log(getCategories());
 
   const [categorizedData, setCategorizedData] = useState(getCategories());
-  console.log("categories", categorizedData);
+  // console.log("categories", categorizedData);
 
   const handleOptionsChange = (e, category) => {
     const { checked } = e.target;
@@ -84,7 +84,7 @@ function PrintPage({ selectedPatient }) {
         return currentCategory;
       })
     );
-    console.log("expanded", expandedCategory);
+    // console.log("expanded", expandedCategory);
   };
 
   const getFormatedDate = () => {

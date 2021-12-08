@@ -2303,7 +2303,7 @@ const DATA = [
   {
     id: uuidv4(),
     category: categories.HORMONES,
-    type: TEST_EXAM_TYPES.STANDARD,
+    type: TEST_EXAM_TYPES.BHCG,
     name: "BHCG",
     ref: 0,
     refString: [
@@ -2314,8 +2314,8 @@ const DATA = [
       `4e Semaine 15 à 23000 ${units.MIU_SLASH_ML}`,
       `Trimestre:`,
       `1er Trimestre 20 000-200 000 ${units.MIU_SLASH_ML}`,
-      `2er Trimestre 10 000- 30 000 ${units.MIU_SLASH_ML}`,
-      `3er Trimestre 5000-15 000 mUI/ml ${units.MIU_SLASH_ML}`,
+      `2e Trimestre 10 000- 30 000 ${units.MIU_SLASH_ML}`,
+      `3e Trimestre 5000-15 000 ${units.MIU_SLASH_ML}`,
       `Homme : (0-10) ${units.MIU_SLASH_ML}`,
       `NB : ${signs.lessThan.sign} 10 ${units.MIU_SLASH_ML} (Négatif)`,
     ],
