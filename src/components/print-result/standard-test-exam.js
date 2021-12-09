@@ -69,12 +69,11 @@ function StandardTestExam({ testExam: exam, patient }) {
   return (
     <div>
       {testExam.groupName && (
-        <p className="text--md mb-sm">
-          {testExam.groupName.toUpperCase() + ":"}
-        </p>
+        <p className="text--md">{testExam.groupName.toUpperCase() + ":"}</p>
       )}
       <div className="grid-result">
-        <div className="flow spacer-sm">
+        <div>
+          {/* className="flow spacer-sm" */}
           <div className="grid col-2">
             <div>
               <p> {testExam.name} </p>
@@ -126,7 +125,7 @@ function StandardTestExam({ testExam: exam, patient }) {
               ) : null
             )}
         </div>
-        <div className="flex flex-column  flow spacer-sm">
+        <div className="flex flex-column">
           {testExam.refString.map((refStr, index) => (
             <p key={index}>{refStr}</p>
           ))}
