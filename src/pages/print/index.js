@@ -226,7 +226,7 @@ function PrintPage({ selectedPatient }) {
                       showNorm={true}
                     />
                   </div>
-                  <div className="flow spacer-sm">
+                  <div>
                     {category.items.map(
                       (testExam) =>
                         testExam.print && (
