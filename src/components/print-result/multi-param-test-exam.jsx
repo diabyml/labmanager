@@ -23,8 +23,8 @@ function MultiParamTestExam({ testExam }) {
     };
   };
   return (
-    <div className="flow spacer-sm">
-      <p className="text--md mb-sm fw-semi-bold">
+    <div className="flow spacer-xxs">
+      <p className="text--md  fw-semi-bold">
         {testExam.label && testExam.label + ":"}
       </p>
       {testExam.result.map((result) => (

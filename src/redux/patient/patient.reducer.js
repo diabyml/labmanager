@@ -14,7 +14,7 @@ const patientReducer = (state = INITIAL_STATE, action) => {
     case PATIENT_ACTION_TYPES.ADD_PATIENT:
       return {
         ...state,
-        currentPatients: [...state.currentPatients, action.payload],
+        currentPatients: [action.payload, ...state.currentPatients],
       };
     case PATIENT_ACTION_TYPES.ADD_PATIENT_TEST_EXAM:
       return {

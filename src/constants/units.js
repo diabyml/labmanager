@@ -9,7 +9,7 @@ const units = {
   UMOL_SLASH_L: "µmol/l", //to be changed
   MMOL_SLASH_L: "mmol/l",
   G_SLASH_L: "g/l",
-  TF_SLASH_MM3: "Tf/mm3",
+  TF_SLASH_MM3: "Tf/mm",
   SLASH_MM3: "/mm3",
   MEQ_SLASH_L: "mEq/l",
   MG_SLASH_L: "mg/l",

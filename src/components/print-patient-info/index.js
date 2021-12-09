@@ -12,7 +12,7 @@ function PrintPatientInfo({ patient, doctor }) {
         <Label>Nom: {patient.lastName}</Label>
         <Label>Prénom: {patient.firstName}</Label>
         <Label>Age: {patient.age} ans</Label>
-        <Label>N° Echantillon: {patient.sampleNumber}</Label>
+        <Label>Patient N°: {patient.sampleNumber}</Label>
       </div>
       <div className="border p-xs shadow-box">
         {/* doctor */}

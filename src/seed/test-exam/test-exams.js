@@ -1529,7 +1529,7 @@ const DATA = [
     category: categories.HEMATOLOGIE,
     name: "Groupage/RH",
     ref: "none",
-    refString: [`-`],
+    refString: [``],
     result: [
       {
         id: uuidv4(),

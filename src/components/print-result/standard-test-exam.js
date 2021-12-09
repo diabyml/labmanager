@@ -33,6 +33,39 @@ function StandardTestExam({ testExam: exam, patient }) {
     });
   };
 
+  const renderResultValue = (value) => {
+    switch (exam.name) {
+      case "Groupage/RH":
+        return (
+          <span className="roupage-rheseus-result font-bold"> {value} </span>
+        );
+      default:
+        return <> {value} </>;
+    }
+  };
+
+  const renderResultUnit = (res) => {
+    // console.log("exam.name", exam.name);
+    // console.log("parsed ge value:", parseFloat(res.value));
+    switch (exam.name) {
+      case "GE":
+        return (
+          <>
+            <span>
+              {parseFloat(res.value) ? (
+                <>
+                  {` ${res.unit}`} <sup>3</sup>
+                </>
+              ) : null}
+            </span>
+          </>
+        );
+
+      default:
+        return <>{res.unit !== "none" && <span> {` ${res.unit}`} </span>}</>;
+    }
+  };
+
   return (
     <div>
       {testExam.groupName && (
@@ -63,11 +96,9 @@ function StandardTestExam({ testExam: exam, patient }) {
                     !testExam.result[0].isValid && "bg--invalid px-xxs"
                   }`}
                 >
-                  {testExam.result[0].value}
+                  {renderResultValue(testExam.result[0].value)}
                 </span>
-                {testExam.result[0].unit !== "none" && (
-                  <span> {` ${testExam.result[0].unit}`} </span>
-                )}
+                {renderResultUnit(testExam.result[0])}
               </p>
             </div>
           </div>
@@ -86,9 +117,9 @@ function StandardTestExam({ testExam: exam, patient }) {
                       <span
                         className={`${!res.isValid && "bg--invalid px-xxs"}`}
                       >
-                        {res.value}
+                        {renderResultValue(res.value)}
                       </span>
-                      {res.unit !== "none" && <span> {` ${res.unit}`} </span>}
+                      {renderResultUnit(res)}
                     </p>
                   </div>
                 </div>
