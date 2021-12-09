@@ -135,17 +135,6 @@ function StandardTestExam({ testExam: exam, patient }) {
   );
 }
 
-// const Value = (res) => {
-//   return (
-//     <>
-//       <span className={`${!res.isValid && "bg--invalid px-xxs"}`}>
-//         {res.value}
-//       </span>
-//       {res.unit !== "none" && <span> {` ${res.unit}`} </span>}
-//     </>
-//   );
-// };
-
 const mapStateToProps = createStructuredSelector({
   patient: selectSelectedPatient,
 });
