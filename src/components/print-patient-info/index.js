@@ -9,8 +9,8 @@ function PrintPatientInfo({ patient, doctor }) {
     <div className="print-patient-info">
       <div className="border p-xs shadow-box ">
         {/* patient */}
-        <Label>Nom: {patient.lastName}</Label>
-        <Label>Prénom: {patient.firstName}</Label>
+        <Label>Nom: {patient.lastName.toUpperCase()}</Label>
+        <Label>Prénom: {patient.firstName.toUpperCase()}</Label>
         <Label>Age: {patient.age} ans</Label>
         <Label>Patient N°: {patient.sampleNumber}</Label>
       </div>
