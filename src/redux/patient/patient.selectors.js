@@ -17,3 +17,8 @@ export const selectSelectedPatient = createSelector(
   (selectedPatientId, currentPatients) =>
     currentPatients.find(({ id }) => id === selectedPatientId)
 );
+
+export const selectPatientsHistory = createSelector(
+  [selectPatientReducer],
+  (reducer) => reducer.patientsHistory
+);

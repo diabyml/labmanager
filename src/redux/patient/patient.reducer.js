@@ -16,6 +16,16 @@ const patientReducer = (state = INITIAL_STATE, action) => {
         ...state,
         currentPatients: [action.payload, ...state.currentPatients],
       };
+    case PATIENT_ACTION_TYPES.ADD_PATIENT_TO_HISTORY:
+      return {
+        ...state,
+        patientsHistory: [...action.payload, ...state.patientsHistory],
+      };
+    case PATIENT_ACTION_TYPES.RESET_CURRENT_PATIENTS:
+      return {
+        ...state,
+        currentPatients: [],
+      };
     case PATIENT_ACTION_TYPES.ADD_PATIENT_TEST_EXAM:
       return {
         ...state,

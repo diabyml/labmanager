@@ -26,6 +26,8 @@ import {
   addPatientDoctorNb,
   updatePatientDoctorNb,
   deletePatientDoctorNb,
+  addPatientToHistory,
+  resetCurrentPatients,
 } from "../../redux/patient/patient.actions";
 import { createStructuredSelector } from "reselect";
 import Input from "../../components/input";
@@ -33,6 +35,7 @@ import Select from "../../components/select";
 import ButtonIcon from "../../components/button-icon/index";
 import ROUTES from "../../seed/routes";
 import DialogBox from "../../components/dialog";
+// import ConfirmDialog from "../../components/confirm-dialog/index";
 
 function PatientsPage({
   currentPatients,
@@ -46,8 +49,11 @@ function PatientsPage({
   addPatientDoctorNb,
   updatePatientDoctorNb,
   deletePatientDoctorNb,
+  addPatientToHistory,
+  resetCurrentPatients,
 }) {
   const [isDropDownMenuShown, setIsDropDownMenuShown] = useState(false);
+  // const [isArchiveDialogOpen, setIsArchiveDialogOpen] = useState(false);
   const [isDialogShown, setIsDialogShown] = useState(false);
   const history = useHistory();
 
@@ -110,13 +116,39 @@ function PatientsPage({
     deletePatientDoctorNb(selectedPatient.id, nbId);
   };
 
+  // archive patient
+  const archivePatitentsHandler = (patients) => {
+    const patientsToArchive = [];
+    patients.forEach((patient) => {
+      if (!patient.isArchived) {
+        patientsToArchive.push(patient);
+      }
+    });
+    addPatientToHistory(patientsToArchive);
+    resetCurrentPatients();
+  };
+
+  // const toggleArchiveConfirmDialog = () => {
+  //   setIsArchiveDialogOpen((prev) => !prev);
+  // };
+
   return (
     <>
+      {/* Dialogs */}
       {isDialogShown && <DialogBox onToggle={handleToggleDialog} />}
+      {/* {isArchiveDialogOpen && (
+        <ConfirmDialog onClose={toggleArchiveConfirmDialog} />
+      )} */}
+
       <div className="component patients-page height-full">
         <header className="flex justify-between pb-sm">
           <h2 className="text--md font-bold">Patients du jour</h2>
-          <Button variant="primary">Sauvegarder Patients</Button>
+          <Button
+            variant="primary"
+            onClick={() => archivePatitentsHandler(currentPatients)}
+          >
+            Archiver Patients
+          </Button>
         </header>
         <div className="container">
           <div className="left p-sm  overflow-y-scroll">
@@ -163,7 +195,7 @@ function PatientsPage({
                           >
                             Effacer
                           </li>
-                          <li>Archiver</li>
+                          {/* <li>Archiver</li> */}
                         </ul>
                       </div>
                     )}
@@ -419,6 +451,8 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(updatePatientDoctorNb(patientId, nbId, newValue)),
   deletePatientDoctorNb: (patientId, nbId) =>
     dispatch(deletePatientDoctorNb(patientId, nbId)),
+  addPatientToHistory: (patients) => dispatch(addPatientToHistory(patients)),
+  resetCurrentPatients: () => dispatch(resetCurrentPatients()),
 });
 
 const NBS_DATA = [
