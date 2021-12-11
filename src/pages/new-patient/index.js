@@ -180,7 +180,7 @@ function NewPatientPage({ doctors }) {
             resetInfo={resetInfo}
           />
         </div>
-        <div className="right overflow-y-scroll shadow-xl radius-lg py-md pr-md">
+        <div className="right height-full overflow-y-scroll-hidden shadow-xl radius-lg py-md pr-md">
           <TestExamList handleAddTestExam={handleAddTestExam} />
         </div>
       </div>

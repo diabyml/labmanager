@@ -14,13 +14,13 @@ function TestExamList({ testExams, handleAddTestExam }) {
     setQuery(event.target.value.toLowerCase());
 
   return (
-    <div className="test-exams-list">
+    <div className="test-exams-list height-full">
       <div className="py-md pl-sm mb-md text-center">
         <div className="search-container">
           <SearchBox handler={handleQueryChange} placeholder="Rechercher" />
         </div>
       </div>
-      <ul className="test-exams">
+      <ul className="test-exams height-full overflow-y-scroll">
         {testExams
           .filter((el) => el.name.toLowerCase().includes(query))
           .map((testExam) => (
