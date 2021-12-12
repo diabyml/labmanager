@@ -1513,12 +1513,19 @@ const DATA = [
       `${signs.lessThan.sign} 100 000${units.SLASH_MM3} arégénérative`,
       `${signs.greaterThan.sign} 100 000${units.SLASH_MM3} régénérative`,
     ],
+    isRefStringHtml: true,
+    refStringHtml: `
+        <p> (25 000 ${signs.range.sign} 100 000)${units.SLASH_MM3_VAL}<sup>3</sup>  en absence d'anémie</p>
+        <p> Si anémie: </p>
+        <p> ${signs.lessThan.sign} 100 000${units.SLASH_MM3_VAL}<sup>3</sup> arégénérative </p>
+        <p> ${signs.greaterThan.sign} 100 000${units.SLASH_MM3_VAL}<sup>3</sup> régénérative </p>
+    `,
     result: [
       {
         id: uuidv4(),
         type: undefined,
         value: "",
-        unit: units.SLASH_MM3,
+        unit: units.SLASH_MM3_VAL,
       },
     ],
   },
@@ -1856,18 +1863,6 @@ const DATA = [
     category: categories.HORMONES,
     refType: refTypes.MULTIPLE,
     name: "Progestérone",
-    ref: [
-      {
-        name: "H",
-        lower: 0.23,
-        higher: 1.5,
-      },
-      {
-        name: "F",
-        lower: 0.36,
-        higher: 26.44,
-      },
-    ],
     refString: [
       `Homme: (0.23 ${signs.range.sign} 1.5) ${units.NG_SLASH_ML}`,
       `Femme:`,
@@ -2345,7 +2340,7 @@ const DATA = [
       `Négatif : ${signs.lessThan.sign} 30 `,
       `Douteux : 30${signs.range.sign}50 `,
       `Positif : ${signs.greaterThan.sign} 50 - 300`,
-      `Positif :>300`,
+      `Positif : > 50-=<300`,
     ],
     result: [
       {

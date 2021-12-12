@@ -46,6 +46,7 @@ function PrintPage({ selectedPatient }) {
             print: true,
           })),
           print: true,
+          showNorm: true,
         },
       ];
     });
@@ -56,6 +57,19 @@ function PrintPage({ selectedPatient }) {
 
   const [categorizedData, setCategorizedData] = useState(getCategories());
   // console.log("categories", categorizedData);
+
+  // show category norme change
+  const categoryShowNormChangeHandler = (e, category) => {
+    // console.log("event value:", e.target.checked);
+    // console.log("category:", category.category);
+    setCategorizedData((prev) =>
+      prev.map((c) => {
+        if (c.category === category)
+          return { ...c, showNorm: e.target.checked };
+        else return c;
+      })
+    );
+  };
 
   const handleOptionsChange = (e, category) => {
     const { checked } = e.target;
@@ -154,8 +168,25 @@ function PrintPage({ selectedPatient }) {
                       />
                     </div>
                   </div>
+
                   {expandedCategory === category.category && (
                     <div className="pl-sm">
+                      {/* SHOW NORM LOGIC GOES HERE */}
+                      <div className="flex items-center justify-between">
+                        <p className=""> Afficher Norme </p>
+                        <div>
+                          <input
+                            type="checkbox"
+                            checked={category.showNorm}
+                            onChange={(e) =>
+                              categoryShowNormChangeHandler(
+                                e,
+                                category.category
+                              )
+                            }
+                          />
+                        </div>
+                      </div>
                       {category.items.map((item) => (
                         <div key={item.id} className="flex justify-between">
                           <p className="mr-sm">{item.name}</p>
@@ -223,7 +254,7 @@ function PrintPage({ selectedPatient }) {
                     <PrintCategoryHeader
                       key={category.category}
                       name={category.category}
-                      showNorm={true}
+                      showNorm={category.showNorm}
                     />
                   </div>
                   <div>

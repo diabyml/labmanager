@@ -49,6 +49,7 @@ function StandardTestExam({ testExam: exam, patient }) {
     // console.log("parsed ge value:", parseFloat(res.value));
     switch (exam.name) {
       case "GE":
+      case "Taux de réticulocytes":
         return (
           <>
             <span>
@@ -66,6 +67,24 @@ function StandardTestExam({ testExam: exam, patient }) {
     }
   };
 
+  const renderRefString = (testExam, refStringArr) => {
+    if (testExam.isRefStringHtml) {
+      return (
+        <div dangerouslySetInnerHTML={{ __html: testExam.refStringHtml }}></div>
+      );
+    } else {
+      return (
+        <>
+          {refStringArr.map((refStr, index) => (
+            <p key={index} className="print-ref">
+              {refStr}
+            </p>
+          ))}
+        </>
+      );
+    }
+  };
+
   return (
     <div>
       {testExam.groupName && (
@@ -76,7 +95,7 @@ function StandardTestExam({ testExam: exam, patient }) {
           {/* className="flow spacer-sm" */}
           <div className="grid col-2">
             <div>
-              <p> {testExam.name} </p>
+              <p className="text-now-wrap"> {testExam.name} </p>
               {testExam.fullName && (
                 <p className="test-exam-full-name fw-semi-bold text--xs">
                   {testExam.fullName}
@@ -126,9 +145,7 @@ function StandardTestExam({ testExam: exam, patient }) {
             )}
         </div>
         <div className="flex flex-column">
-          {testExam.refString.map((refStr, index) => (
-            <p key={index}>{refStr}</p>
-          ))}
+          {renderRefString(testExam, testExam.refString)}
         </div>
       </div>
     </div>

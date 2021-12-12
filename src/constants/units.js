@@ -11,6 +11,7 @@ const units = {
   G_SLASH_L: "g/l",
   TF_SLASH_MM3: "Tf/mm",
   SLASH_MM3: "/mm3",
+  SLASH_MM3_VAL: "/mm",
   MEQ_SLASH_L: "mEq/l",
   MG_SLASH_L: "mg/l",
   MIU_SLASH_ML: "mIU/ml",

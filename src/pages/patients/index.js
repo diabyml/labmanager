@@ -161,18 +161,21 @@ function PatientsPage({
               {currentPatients.map((patient) => (
                 <li
                   key={patient.id}
-                  className={`patient-row font-regular border-bottom-sm py-sm cursor-pointer ${
+                  className={`font-regular border-bottom-sm px-md py-sm cursor-pointer flex items-center ${
                     selectedPatient &&
                     selectedPatient.id === patient.id &&
                     `bg--light`
                   } `}
                 >
-                  <div>
+                  <div className="mr-md">
                     <strong>
                       <p>{patient.sampleNumber}</p>
                     </strong>
                   </div>
-                  <div onClick={() => handlePatientClick(patient)}>
+                  <div
+                    onClick={() => handlePatientClick(patient)}
+                    className="flex-grow"
+                  >
                     <p> {`${patient.firstName} ${patient.lastName}`} </p>
                   </div>
                   <div className="menu-container flex justify-end">
