@@ -19,7 +19,7 @@ function PrintResult({ testExam }) {
     }
   };
 
-  return <div className=" px-md color-black">{getTestExamType(testExam)}</div>;
+  return <div className="px-sm color-black">{getTestExamType(testExam)}</div>;
 }
 
 export default PrintResult;

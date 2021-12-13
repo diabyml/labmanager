@@ -76,7 +76,7 @@ function StandardTestExam({ testExam: exam, patient }) {
       return (
         <>
           {refStringArr.map((refStr, index) => (
-            <p key={index} className="print-ref">
+            <p key={index} className="print-ref text-now-wrap">
               {refStr}
             </p>
           ))}
@@ -92,7 +92,6 @@ function StandardTestExam({ testExam: exam, patient }) {
       )}
       <div className="grid-result">
         <div>
-          {/* className="flow spacer-sm" */}
           <div className="grid col-2">
             <div>
               <p className="text-now-wrap"> {testExam.name} </p>

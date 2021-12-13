@@ -1517,8 +1517,8 @@ const DATA = [
     refStringHtml: `
         <p> (25 000 ${signs.range.sign} 100 000)${units.SLASH_MM3_VAL}<sup>3</sup>  en absence d'anémie</p>
         <p> Si anémie: </p>
-        <p> ${signs.lessThan.sign} 100 000${units.SLASH_MM3_VAL}<sup>3</sup> arégénérative </p>
-        <p> ${signs.greaterThan.sign} 100 000${units.SLASH_MM3_VAL}<sup>3</sup> régénérative </p>
+        <p class="text-now-wrap"> ${signs.lessThan.sign} 100 000${units.SLASH_MM3_VAL}<sup>3</sup> arégénérative </p>
+        <p class="text-now-wrap"> ${signs.greaterThan.sign} 100 000${units.SLASH_MM3_VAL}<sup>3</sup> régénérative </p>
     `,
     result: [
       {
