@@ -14,14 +14,26 @@ import PrintResult from "../../components/print-result/index";
 
 import moment from "moment";
 import Button from "../../components/button/index";
+// import CustomDialog from "../../components/custom-dialog";
+// import Input from "../../components/input/index";
 
 function PrintPage({ selectedPatient }) {
   const [isOptionsShown, setIsOptionsShown] = useState(false);
   const [expandedCategory, setExpandedCategory] = useState(undefined);
   const [showEntete, setShowEntete] = useState(true);
   const [isUsingCurrentDate, setIsUsingCurrentDate] = useState(false);
+  // const [isRefDialogShown, setIsRefDialogShown] = useState(false);
   // footer is the date and biologiste signature area
   const [showFooter, setShowFooter] = useState(true);
+
+  // const onOpenRefDialog = () => {
+  //   setIsRefDialogShown(true);
+  // };
+
+  // const onCloseRefDialog = () => {
+  //   setIsRefDialogShown(false);
+  // };
+
   // show nb or not
   const [showNb, setShowNb] = useState(true);
   const { firstName, lastName, age, sampleNumber } = selectedPatient;
@@ -56,7 +68,7 @@ function PrintPage({ selectedPatient }) {
   // console.log(getCategories());
 
   const [categorizedData, setCategorizedData] = useState(getCategories());
-  // console.log("categories", categorizedData);
+  console.log("categories", categorizedData);
 
   // show category norme change
   const categoryShowNormChangeHandler = (e, category) => {
@@ -101,6 +113,30 @@ function PrintPage({ selectedPatient }) {
     // console.log("expanded", expandedCategory);
   };
 
+  // ref value change handlers
+  // const onRefValueChangeHandler = (e, category, itemId, refIndex) => {
+  //   const { value } = e.target;
+  //   setCategorizedData((prev) =>
+  //     prev.map((c) => {
+  //       if (c.category === category) {
+  //         return {
+  //           ...c,
+  //           items: c.items.map( item => {
+  //             if (item.id === itemId) {
+  //               return {
+  //                 ...item,
+  //                 refString:
+  //               }
+  //             }
+  //             return item;
+  //           } )
+  //         }
+  //       }
+  //       return category;
+  //     })
+  //   );
+  // };
+
   const getFormatedDate = () => {
     const date = isUsingCurrentDate ? new Date() : selectedPatient.date;
     // const date = selectedPatient.date;
@@ -112,193 +148,253 @@ function PrintPage({ selectedPatient }) {
   };
 
   return (
-    <div className="print-page p-md">
-      <div className="print-page__settings shadow-md">
-        <Button
-          variant="primary"
-          onClick={() => setIsOptionsShown((prev) => !prev)}
-        >
-          Options
-        </Button>
-        {/* options dropdown menu */}
-        {isOptionsShown && (
-          <div className="options-menu">
-            {/* HEADINGS */}
-            <div className="print-page__options-headings p-md border-bottom-sm">
-              <h2 className="text--md font-bold">Options</h2>
-              <div className="flex items-center justify-between py-sm">
-                <p className="mr-lg"> Entête </p>
-                <div>
+    <>
+      <div className="print-page p-md">
+        <div className="print-page__settings shadow-md">
+          <div className="flex">
+            <div className="">
+              <Button
+                variant="primary"
+                onClick={() => setIsOptionsShown((prev) => !prev)}
+              >
+                Options
+              </Button>
+            </div>
+            <div>
+              {/* <Button variant="primary" onClick={onOpenRefDialog}>
+                Valeurs Ref
+              </Button> */}
+            </div>
+          </div>
+
+          {/* options dropdown menu */}
+          {isOptionsShown && (
+            <div className="options-menu">
+              {/* HEADINGS */}
+              <div className="print-page__options-headings p-md border-bottom-sm">
+                <h2 className="text--md font-bold">Options</h2>
+                <div className="flex items-center justify-between py-sm">
+                  <p className="mr-lg"> Entête </p>
+                  <div>
+                    <input
+                      type="checkbox"
+                      checked={showEntete}
+                      onChange={() => setShowEntete((prev) => !prev)}
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="p-md border-bottom-sm">
+                {categorizedData.map((category) => (
+                  <div key={category.category}>
+                    {/* category */}
+                    <div className="flex items-center justify-between py-sm">
+                      <div className="mr-lg">
+                        {/* to show Category name, I need to get the first element and show its category */}
+                        {/* cause I am sure all element in that category will have the same category */}
+                        <p
+                          className="cursor-pointer"
+                          onClick={() =>
+                            setExpandedCategory((prev) =>
+                              prev === category.category
+                                ? undefined
+                                : category.category
+                            )
+                          }
+                        >
+                          {category.category.slice(0, 4)}
+                        </p>
+                      </div>
+                      <div>
+                        <input
+                          type="checkbox"
+                          checked={category.print}
+                          onChange={(e) =>
+                            handleOptionsChange(e, category.category)
+                          }
+                        />
+                      </div>
+                    </div>
+
+                    {expandedCategory === category.category && (
+                      <div className="pl-sm">
+                        {/* SHOW NORM LOGIC GOES HERE */}
+                        <div className="flex items-center justify-between">
+                          <p className=""> Afficher Norme </p>
+                          <div>
+                            <input
+                              type="checkbox"
+                              checked={category.showNorm}
+                              onChange={(e) =>
+                                categoryShowNormChangeHandler(
+                                  e,
+                                  category.category
+                                )
+                              }
+                            />
+                          </div>
+                        </div>
+                        {category.items.map((item) => (
+                          <div key={item.id} className="flex justify-between">
+                            <p className="mr-sm">{item.name}</p>
+                            <input
+                              type="checkbox"
+                              checked={item.print}
+                              onChange={(e) =>
+                                handleSingleTestExamOption(e, category, item.id)
+                              }
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+              <div className="p-md">
+                <div className="flex items-center justify-between py-sm">
+                  <div className="mr-lg">Afficher NB ?</div>
                   <input
                     type="checkbox"
-                    checked={showEntete}
-                    onChange={() => setShowEntete((prev) => !prev)}
+                    checked={showNb}
+                    onChange={() => setShowNb((prev) => !prev)}
+                  />
+                </div>
+                <div className="flex items-center justify-between py-sm">
+                  <div className="mr-lg">Afficher Pied de Page ?</div>
+                  <input
+                    type="checkbox"
+                    checked={showFooter}
+                    onChange={() => setShowFooter((prev) => !prev)}
+                  />
+                </div>
+                <div className="flex items-center justify-between py-sm">
+                  <div className="mr-lg">Date du Jour ?</div>
+                  <input
+                    type="checkbox"
+                    checked={isUsingCurrentDate}
+                    onChange={() => setIsUsingCurrentDate((prev) => !prev)}
                   />
                 </div>
               </div>
             </div>
-            <div className="p-md border-bottom-sm">
-              {categorizedData.map((category) => (
+          )}
+          {/* settings container end */}
+        </div>
+        <div className="print-page__paper component">
+          <PrintHeader />
+          <div className="mt-sm">
+            {showEntete && (
+              <PrintPatientInfo
+                patient={{ firstName, lastName, age, sampleNumber }}
+                doctor={{ lastName: doctorLatName, pavillon, provenance }}
+              />
+            )}
+          </div>
+          {/* PRINTING TESTS BY CATEGORIES  */}
+          {categorizedData.map(
+            (category) =>
+              category.print && (
                 <div key={category.category}>
-                  {/* category */}
-                  <div className="flex items-center justify-between py-sm">
-                    <div className="mr-lg">
-                      {/* to show Category name, I need to get the first element and show its category */}
-                      {/* cause I am sure all element in that category will have the same category */}
-                      <p
-                        className="cursor-pointer"
-                        onClick={() =>
-                          setExpandedCategory((prev) =>
-                            prev === category.category
-                              ? undefined
-                              : category.category
-                          )
-                        }
-                      >
-                        {category.category.slice(0, 4)}
-                      </p>
-                    </div>
-                    <div>
-                      <input
-                        type="checkbox"
-                        checked={category.print}
-                        onChange={(e) =>
-                          handleOptionsChange(e, category.category)
-                        }
+                  <div className="mt-md">
+                    <div className="mb-sm">
+                      <PrintCategoryHeader
+                        key={category.category}
+                        name={category.category}
+                        showNorm={category.showNorm}
                       />
                     </div>
-                  </div>
-
-                  {expandedCategory === category.category && (
-                    <div className="pl-sm">
-                      {/* SHOW NORM LOGIC GOES HERE */}
-                      <div className="flex items-center justify-between">
-                        <p className=""> Afficher Norme </p>
-                        <div>
-                          <input
-                            type="checkbox"
-                            checked={category.showNorm}
-                            onChange={(e) =>
-                              categoryShowNormChangeHandler(
-                                e,
-                                category.category
-                              )
-                            }
-                          />
-                        </div>
-                      </div>
-                      {category.items.map((item) => (
-                        <div key={item.id} className="flex justify-between">
-                          <p className="mr-sm">{item.name}</p>
-                          <input
-                            type="checkbox"
-                            checked={item.print}
-                            onChange={(e) =>
-                              handleSingleTestExamOption(e, category, item.id)
-                            }
-                          />
-                        </div>
-                      ))}
+                    <div>
+                      {category.items.map(
+                        (testExam) =>
+                          testExam.print && (
+                            <div className="paper-content" key={testExam.id}>
+                              <PrintResult testExam={testExam} />
+                            </div>
+                          )
+                      )}
                     </div>
-                  )}
+                  </div>
+                </div>
+              )
+          )}
+
+          {/* PRINT NB */}
+          <ul className="print-page__paper-nb pt-lg">
+            {showNb &&
+              selectedPatient.nb.length > 0 &&
+              selectedPatient.nb.map((nb) => (
+                <div key={nb.id}>
+                  <p className="fw-600"> {`NB: ${nb.content}`} </p>
                 </div>
               ))}
-            </div>
-            <div className="p-md">
-              <div className="flex items-center justify-between py-sm">
-                <div className="mr-lg">Afficher NB ?</div>
-                <input
-                  type="checkbox"
-                  checked={showNb}
-                  onChange={() => setShowNb((prev) => !prev)}
-                />
-              </div>
-              <div className="flex items-center justify-between py-sm">
-                <div className="mr-lg">Afficher Pied de Page ?</div>
-                <input
-                  type="checkbox"
-                  checked={showFooter}
-                  onChange={() => setShowFooter((prev) => !prev)}
-                />
-              </div>
-              <div className="flex items-center justify-between py-sm">
-                <div className="mr-lg">Date du Jour ?</div>
-                <input
-                  type="checkbox"
-                  checked={isUsingCurrentDate}
-                  onChange={() => setIsUsingCurrentDate((prev) => !prev)}
-                />
-              </div>
-            </div>
-          </div>
-        )}
-        {/* settings container end */}
-      </div>
-      <div className="print-page__paper component">
-        <PrintHeader />
-        <div className="mt-sm">
-          {showEntete && (
-            <PrintPatientInfo
-              patient={{ firstName, lastName, age, sampleNumber }}
-              doctor={{ lastName: doctorLatName, pavillon, provenance }}
-            />
-          )}
-        </div>
-        {/* PRINTING TESTS BY CATEGORIES  */}
-        {categorizedData.map(
-          (category) =>
-            category.print && (
-              <div key={category.category}>
-                <div className="mt-md">
-                  <div className="mb-sm">
-                    <PrintCategoryHeader
-                      key={category.category}
-                      name={category.category}
-                      showNorm={category.showNorm}
-                    />
-                  </div>
-                  <div>
-                    {category.items.map(
-                      (testExam) =>
-                        testExam.print && (
-                          <div className="paper-content" key={testExam.id}>
-                            <PrintResult testExam={testExam} />
-                          </div>
-                        )
-                    )}
-                  </div>
+          </ul>
+
+          {/* PRINT PAPER FOOTER */}
+          <div className="print-page__paper-footer p-xs bg--accent">
+            {/* Pied de Page */}
+            {showFooter && (
+              <div className="w-full grid col-2">
+                <div>
+                  <p> {`Bamako ${getFormatedDate()}`} </p>
+                </div>
+                <div className="flex items-center justify-center">
+                  <p>Le Biologiste</p>
                 </div>
               </div>
-            )
-        )}
-
-        {/* PRINT NB */}
-        <ul className="print-page__paper-nb pt-lg">
-          {showNb &&
-            selectedPatient.nb.length > 0 &&
-            selectedPatient.nb.map((nb) => (
-              <div key={nb.id}>
-                <p className="fw-600"> {`NB: ${nb.content}`} </p>
-              </div>
-            ))}
-        </ul>
-
-        {/* PRINT PAPER FOOTER */}
-        <div className="print-page__paper-footer p-xs bg--accent">
-          {/* Pied de Page */}
-          {showFooter && (
-            <div className="w-full grid col-2">
-              <div>
-                <p> {`Bamako ${getFormatedDate()}`} </p>
-              </div>
-              <div className="pl-xl">
-                <p>Le Biologiste</p>
-              </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       </div>
-    </div>
+
+      {/* Change ref dialog */}
+      {/* {isRefDialogShown && (
+        <CustomDialog onClose={onCloseRefDialog}>
+          <div>
+            {categorizedData.map((category, categoryIndex) => {
+              return (
+                <div key={categoryIndex}>
+                  {category.items.map((item) => {
+                    return (
+                      // row = itemName ---- itemRefs
+                      <div key={item.id}>
+                        <div
+                          key={item.name}
+                          className="border-bottom-sm pb-sm grid col-2 text--md"
+                        >
+                          <div className="flex items-center">
+                            <p>{item.name}</p>
+                          </div>
+                          <div>
+                            {item.refString.map((ref, refIndex) => {
+                              return (
+                                <div key={refIndex} className="">
+                                  <Input
+                                    value={ref}
+                                    onChange={(e) =>
+                                      onRefValueChangeHandler(
+                                        e,
+                                        category.category,
+                                        item.id,
+                                        refIndex
+                                      )
+                                    }
+                                  />
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              );
+            })}
+          </div>
+        </CustomDialog>
+      )} */}
+    </>
   );
 }
 

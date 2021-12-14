@@ -1,0 +1,14 @@
+.content {
+  position: fixed;
+  z-index: var(--z-index-overlay);
+  top: 10vh;
+  bottom: 10vh;
+  left: 20vw;
+  right: 20vw;
+
+  .close-container {
+    position: absolute;
+    right: var(--space-md);
+    top: var(--space-sm);
+  }
+}
