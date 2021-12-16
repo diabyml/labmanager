@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/labmanager/static/css/main.b1cce485.chunk.css",
-    "main.js": "/labmanager/static/js/main.b76a1c1d.chunk.js",
-    "main.js.map": "/labmanager/static/js/main.b76a1c1d.chunk.js.map",
+    "main.js": "/labmanager/static/js/main.8b08e5c4.chunk.js",
+    "main.js.map": "/labmanager/static/js/main.8b08e5c4.chunk.js.map",
     "runtime-main.js": "/labmanager/static/js/runtime-main.dd6f40fc.js",
     "runtime-main.js.map": "/labmanager/static/js/runtime-main.dd6f40fc.js.map",
     "static/css/2.ecdd39c8.chunk.css": "/labmanager/static/css/2.ecdd39c8.chunk.css",
@@ -21,6 +21,6 @@
     "static/css/2.ecdd39c8.chunk.css",
     "static/js/2.7c4d3843.chunk.js",
     "static/css/main.b1cce485.chunk.css",
-    "static/js/main.b76a1c1d.chunk.js"
+    "static/js/main.8b08e5c4.chunk.js"
   ]
 }
