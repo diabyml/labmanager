@@ -421,12 +421,12 @@ function PatientsPage({
                   </div>
                 </div>
                 {/* ref values options */}
-                <div className="mt-md">
+                {/* <div className="mt-md">
                   <p className="text-center text--lg mb-md">
                     Les valeurs de Référence
                   </p>
                   {}
-                </div>
+                </div> */}
               </div>
             ) : (
               <div className="height-full flex flex-center">
