@@ -4,6 +4,7 @@ import { TEST_EXAM_TYPES } from "../../constants/test-exam-type";
 import WidalTestExam from "./widal-test-exam";
 import MultiParamTestExam from "./multi-param-test-exam";
 import BHCGTestExam from "./bhcg-test-exam";
+import GeTestExam from "./ge-test-exam";
 
 function PrintResult({ testExam }) {
   const getTestExamType = (testExam) => {
@@ -14,6 +15,8 @@ function PrintResult({ testExam }) {
         return <BHCGTestExam testExam={testExam} />;
       case TEST_EXAM_TYPES.MULTI_PARAM:
         return <MultiParamTestExam testExam={testExam} />;
+      case TEST_EXAM_TYPES.GE:
+        return <GeTestExam testExam={testExam} />;
       default:
         return <StandardTestExam testExam={testExam} />;
     }

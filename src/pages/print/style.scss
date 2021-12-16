@@ -77,7 +77,6 @@
     font-size: 16pt;
     // line-height: 11pt !important;
     background: none;
-    color: var(--color-black);
   }
 
   .print-page__paper {
@@ -91,7 +90,6 @@
   h4,
   h5,
   h6 {
-    color: var(--color-black) !important;
     font-size: 24pt;
     line-height: 30pt;
     margin: 0;
@@ -107,7 +105,6 @@
 
   h1 small {
     font-size: 24pt;
-    color: #888;
     margin: 0 0 10pt;
   }
 
@@ -118,6 +115,8 @@
   .paper-content {
     p {
       font-size: 16pt !important;
+      // color: red !important;
+      font-weight: 500;
       // outline: 1px solid red !important;
     }
 

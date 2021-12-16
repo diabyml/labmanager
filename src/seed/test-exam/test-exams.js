@@ -780,7 +780,7 @@ const DATA = [
   //   BIOCHIMIE TESTS END HERE....
   {
     id: uuidv4(),
-    type: TEST_EXAM_TYPES.STANDARD,
+    type: TEST_EXAM_TYPES.GE,
     refSign: "none",
     category: categories.PARASITOLOGIE,
     name: "GE",
@@ -1764,16 +1764,16 @@ const DATA = [
     category: categories.HORMONES,
     name: "FT4",
     fullName: "T4 libre",
-    refString: [`(8.9 ${signs.range.sign} 17.2) ${units.PG_SLASH_ML}`],
+    refString: [`(12 ${signs.range.sign} 22) ${units.PMOL_SLASH_L}`],
     result: [
       {
         id: uuidv4(),
         type: undefined,
         value: "",
-        unit: units.PG_SLASH_ML,
+        unit: units.PMOL_SLASH_L,
         refSign: signs.range.name,
         isGenreDependent: false,
-        ref: [8.9, 17.2],
+        ref: [12, 22],
         // ref[0] -- is lowerBound
         // ref[1] -- is upperBound
       },

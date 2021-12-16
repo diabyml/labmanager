@@ -20,6 +20,7 @@ const units = {
   MM_SLASH_1_HEURE: "mm/1 Heure",
   MM_SLASH_2_HEURE: "mm/2 Heure",
   PG_SLASH_ML: "Pg/ml",
+  PMOL_SLASH_L: "Pmol/l",
   NMOL_SLASH_L: "nmol/L",
   UUI_SLASH_ML: "µUI/ml",
   U_SLASH_ML: "U/ml",

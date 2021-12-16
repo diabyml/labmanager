@@ -93,7 +93,7 @@ const patientReducer = (state = INITIAL_STATE, action) => {
                 ...patient,
                 nb: patient.nb.filter(({ id }) => id !== action.payload.nbId),
               }
-            : patient.id
+            : patient
         ),
       };
 

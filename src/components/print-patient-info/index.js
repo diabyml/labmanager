@@ -17,7 +17,7 @@ function PrintPatientInfo({ patient, doctor }) {
       <div className="border p-xs shadow-box">
         {/* doctor */}
         <Label>Provenance: {doctor.provenance}</Label>
-        <Label>Demandé par: {doctor.lastName}</Label>
+        <Label>Demandé par: {`${doctor.lastName} ${doctor.firstName}`}</Label>
         <Label>Pavillon: {doctor.pavillon}</Label>
       </div>
     </div>

@@ -5,7 +5,7 @@ import "./style.scss";
 function PrintHeader() {
   return (
     <div className="print-header">
-      <div className="opacity-6">
+      <div className="">
         <div className="circle p-md ">
           <h4 className="text-center font-bold">LABORATOIRE D'ANALYSE</h4>
           <p className="text-center my-xs">

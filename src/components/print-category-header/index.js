@@ -6,7 +6,10 @@ import "./style.scss";
 function PrintCategoryHeader({ name, showNorm }) {
   return (
     <div className="print-category-header">
-      <h2 className="text-center mb-xxs">
+      <h2
+        className="text-center mb-xxs"
+        style={{ fontSize: "28pt !important" }}
+      >
         <strong>{name.toUpperCase()}</strong>
       </h2>
       {name === categories.IMMUNOPHENOTYPAGE && (

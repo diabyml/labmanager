@@ -55,7 +55,7 @@ function StandardTestExam({ testExam: exam, patient }) {
             <span>
               {parseFloat(res.value) ? (
                 <>
-                  {` ${res.unit}`} <sup>3</sup>
+                  {`${res.unit}`} <sup>3</sup>
                 </>
               ) : null}
             </span>

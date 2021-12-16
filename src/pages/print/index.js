@@ -39,6 +39,7 @@ function PrintPage({ selectedPatient }) {
   const { firstName, lastName, age, sampleNumber } = selectedPatient;
   const {
     lastName: doctorLatName,
+    firstName: doctorFirstName,
     pavillon,
     provenance,
   } = selectedPatient.doctor;
@@ -290,7 +291,12 @@ function PrintPage({ selectedPatient }) {
             {showEntete && (
               <PrintPatientInfo
                 patient={{ firstName, lastName, age, sampleNumber }}
-                doctor={{ lastName: doctorLatName, pavillon, provenance }}
+                doctor={{
+                  firstName: doctorFirstName,
+                  lastName: doctorLatName,
+                  pavillon,
+                  provenance,
+                }}
               />
             )}
           </div>

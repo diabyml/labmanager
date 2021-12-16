@@ -57,6 +57,8 @@ function PatientsPage({
   const [isDialogShown, setIsDialogShown] = useState(false);
   const history = useHistory();
 
+  console.log("PatientsPage: selectedPatient --> ", selectedPatient);
+
   const handleDropDownMenuStateChange = () => {
     setIsDropDownMenuShown((prev) => !prev);
   };
@@ -367,7 +369,8 @@ function PatientsPage({
                     )
                   )}
                 </ul>
-                <div className="mt-lg">
+                {/* nbs container */}
+                <div className="mt-lg border-bottom-sm pb-md">
                   <div className="flex">
                     <div className="flex items-end mr-md">
                       <Button variant="primary" onClick={addNewNb}>
@@ -416,6 +419,13 @@ function PatientsPage({
                       <div className="">Pas de Nb</div>
                     )}
                   </div>
+                </div>
+                {/* ref values options */}
+                <div className="mt-md">
+                  <p className="text-center text--lg mb-md">
+                    Les valeurs de Référence
+                  </p>
+                  {}
                 </div>
               </div>
             ) : (
