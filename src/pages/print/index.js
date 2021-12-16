@@ -144,7 +144,10 @@ function PrintPage({ selectedPatient }) {
     // const day = date.getDate().toString().padStart(2, "0");
     // const year = date.getFullYear();
     // return `${day}/${month}/${year}`;
-    return moment(date).format("l");
+
+    const dateStr = moment(date).format("l");
+    const monthDayYear = dateStr.split("/");
+    return `le ${monthDayYear[1]}/${monthDayYear[0]}/${monthDayYear[2]}`;
   };
 
   return (
