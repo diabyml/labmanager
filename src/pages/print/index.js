@@ -329,7 +329,7 @@ function PrintPage({ selectedPatient }) {
             className="print-page__paper-nb pos-rel"
             style={{ marginTop: `${changeNbMarginBy}px` }}
           >
-            {showNb && (
+            {showNb && selectedPatient.nb.length > 0 && (
               <div>
                 <div
                   className="flex items-center print-hidden"
