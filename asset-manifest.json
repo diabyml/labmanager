@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/labmanager/static/css/main.18d67863.chunk.css",
-    "main.js": "/labmanager/static/js/main.cefad660.chunk.js",
-    "main.js.map": "/labmanager/static/js/main.cefad660.chunk.js.map",
+    "main.css": "/labmanager/static/css/main.1a8cb1e0.chunk.css",
+    "main.js": "/labmanager/static/js/main.396103b1.chunk.js",
+    "main.js.map": "/labmanager/static/js/main.396103b1.chunk.js.map",
     "runtime-main.js": "/labmanager/static/js/runtime-main.dd6f40fc.js",
     "runtime-main.js.map": "/labmanager/static/js/runtime-main.dd6f40fc.js.map",
     "static/css/2.ecdd39c8.chunk.css": "/labmanager/static/css/2.ecdd39c8.chunk.css",
@@ -12,7 +12,7 @@
     "static/js/3.1f8545c4.chunk.js.map": "/labmanager/static/js/3.1f8545c4.chunk.js.map",
     "index.html": "/labmanager/index.html",
     "static/css/2.ecdd39c8.chunk.css.map": "/labmanager/static/css/2.ecdd39c8.chunk.css.map",
-    "static/css/main.18d67863.chunk.css.map": "/labmanager/static/css/main.18d67863.chunk.css.map",
+    "static/css/main.1a8cb1e0.chunk.css.map": "/labmanager/static/css/main.1a8cb1e0.chunk.css.map",
     "static/js/2.7c4d3843.chunk.js.LICENSE.txt": "/labmanager/static/js/2.7c4d3843.chunk.js.LICENSE.txt",
     "static/media/style.scss": "/labmanager/static/media/calibri.b9bbdb6b.ttf"
   },
@@ -20,7 +20,7 @@
     "static/js/runtime-main.dd6f40fc.js",
     "static/css/2.ecdd39c8.chunk.css",
     "static/js/2.7c4d3843.chunk.js",
-    "static/css/main.18d67863.chunk.css",
-    "static/js/main.cefad660.chunk.js"
+    "static/css/main.1a8cb1e0.chunk.css",
+    "static/js/main.396103b1.chunk.js"
   ]
 }
