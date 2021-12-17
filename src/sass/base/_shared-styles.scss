@@ -159,3 +159,19 @@
   left: 0;
   right: 0;
 }
+
+// positioning styles
+.pos-rel {
+  position: relative;
+}
+
+.pos-abs {
+  position: relative;
+}
+
+// print
+@media print {
+  .print-hidden {
+    display: none !important;
+  }
+}

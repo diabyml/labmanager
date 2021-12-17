@@ -36,6 +36,7 @@ import ButtonIcon from "../../components/button-icon/index";
 import ROUTES from "../../seed/routes";
 import DialogBox from "../../components/dialog";
 // import ConfirmDialog from "../../components/confirm-dialog/index";
+import CustomDialog from "../../components/custom-dialog/index";
 
 function PatientsPage({
   currentPatients,
@@ -55,6 +56,7 @@ function PatientsPage({
   const [isDropDownMenuShown, setIsDropDownMenuShown] = useState(false);
   // const [isArchiveDialogOpen, setIsArchiveDialogOpen] = useState(false);
   const [isDialogShown, setIsDialogShown] = useState(false);
+  const [isDeleteDialogShown, setIsDeleteDialogShown] = useState(false);
   const history = useHistory();
 
   console.log("PatientsPage: selectedPatient --> ", selectedPatient);
@@ -193,11 +195,7 @@ function PatientsPage({
                       <div className="dropdown-menu">
                         <ul>
                           <li onClick={handlePrintPatient}>Imprimer</li>
-                          <li
-                            onClick={() =>
-                              handleDeletePatient(selectedPatient.id)
-                            }
-                          >
+                          <li onClick={() => setIsDeleteDialogShown(true)}>
                             Effacer
                           </li>
                           {/* <li>Archiver</li> */}
@@ -438,6 +436,36 @@ function PatientsPage({
           </div>
         </div>
       </div>
+
+      {/* DELETE DIALOG */}
+      {isDeleteDialogShown && (
+        <CustomDialog onClose={() => setIsDeleteDialogShown((prev) => !prev)}>
+          <div>
+            <h2 className="text-center mb-md">
+              Voulez-vous vraiment effacer ?
+            </h2>
+            <div className="flex justify-between">
+              <Button
+                variant="secondary"
+                onClick={() => setIsDeleteDialogShown((prev) => !prev)}
+                size="md"
+              >
+                NON
+              </Button>
+              <Button
+                variant="accent"
+                size={"md"}
+                onClick={() => {
+                  handleDeletePatient(selectedPatient.id);
+                  setIsDeleteDialogShown((prev) => !prev);
+                }}
+              >
+                OUI
+              </Button>
+            </div>
+          </div>
+        </CustomDialog>
+      )}
     </>
   );
 }

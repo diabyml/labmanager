@@ -48,6 +48,11 @@ export const addPatientDoctorNb = (patientId, newNb) => ({
   payload: { patientId, newNb },
 });
 
+export const deletePatientFromHistory = (patientId) => ({
+  type: PATIENT_ACTION_TYPES.DELETE_PATIENT_FROM_HISTORY,
+  payload: patientId,
+});
+
 export const updatePatientDoctorNb = (patientId, nbId, newValue) => ({
   type: PATIENT_ACTION_TYPES.UPDATE_PATIENT_DOCTOR_NB,
   payload: { patientId, nbId, newValue },

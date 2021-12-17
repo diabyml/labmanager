@@ -22,6 +22,8 @@ function PrintPage({ selectedPatient }) {
   const [expandedCategory, setExpandedCategory] = useState(undefined);
   const [showEntete, setShowEntete] = useState(true);
   const [isUsingCurrentDate, setIsUsingCurrentDate] = useState(false);
+  const [changeDateMarginBy, setChangeDateMarginBy] = useState(16);
+  const [changeNbMarginBy, setChangeNbMarginBy] = useState(16);
   // const [isRefDialogShown, setIsRefDialogShown] = useState(false);
   // footer is the date and biologiste signature area
   const [showFooter, setShowFooter] = useState(true);
@@ -140,12 +142,6 @@ function PrintPage({ selectedPatient }) {
 
   const getFormatedDate = () => {
     const date = isUsingCurrentDate ? new Date() : selectedPatient.date;
-    // const date = selectedPatient.date;
-    // const month = date.getMonth() + 1;
-    // const day = date.getDate().toString().padStart(2, "0");
-    // const year = date.getFullYear();
-    // return `${day}/${month}/${year}`;
-
     const dateStr = moment(date).format("l");
     const monthDayYear = dateStr.split("/");
     return `le ${monthDayYear[1]}/${monthDayYear[0]}/${monthDayYear[2]}`;
@@ -329,7 +325,39 @@ function PrintPage({ selectedPatient }) {
           )}
 
           {/* PRINT NB */}
-          <ul className="print-page__paper-nb pt-lg">
+          <ul
+            className="print-page__paper-nb pos-rel"
+            style={{ marginTop: `${changeNbMarginBy}px` }}
+          >
+            {showNb && (
+              <div>
+                <div
+                  className="flex items-center print-hidden"
+                  style={{
+                    position: "absolute",
+                    top: "0",
+                    bottom: "0",
+                    right: "0",
+                  }}
+                >
+                  <div>
+                    <input
+                      value={changeNbMarginBy}
+                      className="text--sm"
+                      onChange={(e) => {
+                        const { value } = e.target;
+                        if (value && value <= 200) {
+                          setChangeNbMarginBy(value);
+                        } else {
+                          setChangeNbMarginBy("");
+                        }
+                      }}
+                      style={{ width: "40px", height: "18px" }}
+                    />
+                  </div>
+                </div>
+              </div>
+            )}
             {showNb &&
               selectedPatient.nb.length > 0 &&
               selectedPatient.nb.map((nb) => (
@@ -339,19 +367,57 @@ function PrintPage({ selectedPatient }) {
               ))}
           </ul>
 
+          {/* date */}
+          {showFooter && (
+            <div
+              className="date-container w-full grid col-2"
+              style={{
+                position: "relative",
+                marginTop: `${changeDateMarginBy}px`,
+              }}
+            >
+              <div>
+                <p> {`Bamako ${getFormatedDate()}`} </p>
+              </div>
+              <div className="flex items-center justify-center">
+                <p>Le Biologiste</p>
+              </div>
+              {/* change date margin logic container */}
+              <div
+                className="flex items-center print-hidden"
+                style={{
+                  position: "absolute",
+                  top: "0",
+                  bottom: "0",
+                  right: "0",
+                }}
+              >
+                <div>
+                  <input
+                    type="text"
+                    value={changeDateMarginBy}
+                    className="text--sm"
+                    onChange={(e) => {
+                      const { value } = e.target;
+                      if (value && value <= 200) {
+                        setChangeDateMarginBy(value);
+                      } else {
+                        setChangeDateMarginBy("");
+                      }
+                    }}
+                    style={{ width: "50px", height: "18px" }}
+                  />
+                </div>
+              </div>
+            </div>
+          )}
+
           {/* PRINT PAPER FOOTER */}
           <div className="print-page__paper-footer p-xs bg--accent">
             {/* Pied de Page */}
-            {showFooter && (
-              <div className="w-full grid col-2">
-                <div>
-                  <p> {`Bamako ${getFormatedDate()}`} </p>
-                </div>
-                <div className="flex items-center justify-center">
-                  <p>Le Biologiste</p>
-                </div>
-              </div>
-            )}
+            <div className="print-hidden" style={{ color: "black" }}>
+              Fin de la page
+            </div>
           </div>
         </div>
       </div>

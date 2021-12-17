@@ -6,11 +6,14 @@ import "./style.scss";
 function PrintCategoryHeader({ name, showNorm }) {
   return (
     <div className="print-category-header">
-      <h2 className="category-text text-center mb-xxs">
-        <strong>{name}</strong>
+      <h2
+        className="category-text text-center fw-500"
+        style={{ lineHeight: "1.15" }}
+      >
+        {name}
       </h2>
       {name === categories.IMMUNOPHENOTYPAGE && (
-        <div className="flex flex-column items-center flow spacer-sm mb-sm">
+        <div className="flex flex-column items-center  mb-sm">
           <p>(Méthode Fluorescence CD4)</p>
           <p>Linéarité : 50-4000 cellules/ul</p>
         </div>

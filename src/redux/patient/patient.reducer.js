@@ -153,6 +153,15 @@ const patientReducer = (state = INITIAL_STATE, action) => {
               }
         ),
       };
+
+    case PATIENT_ACTION_TYPES.DELETE_PATIENT_FROM_HISTORY:
+      return {
+        ...state,
+        patientsHistory: state.patientsHistory.filter(
+          ({ id }) => id !== action.payload
+        ),
+      };
+
     default:
       return state;
   }

@@ -1040,6 +1040,57 @@ const DATA = [
     ],
   },
 
+  // AC ANTI HBC TOTAUX IgG IgM
+  {
+    id: uuidv4(),
+    type: TEST_EXAM_TYPES.MULTI_PARAM,
+    category: categories.SEROLOGIE_IMMUNOLOGIE,
+    label: "Ac anti HBc Totaux",
+    name: "Ac anti HBc IgG et IgM",
+    refType: refTypes.MULTIPLE,
+    result: [
+      {
+        id: hbcIgGId,
+        type: "IgG",
+        value: "",
+        unit: units.INDEX_SLASH_ML,
+        refString: [`Négatif : <100 index/ml`, `Positif : ≥ 100 index/ml`],
+        refSign: signs.lessThan.name, // change depending on testExam result
+        ref: 100,
+        isGenreDependent: false,
+      },
+      {
+        id: hbcIgMId,
+        type: "IgM",
+        value: "",
+        unit: units.NONE,
+        refString: [""],
+        refSign: signs.none.name,
+      },
+    ],
+  },
+
+  {
+    id: uuidv4(),
+    type: TEST_EXAM_TYPES.MULTI_PARAM,
+    category: categories.SEROLOGIE_IMMUNOLOGIE,
+    label: "Ac anti HBc Totaux",
+    name: "Ac anti HBc IgG",
+    refType: refTypes.MULTIPLE,
+    result: [
+      {
+        id: hbcIgGId,
+        type: "IgG",
+        value: "",
+        unit: units.INDEX_SLASH_ML,
+        refString: [`Négatif : <100 index/ml`, `Positif : ≥ 100 index/ml`],
+        refSign: signs.lessThan.name, // change depending on testExam result
+        ref: 100,
+        isGenreDependent: false,
+      },
+    ],
+  },
+
   {
     id: uuidv4(),
     type: TEST_EXAM_TYPES.STANDARD,
@@ -1393,57 +1444,6 @@ const DATA = [
         refString: [`Négatif : < 2 IU/ml`, `Positif : ≥ 2 IU/ml`],
         refSign: signs.lessThan.name, // change depending on testExam result
         ref: 2,
-        isGenreDependent: false,
-      },
-    ],
-  },
-
-  // AC ANTI HBC TOTAUX IgG IgM
-  {
-    id: uuidv4(),
-    type: TEST_EXAM_TYPES.MULTI_PARAM,
-    category: categories.SEROLOGIE_IMMUNOLOGIE,
-    label: "Ac anti HBc Totaux",
-    name: "Ac anti HBc IgG et IgM",
-    refType: refTypes.MULTIPLE,
-    result: [
-      {
-        id: hbcIgGId,
-        type: "IgG",
-        value: "",
-        unit: units.INDEX_SLASH_ML,
-        refString: [`Négatif : <100 index/ml`, `Positif : ≥ 100 index/ml`],
-        refSign: signs.lessThan.name, // change depending on testExam result
-        ref: 100,
-        isGenreDependent: false,
-      },
-      {
-        id: hbcIgMId,
-        type: "IgM",
-        value: "",
-        unit: units.NONE,
-        refString: [""],
-        refSign: signs.none.name,
-      },
-    ],
-  },
-
-  {
-    id: uuidv4(),
-    type: TEST_EXAM_TYPES.MULTI_PARAM,
-    category: categories.SEROLOGIE_IMMUNOLOGIE,
-    label: "Ac anti HBc Totaux",
-    name: "Ac anti HBc IgG",
-    refType: refTypes.MULTIPLE,
-    result: [
-      {
-        id: hbcIgGId,
-        type: "IgG",
-        value: "",
-        unit: units.INDEX_SLASH_ML,
-        refString: [`Négatif : <100 index/ml`, `Positif : ≥ 100 index/ml`],
-        refSign: signs.lessThan.name, // change depending on testExam result
-        ref: 100,
         isGenreDependent: false,
       },
     ],

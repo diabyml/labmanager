@@ -91,7 +91,7 @@
   h5,
   h6 {
     font-size: 28pt;
-    line-height: 30pt;
+    // line-height: 10pt;
     margin: 0;
   }
 
@@ -110,8 +110,15 @@
 
   .category-text {
     // color: red !important;
-    line-height: 1.2;
+    line-height: 1;
     font-size: 36pt;
+  }
+
+  .date-container {
+    p {
+      // color: red !important;
+      font-size: 16pt;
+    }
   }
 
   p {
