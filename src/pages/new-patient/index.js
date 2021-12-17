@@ -14,7 +14,7 @@ import { createStructuredSelector } from "reselect";
 import { useEffect } from "react";
 
 function NewPatientPage({ doctors }) {
-  const date = new Date().getDay() + "";
+  const date = new Date().getDate() + "";
   const dateStr = `0/${date.padStart(2, "0")}`;
   const [patient, setPatient] = useState({
     id: uuidv4(),
@@ -143,7 +143,7 @@ function NewPatientPage({ doctors }) {
   };
 
   const resetInfo = () => {
-    const date = new Date().getDay() + "";
+    const date = new Date().getDate() + "";
     setPatient({
       id: uuidv4(),
       firstName: "",
