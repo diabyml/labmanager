@@ -6,10 +6,7 @@ import "./style.scss";
 function PrintCategoryHeader({ name, showNorm }) {
   return (
     <div className="print-category-header">
-      <h2
-        className="category-text text-center fw-500"
-        style={{ lineHeight: "1.15" }}
-      >
+      <h2 className="category-text text-center" style={{ lineHeight: "1.15" }}>
         {name}
       </h2>
       {name === categories.IMMUNOPHENOTYPAGE && (

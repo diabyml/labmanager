@@ -1,9 +1,11 @@
-@media print {
-  .print-category-header {
-    font-family: Calibri, sans-serif !important;
+.print-category-header {
+  font-family: Calibri, sans-serif !important;
 
-    h2 {
-      font-family: Calonna !important;
-    }
+  h2 {
+    font-family: Calonna, sans-serif !important;
+    font-weight: bold !important;
   }
+}
+
+@media print {
 }
